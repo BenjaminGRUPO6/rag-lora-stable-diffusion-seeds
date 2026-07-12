@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import hashlib
 from collections import Counter, defaultdict
-from dataclasses import asdict, dataclass, fields
+from dataclasses import asdict, dataclass
 from pathlib import Path
 
 import imagehash
@@ -24,181 +24,459 @@ class ImageRecord:
     sha256: str | None
     perceptual_hash: str | None
     valid: bool
+    is_small: bool | None
     error: str | None
 
 
-def _sha256(path: Path) -> str:
+def calculate_sha256(path: Path) -> str:
+    """Calcula el hash SHA-256 de un archivo."""
+
     digest = hashlib.sha256()
-    with path.open("rb") as f:
-        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+
+    with path.open("rb") as file:
+        for chunk in iter(lambda: file.read(1024 * 1024), b""):
             digest.update(chunk)
+
     return digest.hexdigest()
 
 
-def _category_from_relative(relative_path: Path) -> str:
-    """Return the first directory name as the visual category."""
-    return relative_path.parts[0] if len(relative_path.parts) > 1 else "unknown"
+def audit_images(
+    dataset_root: Path,
+    min_size: int = 200,
+) -> list[ImageRecord]:
+    """
+    Audita las imágenes sin modificar los archivos originales.
 
+    Parameters
+    ----------
+    dataset_root:
+        Carpeta raíz del dataset.
+    min_size:
+        Tamaño mínimo permitido para ancho y alto.
+    """
 
-def _iter_image_paths(root: Path) -> list[Path]:
-    """Find supported image files under root without modifying them."""
-    return sorted(
+    if not dataset_root.exists():
+        raise FileNotFoundError(
+            f"No existe el directorio del dataset: {dataset_root}"
+        )
+
+    records: list[ImageRecord] = []
+
+    image_paths = sorted(
         path
-        for path in root.rglob("*")
-        if path.is_file() and path.suffix.lower() in SUPPORTED_EXTENSIONS
+        for path in dataset_root.rglob("*")
+        if path.is_file()
+        and path.suffix.lower() in SUPPORTED_EXTENSIONS
     )
 
+    for path in image_paths:
+        relative_path = path.relative_to(dataset_root)
+        category = (
+            relative_path.parts[0]
+            if len(relative_path.parts) > 1
+            else "unknown"
+        )
 
-def audit_images(root: Path) -> list[ImageRecord]:
-    """Audit supported image files and return structured records."""
-    records: list[ImageRecord] = []
-    for path in _iter_image_paths(root):
-        relative = path.relative_to(root)
-        category = _category_from_relative(relative)
         try:
+            # Primera apertura para comprobar integridad.
             with Image.open(path) as image:
                 image.verify()
+
+            # Segunda apertura para leer propiedades.
             with Image.open(path) as image:
+                image = image.convert("RGB")
+
                 width, height = image.size
                 mode = image.mode
-                phash = str(imagehash.phash(image.convert("RGB")))
+                perceptual_hash = str(imagehash.phash(image))
+
             records.append(
                 ImageRecord(
-                    str(relative),
-                    category,
-                    path.suffix.lower(),
-                    width,
-                    height,
-                    mode,
-                    path.stat().st_size,
-                    _sha256(path),
-                    phash,
-                    True,
-                    None,
+                    relative_path=relative_path.as_posix(),
+                    category=category,
+                    extension=path.suffix.lower(),
+                    width=width,
+                    height=height,
+                    mode=mode,
+                    size_bytes=path.stat().st_size,
+                    sha256=calculate_sha256(path),
+                    perceptual_hash=perceptual_hash,
+                    valid=True,
+                    is_small=width < min_size or height < min_size,
+                    error=None,
                 )
             )
-        except (UnidentifiedImageError, OSError, ValueError) as exc:
+
+        except (
+            UnidentifiedImageError,
+            OSError,
+            ValueError,
+        ) as error:
             records.append(
                 ImageRecord(
-                    str(relative),
-                    category,
-                    path.suffix.lower(),
-                    None,
-                    None,
-                    None,
-                    path.stat().st_size,
-                    None,
-                    None,
-                    False,
-                    str(exc),
+                    relative_path=relative_path.as_posix(),
+                    category=category,
+                    extension=path.suffix.lower(),
+                    width=None,
+                    height=None,
+                    mode=None,
+                    size_bytes=path.stat().st_size,
+                    sha256=None,
+                    perceptual_hash=None,
+                    valid=False,
+                    is_small=None,
+                    error=str(error),
                 )
             )
+
     return records
 
 
-def summarize(records: list[ImageRecord]) -> dict:
-    """Summarize audited image records for JSON reporting."""
-    valid = [r for r in records if r.valid]
-    sha_counts = Counter(r.sha256 for r in valid if r.sha256)
-    phash_groups: dict[str, list[str]] = defaultdict(list)
-    for record in valid:
-        if record.perceptual_hash:
-            phash_groups[record.perceptual_hash].append(record.relative_path)
+def find_exact_duplicates(
+    records: list[ImageRecord],
+) -> list[dict]:
+    """Agrupa archivos que tienen exactamente el mismo SHA-256."""
+
+    hash_groups: dict[str, list[ImageRecord]] = defaultdict(list)
+
+    for record in records:
+        if record.valid and record.sha256:
+            hash_groups[record.sha256].append(record)
+
+    duplicate_rows: list[dict] = []
+    group_number = 1
+
+    for sha256, group in hash_groups.items():
+        if len(group) <= 1:
+            continue
+
+        group_id = f"exact_{group_number:04d}"
+
+        for record in group:
+            duplicate_rows.append(
+                {
+                    "group_id": group_id,
+                    "sha256": sha256,
+                    "relative_path": record.relative_path,
+                    "category": record.category,
+                    "size_bytes": record.size_bytes,
+                }
+            )
+
+        group_number += 1
+
+    return duplicate_rows
+
+
+def find_possible_near_duplicates(
+    records: list[ImageRecord],
+    max_distance: int = 5,
+) -> list[dict]:
+    """
+    Detecta imágenes visualmente similares mediante distancia perceptual.
+
+    Solo compara imágenes de la misma categoría para reducir falsos positivos.
+    """
+
+    category_groups: dict[str, list[ImageRecord]] = defaultdict(list)
+
+    for record in records:
+        if record.valid and record.perceptual_hash:
+            category_groups[record.category].append(record)
+
+    possible_duplicates: list[dict] = []
+
+    for category, category_records in category_groups.items():
+        prepared = [
+            (
+                record,
+                int(record.perceptual_hash, 16),
+            )
+            for record in category_records
+        ]
+
+        for index_a in range(len(prepared)):
+            record_a, hash_a = prepared[index_a]
+
+            for index_b in range(index_a + 1, len(prepared)):
+                record_b, hash_b = prepared[index_b]
+
+                # Los duplicados exactos ya se registran en otro archivo.
+                if (
+                    record_a.sha256
+                    and record_a.sha256 == record_b.sha256
+                ):
+                    continue
+
+                distance = (hash_a ^ hash_b).bit_count()
+
+                if distance <= max_distance:
+                    possible_duplicates.append(
+                        {
+                            "category": category,
+                            "path_a": record_a.relative_path,
+                            "path_b": record_b.relative_path,
+                            "phash_a": record_a.perceptual_hash,
+                            "phash_b": record_b.perceptual_hash,
+                            "phash_distance": distance,
+                        }
+                    )
+
+    return possible_duplicates
+
+
+def summarize(
+    records: list[ImageRecord],
+    exact_duplicates: list[dict] | None = None,
+    near_duplicates: list[dict] | None = None,
+) -> dict:
+    """Genera el resumen general de la auditoría."""
+
+    valid_records = [
+        record for record in records if record.valid
+    ]
+
+    corrupted_records = [
+        record for record in records if not record.valid
+    ]
+
+    exact_duplicates = exact_duplicates or []
+    near_duplicates = near_duplicates or []
+
+    exact_group_count = len(
+        {
+            row["group_id"]
+            for row in exact_duplicates
+        }
+    )
+
     return {
-        'total_files': len(records),
-        'valid_images': len(valid),
-        'corrupted_images': len(records) - len(valid),
-        'exact_duplicate_groups': sum(1 for count in sha_counts.values() if count > 1),
-        'same_phash_groups': sum(1 for paths in phash_groups.values() if len(paths) > 1),
-        'category_distribution': dict(Counter(r.category for r in valid)),
-        'extension_distribution': dict(Counter(r.extension for r in valid)),
-        'width_min': min((r.width for r in valid if r.width is not None), default=None),
-        'width_max': max((r.width for r in valid if r.width is not None), default=None),
-        'height_min': min((r.height for r in valid if r.height is not None), default=None),
-        'height_max': max((r.height for r in valid if r.height is not None), default=None),
+        "total_files": len(records),
+        "valid_images": len(valid_records),
+        "corrupted_images": len(corrupted_records),
+        "small_images": sum(
+            1
+            for record in valid_records
+            if record.is_small
+        ),
+        "exact_duplicate_groups": exact_group_count,
+        "exact_duplicate_files": len(exact_duplicates),
+        "possible_near_duplicate_pairs": len(near_duplicates),
+        "category_distribution": dict(
+            Counter(
+                record.category
+                for record in valid_records
+            )
+        ),
+        "extension_distribution": dict(
+            Counter(
+                record.extension
+                for record in valid_records
+            )
+        ),
+        "width": {
+            "minimum": min(
+                (
+                    record.width
+                    for record in valid_records
+                    if record.width is not None
+                ),
+                default=None,
+            ),
+            "maximum": max(
+                (
+                    record.width
+                    for record in valid_records
+                    if record.width is not None
+                ),
+                default=None,
+            ),
+            "average": (
+                sum(
+                    record.width
+                    for record in valid_records
+                    if record.width is not None
+                )
+                / len(valid_records)
+                if valid_records
+                else None
+            ),
+        },
+        "height": {
+            "minimum": min(
+                (
+                    record.height
+                    for record in valid_records
+                    if record.height is not None
+                ),
+                default=None,
+            ),
+            "maximum": max(
+                (
+                    record.height
+                    for record in valid_records
+                    if record.height is not None
+                ),
+                default=None,
+            ),
+            "average": (
+                sum(
+                    record.height
+                    for record in valid_records
+                    if record.height is not None
+                )
+                / len(valid_records)
+                if valid_records
+                else None
+            ),
+        },
     }
 
 
-def audit_dataset(root: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Audit a dataset directory and split valid and corrupted image rows.
+def records_to_dicts(
+    records: list[ImageRecord],
+) -> list[dict]:
+    """Convierte los registros en diccionarios para exportarlos."""
 
-    The function reads image metadata, exact hashes and perceptual hashes from
-    files with supported extensions. It does not write to, move or delete any
-    dataset file.
+    return [
+        asdict(record)
+        for record in records
+
+    ]
+
+def audit_dataset(
+    dataset_dir: str | Path,
+    min_size: int = 200,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
     """
-    records = audit_images(root)
-    rows = [asdict(record) for record in records]
-    columns = [field.name for field in fields(ImageRecord)]
-    images = pd.DataFrame(
-        [row for row in rows if row["valid"]],
-        columns=columns,
-    )
-    corrupted = pd.DataFrame(
-        [row for row in rows if not row["valid"]],
-        columns=columns,
-    )
-    return images.reset_index(drop=True), corrupted.reset_index(drop=True)
+    Función de compatibilidad con las pruebas anteriores.
 
+    Devuelve dos DataFrames:
+    - imágenes válidas;
+    - imágenes corruptas.
+    """
 
-def summarize_images(images: pd.DataFrame, corrupted: pd.DataFrame) -> dict:
-    """Build a dataset audit summary from valid and corrupted image tables."""
-    sha_counts = Counter(images["sha256"].dropna()) if "sha256" in images else Counter()
-    phash_counts = (
-        Counter(images["perceptual_hash"].dropna())
-        if "perceptual_hash" in images
-        else Counter()
+    records = audit_images(
+        dataset_root=Path(dataset_dir),
+        min_size=min_size,
     )
 
-    summary = {
+    valid_rows = [
+        asdict(record)
+        for record in records
+        if record.valid
+    ]
+
+    corrupted_rows = [
+        {
+            "relative_path": record.relative_path,
+            "category": record.category,
+            "extension": record.extension,
+            "size_bytes": record.size_bytes,
+            "error": record.error,
+        }
+        for record in records
+        if not record.valid
+    ]
+
+    valid_columns = [
+        "relative_path",
+        "category",
+        "extension",
+        "width",
+        "height",
+        "mode",
+        "size_bytes",
+        "sha256",
+        "perceptual_hash",
+        "valid",
+        "is_small",
+        "error",
+    ]
+
+    corrupted_columns = [
+        "relative_path",
+        "category",
+        "extension",
+        "size_bytes",
+        "error",
+    ]
+
+    return (
+        pd.DataFrame(
+            valid_rows,
+            columns=valid_columns,
+        ),
+        pd.DataFrame(
+            corrupted_rows,
+            columns=corrupted_columns,
+        ),
+    )
+
+
+def summarize_images(
+    images: pd.DataFrame,
+    corrupted: pd.DataFrame,
+) -> dict:
+    """
+    Función de compatibilidad con las pruebas anteriores.
+
+    Resume los DataFrames creados por audit_dataset().
+    """
+
+    if images.empty:
+        return {
+            "total_valid": 0,
+            "total_corrupted": int(len(corrupted)),
+            "small_images": 0,
+            "exact_duplicate_files": 0,
+            "categories": {},
+            "extensions": {},
+        }
+
+    exact_duplicate_files = 0
+
+    if "sha256" in images.columns:
+        exact_duplicate_files = int(
+            images.duplicated(
+                subset=["sha256"],
+                keep=False,
+            ).sum()
+        )
+
+    small_images = 0
+
+    if "is_small" in images.columns:
+        small_images = int(
+            images["is_small"]
+            .fillna(False)
+            .astype(bool)
+            .sum()
+        )
+
+    categories = {}
+
+    if "category" in images.columns:
+        categories = (
+            images["category"]
+            .value_counts()
+            .to_dict()
+        )
+
+    extensions = {}
+
+    if "extension" in images.columns:
+        extensions = (
+            images["extension"]
+            .value_counts()
+            .to_dict()
+        )
+
+    return {
         "total_valid": int(len(images)),
         "total_corrupted": int(len(corrupted)),
-        "total_files": int(len(images) + len(corrupted)),
-        "exact_duplicate_groups": sum(1 for count in sha_counts.values() if count > 1),
-        "same_phash_groups": sum(1 for count in phash_counts.values() if count > 1),
-        "category_distribution": _value_counts(images, "category"),
-        "extension_distribution": _value_counts(images, "extension"),
-        "resolution_distribution": _resolution_counts(images),
-        "width_min": _numeric_min(images, "width"),
-        "width_max": _numeric_max(images, "width"),
-        "height_min": _numeric_min(images, "height"),
-        "height_max": _numeric_max(images, "height"),
+        "small_images": small_images,
+        "exact_duplicate_files": exact_duplicate_files,
+        "categories": categories,
+        "extensions": extensions,
     }
-    return summary
-
-
-def _value_counts(frame: pd.DataFrame, column: str) -> dict[str, int]:
-    """Return deterministic value counts for a DataFrame column."""
-    if column not in frame or frame.empty:
-        return {}
-    return {
-        str(key): int(value)
-        for key, value in frame[column].value_counts().sort_index().items()
-    }
-
-
-def _resolution_counts(frame: pd.DataFrame) -> dict[str, int]:
-    """Count image resolutions as WIDTHxHEIGHT strings."""
-    if frame.empty or "width" not in frame or "height" not in frame:
-        return {}
-    resolutions = frame.dropna(subset=["width", "height"]).copy()
-    if resolutions.empty:
-        return {}
-    labels = resolutions.apply(
-        lambda row: f"{int(row['width'])}x{int(row['height'])}",
-        axis=1,
-    )
-    return {str(key): int(value) for key, value in labels.value_counts().sort_index().items()}
-
-
-def _numeric_min(frame: pd.DataFrame, column: str) -> int | None:
-    """Return the integer minimum for a numeric column, if present."""
-    if column not in frame or frame[column].dropna().empty:
-        return None
-    return int(frame[column].min())
-
-
-def _numeric_max(frame: pd.DataFrame, column: str) -> int | None:
-    """Return the integer maximum for a numeric column, if present."""
-    if column not in frame or frame[column].dropna().empty:
-        return None
-    return int(frame[column].max())
