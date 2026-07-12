@@ -1,4 +1,7 @@
-# Python
+# Entornos y Python
+.venv/
+venv/
+env/
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -6,61 +9,54 @@ __pycache__/
 .ruff_cache/
 .ipynb_checkpoints/
 
-# Entornos
-.venv/
-venv/
-env/
-
 # Credenciales
 .env
 *.env
 !.env.example
 
-# IDE / sistema
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db
-
-# Datos privados y derivados
+# Datos no versionables
 data/raw/**
 data/processed/**
 data/augmented/**
 data/synthetic/**
 data/documents/**
-!data/**/.gitkeep
+!data/raw/README.md
+!data/processed/README.md
+!data/augmented/README.md
+!data/synthetic/README.md
+!data/documents/README.md
+!data/metadata/**
 !data/sample/**
-!data/metadata/*_template.csv
-!data/metadata/label_map.json
-!data/README.md
 
-# Modelos y cachés
+# Modelos, checkpoints y cachés
 models/**
-checkpoints/**
+!models/README.md
+checkpoints/
 *.pt
 *.pth
 *.ckpt
 *.safetensors
-*.bin
 .cache/
 huggingface_cache/
 
-# Bases vectoriales
+# Bases vectoriales y resultados regenerables
 vector_db/**
 !vector_db/README.md
-
-# Salidas regenerables
-outputs/
-runs/
-logs/
 results/dataset_audit/**
-results/vision/checkpoints/**
-results/rag/index/**
-results/synthetic/full/**
+results/vision/**
+results/lora/**
+results/rag/**
+results/reports/**
+!results/README.md
 
-# Mantener carpetas y resultados seleccionados
-!results/**/.gitkeep
-!results/metrics/**
-!results/figures/**
-!results/samples/**
-!results/reports/**
+# Logs y salidas
+logs/
+runs/
+outputs/
+wandb/
+
+# Editor y sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

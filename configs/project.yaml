@@ -1,11 +1,7 @@
 project:
-  name: SeedCare-RAG LoRA
-  repository: rag-lora-stable-diffusion-seeds
-  seed: 42
+  name: rag-lora-stable-diffusion-seeds
+  title: "SeedCare-RAG LoRA"
   language: es
-labels:
-  - healthy
-  - physical_damage
-  - biological_damage
-  - morphological_damage
-  - unclassified
+  seed: 42
+  task: soybean_seed_visible_defect_classification_and_rag
+  disclaimer: "Resultado preliminar; no constituye diagnóstico fitosanitario definitivo."

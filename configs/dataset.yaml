@@ -1,0 +1,19 @@
+dataset:
+  name: Soybean Seeds
+  version: 6
+  doi: 10.17632/v6vzvfszj6.6
+  root: data/raw/soybean_seeds
+  image_size_published: [227, 227]
+  classes:
+    - intact
+    - spotted
+    - immature
+    - broken
+    - skin_damaged
+  split:
+    train: 0.80
+    validation: 0.10
+    test: 0.10
+  split_seed: 42
+  synthetic_data_allowed_in:
+    - train

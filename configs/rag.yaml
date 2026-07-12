@@ -1,0 +1,13 @@
+rag:
+  chunk_size: 700
+  chunk_overlap: 120
+  top_k: 5
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2
+  vector_store: faiss
+  require_source_metadata: true
+  answer_language: es
+  abstain_when_no_evidence: true
+paths:
+  documents: data/documents
+  metadata: data/metadata/document_sources.csv
+  vector_db: vector_db

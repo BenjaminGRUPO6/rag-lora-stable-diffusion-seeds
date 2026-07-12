@@ -1,24 +1,16 @@
 ## Objetivo
 
-Describa el problema y el resultado esperado.
+## Cambios realizados
 
-## Cambios
+## Cómo probar
 
-- 
+## Resultados
 
-## Pruebas ejecutadas
+## Limitaciones o pendientes
 
-```text
-python -m pytest -q
-```
+## Verificación
 
-## Evidencias
-
-Incluya métricas, capturas o archivos seleccionados.
-
-## Lista de seguridad
-
-- [ ] No se subieron credenciales.
-- [ ] No se subió el dataset completo.
-- [ ] No se subieron pesos grandes.
-- [ ] Se actualizaron README o documentos cuando corresponde.
+- [ ] Ejecuté `python -m pytest -q`.
+- [ ] No incluí dataset, credenciales, modelos ni índices vectoriales.
+- [ ] Actualicé documentación cuando correspondía.
+- [ ] Las imágenes sintéticas no se incorporan fuera de `train`.

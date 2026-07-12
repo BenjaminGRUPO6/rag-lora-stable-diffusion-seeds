@@ -1,119 +1,97 @@
 # SeedCare-RAG LoRA
 
-**Repositorio:** `rag-lora-stable-diffusion-seeds`
-
 ## Título final
 
-**SeedCare-RAG LoRA: Sistema multimodal para identificar posibles daños físicos, biológicos y morfológicos en semillas, recuperar métodos de prevención y manejo, y ampliar clases minoritarias mediante Stable Diffusion 1.5 ajustado con LoRA**
+**SeedCare-RAG LoRA: Sistema multimodal para clasificar defectos visibles en semillas de soja, recuperar evidencia técnica mediante RAG y ampliar experimentalmente los datos de entrenamiento con Stable Diffusion 1.5 ajustado con LoRA**
 
 ## Descripción puntual
 
-El sistema recibe una fotografía de una semilla y utiliza un modelo visual ajustado con el dataset del proyecto para estimar si la muestra es sana o presenta un posible daño físico, biológico o morfológico. A partir del resultado, un módulo RAG recupera información desde artículos, manuales, fichas técnicas y guías especializadas sobre causas, síntomas, prevención y métodos de manejo. Finalmente, se genera un informe técnico con fuentes, nivel de confianza y limitaciones. Como parte central del entrenamiento generativo, Stable Diffusion 1.5 se adapta mediante LoRA para generar ejemplos sintéticos de clases minoritarias; estos ejemplos se revisan antes de incorporarse únicamente al conjunto de entrenamiento.
+El proyecto desarrolla una aplicación que recibe una fotografía de una semilla de soja y utiliza un modelo visual ajustado para clasificarla en una de cinco categorías observables: `intact`, `spotted`, `immature`, `broken` o `skin_damaged`. A partir de la predicción, un módulo RAG recupera información técnica sobre posibles causas, control de calidad, prevención, almacenamiento y manejo. Finalmente, el sistema genera un informe preliminar con fuentes, nivel de confianza y limitaciones.
 
-> El sistema no reemplaza un diagnóstico de laboratorio ni la evaluación de un especialista. Sus resultados se presentan como apoyo preliminar y deben estar acompañados de fuentes y supervisión humana.
+Como evidencia de entrenamiento generativo, Stable Diffusion 1.5 se ajustará mediante LoRA con un subconjunto documentado del dataset. Las imágenes sintéticas serán revisadas y se usarán únicamente en el conjunto de entrenamiento para comparar el desempeño del clasificador con y sin datos sintéticos.
 
-## ¿Dónde se cumple el entrenamiento de modelos?
+## Estado actual
 
-El proyecto incluye dos procesos de entrenamiento medibles:
+- Repositorio y estructura: preparados.
+- Dataset: **aún no descargado**.
+- Corpus documental del RAG: **aún no recopilado**.
+- Entrenamientos: **pendientes**.
+- Aplicación final: **pendiente de integración**.
 
-1. **Ajuste del modelo visual:** fine-tuning de ResNet18 o EfficientNet-B0 para clasificar `healthy`, `physical_damage`, `biological_damage` y `morphological_damage`.
-2. **Entrenamiento LoRA de Stable Diffusion 1.5:** adaptación del UNet mediante capas LoRA usando imágenes y captions del dominio de semillas. El adaptador se usa para generar datos sintéticos de categorías con pocas muestras.
+## Dataset principal previsto
 
-El RAG no sustituye estos entrenamientos: su función es recuperar evidencia documental y reducir respuestas sin respaldo.
+- Nombre: Soybean Seeds, versión 6.
+- Fuente: Mendeley Data.
+- DOI: `10.17632/v6vzvfszj6.6`.
+- Total publicado: 5513 imágenes individuales.
+- Clases: `intact`, `spotted`, `immature`, `broken`, `skin_damaged`.
+- Licencia: CC BY 4.0.
+
+La etiqueta `spotted` describe una anomalía visible; no confirma por sí sola hongos o una enfermedad específica.
+
+## Entrenamientos que realizará el equipo
+
+1. **Fine-tuning visual:** ResNet18 o EfficientNet-B0 para clasificar las cinco categorías.
+2. **Stable Diffusion 1.5 + LoRA:** ajuste generativo para crear ejemplos sintéticos controlados.
+3. **Comparación experimental:** clasificador con datos reales frente al clasificador con datos reales más imágenes sintéticas aceptadas.
+
+El RAG no sustituye esos entrenamientos: recupera evidencia documental y fundamenta el informe generado.
 
 ## Arquitectura
 
 ```text
 Imagen de semilla
-      |
-      v
-Modelo visual ajustado
-      |
-      +--> clase estimada + confianza
-      |
-      v
+      ↓
+Clasificador visual ajustado
+      ↓
+Categoría + confianza
+      ↓
 Consulta automática al RAG
-      |
-      v
-Recuperación de fuentes técnicas
-      |
-      v
-Informe: observaciones, posibles causas, prevención, manejo y fuentes
-
-Módulo de datos sintéticos (entrenamiento):
-clases minoritarias -> SD 1.5 + LoRA -> imágenes sintéticas -> revisión humana -> train
+      ↓
+Recuperación de documentos y fragmentos
+      ↓
+Informe preliminar con fuentes y limitaciones
 ```
 
-## Estructura del repositorio
+Flujo experimental de LoRA:
 
 ```text
-app/                 Interfaz Streamlit
-configs/             Parámetros del proyecto
-src/data/            Auditoría, limpieza, división y aumento
-src/vision/          Entrenamiento e inferencia del clasificador
-src/rag/             Carga, embeddings, FAISS y recuperación
-src/reports/         Construcción del informe técnico
-src/synthetic_data/  Preparación, entrenamiento LoRA y filtrado sintético
-src/pipelines/       Integración de los módulos
-notebooks/           Experimentos ordenados
-scripts/             Entradas ejecutables
-codex/               Prompts de trabajo para Codex local
- docs/                Plan, arquitectura, GitHub y metodología
+Imágenes reales + captions
+      ↓
+Stable Diffusion 1.5 ajustado con LoRA
+      ↓
+Imágenes sintéticas pendientes de revisión
+      ↓
+Selección humana
+      ↓
+Entrenamiento comparativo del clasificador
 ```
 
-## Inicio rápido local
+## Inicio rápido
 
 ```powershell
 py -3.10 -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 pip install -r requirements-core.txt
-python scripts/check_environment.py
 python -m pytest -q
+python scripts/check_environment.py
 ```
 
-Para la interfaz:
+## Primera etapa
+
+1. Crear la rama `feature/dataset-acquisition`.
+2. Descargar el dataset fuera de Git.
+3. Colocarlo en `data/raw/soybean_seeds/`.
+4. Ejecutar `verify_dataset_structure.py`.
+5. Registrar procedencia y fecha de descarga.
+6. Ejecutar la auditoría antes de dividir o aumentar datos.
 
 ```powershell
-pip install -r requirements-app.txt
-streamlit run app/app.py
+python scripts/verify_dataset_structure.py --dataset data/raw/soybean_seeds
+python scripts/audit_dataset.py --dataset data/raw/soybean_seeds --output results/dataset_audit
 ```
 
-El entrenamiento LoRA se realiza preferentemente en Google Colab con GPU. Consulte `notebooks/06_entrenamiento_lora_sd15_colab.ipynb` y `docs/02_PLAN_PASO_A_PASO.md`.
+## Documentación
 
-## Flujo de trabajo
-
-1. Auditar y clasificar el dataset.
-2. Definir etiquetas verificadas.
-3. Separar `train/validation/test` antes de aumentar.
-4. Entrenar y evaluar el modelo visual.
-5. Preparar captions y entrenar LoRA de SD 1.5.
-6. Revisar y filtrar imágenes sintéticas.
-7. Construir el RAG documental.
-8. Integrar el informe y la interfaz.
-9. Comparar línea base y modelos ajustados.
-
-## Documentos clave
-
-- `docs/INFORME_PLAN_PROYECTO.docx`
-- `docs/00_RESUMEN_EJECUTIVO.md`
-- `docs/02_PLAN_PASO_A_PASO.md`
-- `docs/03_CUMPLIMIENTO_ENTRENAMIENTO.md`
-- `docs/04_GITHUB_DESDE_CERO.md`
-- `codex/00_PROMPT_MAESTRO.md`
-
-## Equipo
-
-- Sebastián Preciado Peralta
-- Carlos Mezones Burgos
-- Luis Reyes Guerrero
-
-## Seguridad de archivos
-
-No subir a GitHub:
-
-- dataset completo;
-- `.env` o tokens;
-- checkpoints y pesos grandes;
-- índices vectoriales regenerables;
-- cachés de Hugging Face, PyTorch o Jupyter.
+La carpeta `docs/` contiene el contexto completo, metodología, plan de entrenamiento, GitHub, Codex, evaluación, ética y estructura del informe IEEE.

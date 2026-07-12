@@ -1,31 +1,25 @@
-# Guía de colaboración
+# Guía de contribución
 
-## Ramas
+## Ramas sugeridas
 
-- `main`: versión estable.
-- `feature/dataset-*`: preparación de datos.
-- `feature/vision-*`: modelo visual.
-- `feature/lora-*`: Stable Diffusion 1.5 y LoRA.
-- `feature/rag-*`: recuperación documental.
-- `feature/app-*`: interfaz e integración.
-- `docs/*`: documentación.
+- `feature/dataset-acquisition`
+- `feature/dataset-audit`
+- `feature/dataset-splits`
+- `feature/vision-training`
+- `feature/lora-dataset`
+- `feature/lora-training`
+- `feature/rag-indexing`
+- `feature/report-generation`
+- `feature/streamlit-app`
+- `docs/ieee-report`
 
-## Flujo
+## Pull Requests
 
-1. Actualice `main`.
-2. Cree una rama para una sola tarea.
-3. Realice commits pequeños y descriptivos.
-4. Ejecute pruebas.
-5. Abra un Pull Request.
-6. Otro integrante revisa antes del merge.
+Incluye siempre:
 
-## Convención de commits
-
-- `feat:` nueva funcionalidad.
-- `fix:` corrección.
-- `docs:` documentación.
-- `test:` pruebas.
-- `refactor:` reorganización sin cambiar comportamiento.
-- `chore:` configuración o mantenimiento.
-
-Ejemplo: `feat: agrega auditoría de duplicados del dataset`.
+1. Objetivo de la tarea.
+2. Archivos modificados.
+3. Cómo probar.
+4. Resultados y métricas.
+5. Limitaciones o pendientes.
+6. Confirmación de que no se subieron datos o credenciales.

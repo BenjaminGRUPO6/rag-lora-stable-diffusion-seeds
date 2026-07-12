@@ -1,12 +1,13 @@
 [project]
-name = "seedcare-rag-lora"
-version = "0.1.0"
-description = "Sistema multimodal para análisis preliminar de daños en semillas con RAG y LoRA de Stable Diffusion 1.5."
+name = "rag-lora-stable-diffusion-seeds"
+version = "0.2.0"
+description = "SeedCare-RAG LoRA for visible soybean seed defects, technical retrieval, and synthetic data experiments."
 requires-python = ">=3.10,<3.13"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+addopts = "-q"
 
 [tool.ruff]
 line-length = 100

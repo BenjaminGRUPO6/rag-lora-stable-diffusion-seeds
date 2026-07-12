@@ -1,10 +1,7 @@
-from src.rag.prompt_builder import build_report_prompt
+from src.rag.prompt_builder import build_retrieval_query
 
 
-def test_prompt_requires_non_definitive_language() -> None:
-    prompt = build_report_prompt(
-        {"label": "biological_damage", "confidence": 0.81},
-        [{"title": "Manual", "text": "Información de prevención."}],
-    )
-    assert "No afirmar un diagnóstico definitivo" in prompt
-    assert "Manual" in prompt
+def test_spotted_query_is_cautious() -> None:
+    query = build_retrieval_query("spotted", "manchas oscuras")
+    assert "posibles causas" in query
+    assert "manchas oscuras" in query

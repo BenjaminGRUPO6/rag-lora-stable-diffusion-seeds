@@ -1,11 +1,13 @@
 # Cronograma de siete días
 
-| Día | Entregable principal |
+| Día | Meta principal |
 |---|---|
-| 1 | Repositorio, auditoría y etiquetas definitivas |
-| 2 | Split, aumento clásico y línea base visual |
-| 3 | Fine-tuning visual y métricas iniciales |
-| 4 | Dataset LoRA y primer entrenamiento SD 1.5 |
-| 5 | Revisión de sintéticos, reentrenamiento comparativo y RAG |
-| 6 | Integración Streamlit, métricas y reflexión ética |
-| 7 | Informe IEEE, diapositivas, demo y contingencia |
+| 1 | Descargar, verificar y auditar el dataset. |
+| 2 | Crear splits y entrenar baseline visual. |
+| 3 | Mejorar clasificador y preparar captions LoRA. |
+| 4 | Entrenar LoRA en Colab y revisar generaciones. |
+| 5 | Ejecutar comparación con datos sintéticos. |
+| 6 | Construir RAG, generar informes e integrar app. |
+| 7 | Evaluar, documentar, preparar demo y contingencia. |
+
+Cada día termina con commit, Pull Request y actualización de `PROJECT_STATUS.md`.
