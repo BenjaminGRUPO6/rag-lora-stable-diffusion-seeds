@@ -5,31 +5,31 @@
     "intact": {
       "id": 0,
       "spanish_name": "intacta",
-      "project_group": "healthy",
+      "project_group": "intact",
       "description": "Sin defecto visible según la etiqueta original."
     },
     "spotted": {
       "id": 1,
       "spanish_name": "manchada",
-      "project_group": "visible_anomaly",
+      "project_group": "spotted",
       "description": "Presenta manchas visibles; no confirma una enfermedad o hongo."
     },
     "immature": {
       "id": 2,
       "spanish_name": "inmadura",
-      "project_group": "morphological",
+      "project_group": "immature",
       "description": "Desarrollo incompleto o inmaduro."
     },
     "broken": {
       "id": 3,
       "spanish_name": "rota",
-      "project_group": "physical",
+      "project_group": "broken",
       "description": "Rotura o fractura visible."
     },
     "skin_damaged": {
       "id": 4,
       "spanish_name": "cubierta dañada",
-      "project_group": "physical",
+      "project_group": "skin_damaged",
       "description": "Daño visible en la cubierta."
     }
   }

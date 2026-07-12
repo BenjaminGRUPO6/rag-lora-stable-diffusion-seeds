@@ -4,11 +4,11 @@ El dataset completo no se versiona en GitHub.
 
 ## Etiquetas principales
 
-- `healthy`: semilla sin daño visible relevante.
-- `physical_damage`: fractura, perforación, abrasión, aplastamiento u otra lesión mecánica.
-- `biological_damage`: posible hongo, pudrición, manchas compatibles con agente biológico o daño por plaga.
-- `morphological_damage`: deformación, forma o tamaño anormal, desarrollo incompleto.
-- `unclassified`: muestra pendiente de revisión.
+- `intact`: semilla de soja sin defecto visible relevante.
+- `spotted`: semilla de soja con manchas visibles; no confirma hongo ni enfermedad.
+- `immature`: semilla de soja inmadura o con desarrollo incompleto.
+- `broken`: semilla de soja rota o fracturada.
+- `skin_damaged`: semilla de soja con daño visible en la cubierta.
 
 ## Regla de separación
 

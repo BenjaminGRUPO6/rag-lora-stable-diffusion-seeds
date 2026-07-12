@@ -10,7 +10,10 @@ def build_command(
     output_dir: str | Path,
     model_id: str = "stable-diffusion-v1-5/stable-diffusion-v1-5",
     max_train_steps: int = 800,
-    validation_prompt: str = "photo of seedcare maize seed with visible damage",
+    validation_prompt: str = (
+        "photo of soybeanseed soybean seed with visible defect, "
+        "official categories intact spotted immature broken skin_damaged"
+    ),
 ) -> list[str]:
     script = Path(diffusers_repo) / "examples" / "text_to_image" / "train_text_to_image_lora.py"
     if not script.exists():

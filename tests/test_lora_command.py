@@ -11,3 +11,4 @@ def test_lora_command_uses_official_script(tmp_path: Path) -> None:
     assert "accelerate" in command[0]
     assert any("stable-diffusion-v1-5" in item for item in command)
     assert any("max_train_steps=10" in item for item in command)
+    assert any("soybeanseed" in item for item in command)

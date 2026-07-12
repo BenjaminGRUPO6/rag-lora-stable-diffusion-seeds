@@ -2,6 +2,12 @@ model:
   architecture: resnet18
   pretrained: true
   num_classes: 5
+  classes:
+    - intact
+    - spotted
+    - immature
+    - broken
+    - skin_damaged
 training:
   image_size: 224
   batch_size: 16

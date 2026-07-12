@@ -1,6 +1,0 @@
-report:
-  title: Informe preliminar de análisis de semilla
-  include_confidence: true
-  include_sources: true
-  include_limitations: true
-  disclaimer: "Resultado preliminar. Requiere verificación por un especialista o análisis de laboratorio."
