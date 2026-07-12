@@ -8,12 +8,13 @@
 - [x] Configuraciones base.
 - [x] Guías para GitHub y Codex.
 - [x] Scripts seguros de verificación y auditoría.
+- [x] Dataset Soybean Seeds descargado fuera de Git.
+- [x] Cinco carpetas oficiales disponibles.
+- [x] Estructura del dataset verificada.
 
 ## Pendiente
 
-- [ ] Descargar el dataset Soybean Seeds.
-- [ ] Verificar estructura y cantidad de imágenes.
-- [ ] Auditar duplicados, archivos corruptos y dimensiones.
+- [ ] Ejecutar nuevamente la auditoría completa y revisar sus seis reportes.
 - [ ] Crear splits sin fuga de datos.
 - [ ] Entrenar clasificador visual.
 - [ ] Preparar captions para LoRA.

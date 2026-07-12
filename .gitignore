@@ -42,11 +42,33 @@ huggingface_cache/
 # Bases vectoriales y resultados regenerables
 vector_db/**
 !vector_db/README.md
+
+# Resultados masivos o regenerables.
+# Para versionar metricas finales pequenas, documentar el archivo y agregar una excepcion explicita.
 results/dataset_audit/**
+!results/dataset_audit/
+!results/dataset_audit/README.md
+!results/dataset_audit/.gitkeep
 results/vision/**
+!results/vision/
+!results/vision/README.md
+!results/vision/.gitkeep
 results/lora/**
+!results/lora/
+!results/lora/README.md
+!results/lora/.gitkeep
 results/rag/**
+!results/rag/
+!results/rag/README.md
+!results/rag/.gitkeep
 results/reports/**
+!results/reports/
+!results/reports/README.md
+!results/reports/.gitkeep
+results/synthetic/**
+!results/synthetic/
+!results/synthetic/README.md
+!results/synthetic/.gitkeep
 !results/README.md
 
 # Logs y salidas

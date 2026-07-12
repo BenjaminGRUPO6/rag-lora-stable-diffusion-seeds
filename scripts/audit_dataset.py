@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+from collections.abc import Sequence
 from pathlib import Path
 
 from src.data.audit import (
@@ -14,7 +15,9 @@ from src.data.audit import (
 )
 
 
-def parse_arguments() -> argparse.Namespace:
+def parse_arguments(argv: Sequence[str] | None = None) -> argparse.Namespace:
+    """Parse command-line arguments for the dataset audit command."""
+
     parser = argparse.ArgumentParser(
         description=(
             "Audita un dataset de imágenes sin modificar "
@@ -56,7 +59,7 @@ def parse_arguments() -> argparse.Namespace:
         ),
     )
 
-    return parser.parse_args()
+    return parser.parse_args(argv)
 
 
 def write_csv(
@@ -91,8 +94,10 @@ def write_csv(
             writer.writerow(row)
 
 
-def main() -> int:
-    arguments = parse_arguments()
+def main(argv: Sequence[str] | None = None) -> int:
+    """Run the dataset audit command."""
+
+    arguments = parse_arguments(argv)
 
     dataset_path = arguments.dataset.resolve()
     output_path = arguments.output.resolve()

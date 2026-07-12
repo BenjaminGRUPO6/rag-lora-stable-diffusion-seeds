@@ -23,7 +23,11 @@ class DatasetVerification:
 
     @property
     def valid(self) -> bool:
-        return not self.missing_classes and self.total > 0
+        return (
+            not self.missing_classes
+            and not self.unexpected_directories
+            and self.total > 0
+        )
 
 
 def verify_dataset(root: Path) -> DatasetVerification:

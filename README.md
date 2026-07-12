@@ -13,7 +13,8 @@ Como evidencia de entrenamiento generativo, Stable Diffusion 1.5 se ajustará me
 ## Estado actual
 
 - Repositorio y estructura: preparados.
-- Dataset: **aún no descargado**.
+- Dataset: **descargado**; cinco carpetas disponibles y estructura verificada.
+- Auditoría completa del dataset: **pendiente de nueva ejecución** con los seis reportes esperados.
 - Corpus documental del RAG: **aún no recopilado**.
 - Entrenamientos: **pendientes**.
 - Aplicación final: **pendiente de integración**.
@@ -80,12 +81,11 @@ python scripts/check_environment.py
 
 ## Primera etapa
 
-1. Crear la rama `feature/dataset-acquisition`.
-2. Descargar el dataset fuera de Git.
-3. Colocarlo en `data/raw/soybean_seeds/`.
-4. Ejecutar `verify_dataset_structure.py`.
-5. Registrar procedencia y fecha de descarga.
-6. Ejecutar la auditoría antes de dividir o aumentar datos.
+1. Mantener el dataset fuera de Git en `data/raw/soybean_seeds/`.
+2. Confirmar que existen las cinco carpetas oficiales.
+3. Ejecutar `verify_dataset_structure.py` cuando cambie la estructura local.
+4. Ejecutar la auditoría completa antes de dividir o aumentar datos.
+5. Revisar los seis reportes de auditoría antes de continuar con splits.
 
 ```powershell
 python scripts/verify_dataset_structure.py --dataset data/raw/soybean_seeds
