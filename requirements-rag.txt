@@ -1,4 +1,5 @@
 -r requirements-core.txt
 sentence-transformers>=3.0
 faiss-cpu>=1.8
+pypdf>=4.0
 transformers>=4.45

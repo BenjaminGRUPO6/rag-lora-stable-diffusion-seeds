@@ -4,17 +4,17 @@ import importlib.util
 import platform
 import sys
 
-MODULES = ["PIL", "pandas", "yaml", "sklearn", "pytest"]
+PACKAGES = ["PIL", "yaml", "pandas", "numpy", "sklearn", "imagehash", "pytest"]
 
 
 def main() -> int:
     print(f"Python: {sys.version.split()[0]}")
     print(f"Sistema: {platform.platform()}")
-    missing = [module for module in MODULES if importlib.util.find_spec(module) is None]
+    missing = [name for name in PACKAGES if importlib.util.find_spec(name) is None]
     if missing:
-        print("Faltan módulos:", ", ".join(missing))
+        print("Paquetes faltantes:", ", ".join(missing))
         return 1
-    print("Entorno base correcto.")
+    print("Entorno core correcto.")
     return 0
 
 

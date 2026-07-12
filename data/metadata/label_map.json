@@ -1,6 +1,36 @@
 {
-  "healthy": 0,
-  "physical_damage": 1,
-  "biological_damage": 2,
-  "morphological_damage": 3
+  "dataset_name": "Soybean Seeds",
+  "version": 6,
+  "classes": {
+    "intact": {
+      "id": 0,
+      "spanish_name": "intacta",
+      "project_group": "healthy",
+      "description": "Sin defecto visible según la etiqueta original."
+    },
+    "spotted": {
+      "id": 1,
+      "spanish_name": "manchada",
+      "project_group": "visible_anomaly",
+      "description": "Presenta manchas visibles; no confirma una enfermedad o hongo."
+    },
+    "immature": {
+      "id": 2,
+      "spanish_name": "inmadura",
+      "project_group": "morphological",
+      "description": "Desarrollo incompleto o inmaduro."
+    },
+    "broken": {
+      "id": 3,
+      "spanish_name": "rota",
+      "project_group": "physical",
+      "description": "Rotura o fractura visible."
+    },
+    "skin_damaged": {
+      "id": 4,
+      "spanish_name": "cubierta dañada",
+      "project_group": "physical",
+      "description": "Daño visible en la cubierta."
+    }
+  }
 }

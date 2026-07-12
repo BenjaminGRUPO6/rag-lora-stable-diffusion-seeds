@@ -1,0 +1,22 @@
+model:
+  base_model: stable-diffusion-v1-5/stable-diffusion-v1-5
+  trigger_word: soybeanseed
+training:
+  resolution: 512
+  train_batch_size: 1
+  gradient_accumulation_steps: 4
+  learning_rate: 0.0001
+  max_train_steps_initial: 100
+  max_train_steps_full: 800
+  rank: 8
+  mixed_precision: fp16
+  train_text_encoder: false
+  seed: 42
+paths:
+  dataset_dir: data/lora_dataset
+  output_dir: models/lora
+  validation_dir: results/lora/validation
+review:
+  require_human_approval: true
+  synthetic_destination: data/synthetic/reviewed
+  allowed_split: train

@@ -1,0 +1,12 @@
+report:
+  sections:
+    - resumen_visual
+    - categoria_estimada
+    - confianza
+    - evidencia_recuperada
+    - posibles_causas_documentadas
+    - prevencion_y_manejo
+    - limitaciones
+    - fuentes
+  include_disclaimer: true
+  cite_each_recommendation: true
