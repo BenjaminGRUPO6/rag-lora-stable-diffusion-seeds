@@ -1,2 +1,2 @@
-dataset_id,dataset_name,version,authors,publication_date,doi,license,source_type,purpose,download_date
-soybean_seeds_v6,Soybean Seeds,6,Wei Lin et al.,2023-05-30,10.17632/v6vzvfszj6.6,CC BY 4.0,Mendeley Data,Clasificación visual y preparación del experimento LoRA,PENDIENTE
+dataset_id,dataset_name,version,doi,license,download_date,sha256,purpose
+soybean_seeds_v6,Soybean Seeds,6,10.17632/v6vzvfszj6.6,CC BY 4.0,2026-07-12,SHA-256,"Clasificación de defectos visibles y entrenamiento LoRA"

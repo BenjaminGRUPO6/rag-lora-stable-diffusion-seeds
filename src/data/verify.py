@@ -2,7 +2,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable
 
 EXPECTED_CLASSES = ("intact", "spotted", "immature", "broken", "skin_damaged")
 SUPPORTED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp"}
@@ -10,6 +9,9 @@ SUPPORTED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp"}
 
 @dataclass(frozen=True)
 class DatasetVerification:
+    """Resultado de la verificacion estructural del dataset."""
+
+    found_categories: tuple[str, ...]
     counts: dict[str, int]
     missing_classes: tuple[str, ...]
     unexpected_directories: tuple[str, ...]
@@ -21,10 +23,11 @@ class DatasetVerification:
 
     @property
     def valid(self) -> bool:
-        return not self.missing_classes
+        return not self.missing_classes and self.total > 0
 
 
 def verify_dataset(root: Path) -> DatasetVerification:
+    """Verifica carpetas esperadas y cuenta imagenes soportadas sin abrir archivos."""
     if not root.exists() or not root.is_dir():
         raise FileNotFoundError(f"Dataset directory not found: {root}")
 
@@ -44,6 +47,7 @@ def verify_dataset(root: Path) -> DatasetVerification:
         extensions.update(p.suffix.lower() for p in images)
 
     return DatasetVerification(
+        found_categories=tuple(name for name in directories if name in EXPECTED_CLASSES),
         counts=counts,
         missing_classes=missing,
         unexpected_directories=unexpected,
