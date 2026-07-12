@@ -1,0 +1,4 @@
+-r requirements-vision.txt
+-r requirements-rag.txt
+streamlit>=1.38
+python-dotenv>=1.0

@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Entornos
+.venv/
+venv/
+env/
+
+# Credenciales
+.env
+*.env
+!.env.example
+
+# IDE / sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Datos privados y derivados
+data/raw/**
+data/processed/**
+data/augmented/**
+data/synthetic/**
+data/documents/**
+!data/**/.gitkeep
+!data/sample/**
+!data/metadata/*_template.csv
+!data/metadata/label_map.json
+!data/README.md
+
+# Modelos y cachés
+models/**
+checkpoints/**
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+.cache/
+huggingface_cache/
+
+# Bases vectoriales
+vector_db/**
+!vector_db/README.md
+
+# Salidas regenerables
+outputs/
+runs/
+logs/
+results/dataset_audit/**
+results/vision/checkpoints/**
+results/rag/index/**
+results/synthetic/full/**
+
+# Mantener carpetas y resultados seleccionados
+!results/**/.gitkeep
+!results/metrics/**
+!results/figures/**
+!results/samples/**
+!results/reports/**

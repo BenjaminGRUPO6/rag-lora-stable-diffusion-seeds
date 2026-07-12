@@ -1,0 +1,2 @@
+# Instalación completa local. Para instalaciones más ligeras use los archivos requirements-*.txt.
+-r requirements-app.txt

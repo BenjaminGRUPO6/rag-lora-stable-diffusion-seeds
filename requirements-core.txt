@@ -1,0 +1,9 @@
+Pillow>=10.0
+imagehash>=4.3
+numpy>=1.26
+pandas>=2.2
+PyYAML>=6.0
+scikit-learn>=1.4
+matplotlib>=3.8
+pytest>=8.0
+pypdf>=4.0

@@ -1,0 +1,2 @@
+document_id,file_path,title,author_or_institution,year,document_type,language,source_reference,verified,topics
+DOC001,data/documents/manuals/example.pdf,Example title,Institution,2026,manual,es,reference,false,"fungus;prevention;storage"

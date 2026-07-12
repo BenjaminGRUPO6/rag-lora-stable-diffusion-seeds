@@ -1,0 +1,6 @@
+{
+  "healthy": 0,
+  "physical_damage": 1,
+  "biological_damage": 2,
+  "morphological_damage": 3
+}

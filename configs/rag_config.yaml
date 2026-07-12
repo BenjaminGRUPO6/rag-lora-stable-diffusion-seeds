@@ -1,0 +1,12 @@
+embedding:
+  model_name: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+  normalize: true
+retrieval:
+  vector_store: faiss
+  top_k: 5
+  chunk_size: 700
+  chunk_overlap: 100
+paths:
+  documents_dir: data/documents
+  index_dir: vector_db
+  metadata_file: vector_db/documents.json

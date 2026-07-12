@@ -1,0 +1,2 @@
+image_id,file_path,seed_type,main_label,sub_label,verified,source,split,original_id,synthetic,notes
+seed_0001,data/raw/healthy/example.jpg,maize,healthy,none,false,own_dataset,,seed_0001,false,

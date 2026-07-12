@@ -1,0 +1,11 @@
+project:
+  name: SeedCare-RAG LoRA
+  repository: rag-lora-stable-diffusion-seeds
+  seed: 42
+  language: es
+labels:
+  - healthy
+  - physical_damage
+  - biological_damage
+  - morphological_damage
+  - unclassified
