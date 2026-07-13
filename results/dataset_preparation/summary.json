@@ -1,0 +1,14 @@
+{
+  "audit_total_files": 5513,
+  "included_images": 5223,
+  "excluded_images": 290,
+  "exclusion_reasons": {
+    "exact_duplicate": 290
+  },
+  "split_counts": {
+    "test": 522,
+    "train": 4179,
+    "validation": 522
+  },
+  "synthetic_train_images": 0
+}
