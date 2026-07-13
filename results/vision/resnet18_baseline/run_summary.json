@@ -1,32 +1,27 @@
 {
-  "best_validation_macro_f1": 0.9231883922779236,
+  "canonical_evaluation": true,
   "checkpoint": "models\\vision\\resnet18_baseline_best.pt",
-  "class_distribution": {
-    "test": {
-      "broken": 100,
-      "immature": 112,
-      "intact": 91,
-      "skin_damaged": 113,
-      "spotted": 106
-    },
-    "train": {
-      "broken": 802,
-      "immature": 898,
-      "intact": 732,
-      "skin_damaged": 901,
-      "spotted": 846
-    },
-    "validation": {
-      "broken": 100,
-      "immature": 112,
-      "intact": 91,
-      "skin_damaged": 113,
-      "spotted": 106
-    }
-  },
-  "class_weights_used": false,
-  "device": "cuda",
-  "epochs_ran": 11,
-  "smoke_test": false,
-  "test_macro_f1": 0.9178406787519563
+  "checkpoint_best_validation_macro_f1": 0.6605130367624343,
+  "checkpoint_epoch": 1,
+  "classes": [
+    "intact",
+    "spotted",
+    "immature",
+    "broken",
+    "skin_damaged"
+  ],
+  "metrics_source": "results\\vision\\resnet18_baseline\\metrics_test.json",
+  "reconciliation_report": "results\\vision\\resnet18_baseline\\reconciliation_report.json",
+  "split_manifest": "data\\metadata\\dataset_split.csv",
+  "synthetic_in_test": 0,
+  "test_accuracy": 0.6704980842911877,
+  "test_macro_f1": 0.6259550750897566,
+  "test_samples": 522,
+  "test_support": {
+    "broken": 100,
+    "immature": 112,
+    "intact": 91,
+    "skin_damaged": 113,
+    "spotted": 106
+  }
 }
