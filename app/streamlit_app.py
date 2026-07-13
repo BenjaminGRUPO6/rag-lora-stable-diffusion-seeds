@@ -38,7 +38,7 @@ from src.pipelines.analyze_seed import analyze_seed
 from src.rag.embeddings import TextEmbedder
 from src.rag.retrieval import Retriever
 from src.rag.vector_store import FaissStore
-from src.vision.inference import build_inference_transform, load_resnet18_checkpoint
+from src.vision.inference import VisionInferenceEngine
 
 
 @st.cache_resource(show_spinner="Cargando modelo ResNet18...")
@@ -46,17 +46,19 @@ def load_resnet18_resource(
     checkpoint_path: str,
     vision_config_path: str,
     device_name: str | None,
-) -> tuple[Any, list[str], Any, str]:
-    """Load and cache the ResNet18 checkpoint, labels and image transform."""
+) -> tuple[VisionInferenceEngine, str]:
+    """Load and cache the shared ResNet18 inference engine."""
     config = load_yaml_config(vision_config_path)
     checkpoint = Path(checkpoint_path)
     if not checkpoint.exists():
         raise FileNotFoundError(f"Checkpoint no encontrado: {checkpoint.name}")
     device = resolve_device(device_name)
-    model, labels, _ = load_resnet18_checkpoint(checkpoint, device=device, config=config)
-    image_size = int(get_nested(config, ("data", "image_size"), 224))
-    transform = build_inference_transform(image_size=image_size)
-    return model, labels, transform, str(device)
+    engine = VisionInferenceEngine.from_checkpoint(
+        checkpoint_path=checkpoint,
+        device=device,
+        config=config,
+    )
+    return engine, str(device)
 
 
 @st.cache_resource(show_spinner="Cargando indice FAISS...")
@@ -102,7 +104,7 @@ def run_analysis(image: Any, observations: str) -> dict[str, Any]:
     vision_config = load_yaml_config(DEFAULT_VISION_CONFIG)
     rag_config = load_yaml_config(DEFAULT_RAG_CONFIG)
     checkpoint = default_checkpoint_path(vision_config)
-    model, labels, transform, device_name = load_resnet18_resource(
+    engine, device_name = load_resnet18_resource(
         str(checkpoint),
         str(DEFAULT_VISION_CONFIG),
         None,
@@ -114,9 +116,7 @@ def run_analysis(image: Any, observations: str) -> dict[str, Any]:
         rag_config_path=DEFAULT_RAG_CONFIG,
         index_dir=DEFAULT_INDEX_DIR,
         observations=observations,
-        model=model,
-        transform=transform,
-        labels=labels,
+        inference_engine=engine,
         retriever=retriever,
         top_k=top_k,
         device_name=device_name,

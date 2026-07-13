@@ -1,0 +1,451 @@
+{
+  "canonical_results": {
+    "classification_report": "results/vision/resultados_1_baseline/r1_reporte_clasificacion.csv",
+    "metrics": {
+      "accuracy": 0.6704980842911877,
+      "macro_f1": 0.6259550750897566,
+      "macro_precision": 0.7411933804013591,
+      "macro_recall": 0.6505341908884237,
+      "per_class": {
+        "broken": {
+          "f1": 0.6419753086419753,
+          "precision": 0.8387096774193549,
+          "recall": 0.52,
+          "support": 100
+        },
+        "immature": {
+          "f1": 0.6884057971014492,
+          "precision": 0.5792682926829268,
+          "recall": 0.8482142857142857,
+          "support": 112
+        },
+        "intact": {
+          "f1": 0.2962962962962963,
+          "precision": 0.9411764705882353,
+          "recall": 0.17582417582417584,
+          "support": 91
+        },
+        "skin_damaged": {
+          "f1": 0.7786885245901639,
+          "precision": 0.7251908396946565,
+          "recall": 0.8407079646017699,
+          "support": 113
+        },
+        "spotted": {
+          "f1": 0.7244094488188977,
+          "precision": 0.6216216216216216,
+          "recall": 0.8679245283018868,
+          "support": 106
+        }
+      }
+    },
+    "predictions": "results/vision/resultados_1_baseline/r1_predicciones_test.csv",
+    "run_summary": {
+      "canonical_evaluation": true,
+      "checkpoint": "models/vision/resnet18_baseline_best.pt",
+      "checkpoint_best_validation_macro_f1": 0.6605130367624343,
+      "checkpoint_epoch": 1,
+      "checkpoint_sha256": "38fd4c1f566acf22f538d87adaadb79d7c5b1a062defd86c64e577da4e538f23",
+      "classes": [
+        "intact",
+        "spotted",
+        "immature",
+        "broken",
+        "skin_damaged"
+      ],
+      "correction_reason": [
+        "Archived run_summary.json reported test_macro_f1=0.917840678752, while archived metrics_test.json reported macro_f1=0.625955075090.",
+        "Archived classification_report.csv agrees with metrics_test.json at macro-F1=0.625955075090.",
+        "The new checkpoint evaluation exactly reproduces metrics_test.json and classification_report.csv, so the higher run_summary value is stale.",
+        "Checkpoint metadata also contradicts the archived summary: checkpoint epoch=1, checkpoint best_validation_macro_f1=0.6605130367624343, summary epochs_ran=11, summary best_validation_macro_f1=0.9231883922779236."
+      ],
+      "metrics_source": "results/vision/resultados_1_baseline/r1_metricas.json",
+      "reconciliation_report": "results/vision/resultados_1_baseline/r1_reconciliation_report.json",
+      "split_manifest": "data/metadata/dataset_split.csv",
+      "synthetic_in_test": 0,
+      "test_accuracy": 0.6704980842911877,
+      "test_macro_f1": 0.6259550750897566,
+      "test_macro_precision": 0.7411933804013591,
+      "test_macro_recall": 0.6505341908884237,
+      "test_samples": 522,
+      "test_support": {
+        "broken": 100,
+        "immature": 112,
+        "intact": 91,
+        "skin_damaged": 113,
+        "spotted": 106
+      }
+    }
+  },
+  "comparison": {
+    "explanation": [
+      "Archived run_summary.json reported test_macro_f1=0.917840678752, while archived metrics_test.json reported macro_f1=0.625955075090.",
+      "Archived classification_report.csv agrees with metrics_test.json at macro-F1=0.625955075090.",
+      "The new checkpoint evaluation exactly reproduces metrics_test.json and classification_report.csv, so the higher run_summary value is stale.",
+      "Checkpoint metadata also contradicts the archived summary: checkpoint epoch=1, checkpoint best_validation_macro_f1=0.6605130367624343, summary epochs_ran=11, summary best_validation_macro_f1=0.9231883922779236."
+    ]
+  },
+  "generated_at_utc": "2026-07-13T18:51:38+00:00",
+  "inputs": {
+    "checkpoint": "models/vision/resnet18_baseline_best.pt",
+    "checkpoint_sha256": "38fd4c1f566acf22f538d87adaadb79d7c5b1a062defd86c64e577da4e538f23",
+    "config": "configs/vision_config.yaml",
+    "manifest": "data/metadata/dataset_split.csv",
+    "output_dir": "results/vision/resultados_1_baseline",
+    "source_dir": "results/vision/resnet18_baseline"
+  },
+  "old_results": {
+    "selected_discrepancy_source": "source_archive_before_reconciliation",
+    "selected_snapshot": {
+      "classification_report_macro_f1": 0.6259550750897566,
+      "metrics_test": {
+        "accuracy": 0.6704980842911877,
+        "macro_f1": 0.6259550750897566,
+        "macro_precision": 0.7411933804013591,
+        "macro_recall": 0.6505341908884237,
+        "per_class": {
+          "broken": {
+            "f1": 0.6419753086419753,
+            "precision": 0.8387096774193549,
+            "recall": 0.52,
+            "support": 100
+          },
+          "immature": {
+            "f1": 0.6884057971014492,
+            "precision": 0.5792682926829268,
+            "recall": 0.8482142857142857,
+            "support": 112
+          },
+          "intact": {
+            "f1": 0.2962962962962963,
+            "precision": 0.9411764705882353,
+            "recall": 0.17582417582417584,
+            "support": 91
+          },
+          "skin_damaged": {
+            "f1": 0.7786885245901639,
+            "precision": 0.7251908396946565,
+            "recall": 0.8407079646017699,
+            "support": 113
+          },
+          "spotted": {
+            "f1": 0.7244094488188977,
+            "precision": 0.6216216216216216,
+            "recall": 0.8679245283018868,
+            "support": 106
+          }
+        }
+      },
+      "run_summary": {
+        "best_validation_macro_f1": 0.9231883922779236,
+        "checkpoint": "models\\vision\\resnet18_baseline_best.pt",
+        "class_distribution": {
+          "test": {
+            "broken": 100,
+            "immature": 112,
+            "intact": 91,
+            "skin_damaged": 113,
+            "spotted": 106
+          },
+          "train": {
+            "broken": 802,
+            "immature": 898,
+            "intact": 732,
+            "skin_damaged": 901,
+            "spotted": 846
+          },
+          "validation": {
+            "broken": 100,
+            "immature": 112,
+            "intact": 91,
+            "skin_damaged": 113,
+            "spotted": 106
+          }
+        },
+        "class_weights_used": false,
+        "device": "cuda",
+        "epochs_ran": 11,
+        "smoke_test": false,
+        "test_macro_f1": 0.9178406787519563
+      }
+    },
+    "snapshots": {
+      "resultados_1_archive_original": {
+        "classification_report_macro_f1": 0.6259550750897566,
+        "metrics_test": {
+          "accuracy": 0.6704980842911877,
+          "macro_f1": 0.6259550750897566,
+          "macro_precision": 0.7411933804013591,
+          "macro_recall": 0.6505341908884237,
+          "per_class": {
+            "broken": {
+              "f1": 0.6419753086419753,
+              "precision": 0.8387096774193549,
+              "recall": 0.52,
+              "support": 100
+            },
+            "immature": {
+              "f1": 0.6884057971014492,
+              "precision": 0.5792682926829268,
+              "recall": 0.8482142857142857,
+              "support": 112
+            },
+            "intact": {
+              "f1": 0.2962962962962963,
+              "precision": 0.9411764705882353,
+              "recall": 0.17582417582417584,
+              "support": 91
+            },
+            "skin_damaged": {
+              "f1": 0.7786885245901639,
+              "precision": 0.7251908396946565,
+              "recall": 0.8407079646017699,
+              "support": 113
+            },
+            "spotted": {
+              "f1": 0.7244094488188977,
+              "precision": 0.6216216216216216,
+              "recall": 0.8679245283018868,
+              "support": 106
+            }
+          }
+        },
+        "run_summary": {
+          "canonical_evaluation": true,
+          "checkpoint": "models\\vision\\resnet18_baseline_best.pt",
+          "checkpoint_best_validation_macro_f1": 0.6605130367624343,
+          "checkpoint_epoch": 1,
+          "classes": [
+            "intact",
+            "spotted",
+            "immature",
+            "broken",
+            "skin_damaged"
+          ],
+          "metrics_source": "results\\vision\\resnet18_baseline\\metrics_test.json",
+          "reconciliation_report": "results\\vision\\resnet18_baseline\\reconciliation_report.json",
+          "split_manifest": "data\\metadata\\dataset_split.csv",
+          "synthetic_in_test": 0,
+          "test_accuracy": 0.6704980842911877,
+          "test_macro_f1": 0.6259550750897566,
+          "test_samples": 522,
+          "test_support": {
+            "broken": 100,
+            "immature": 112,
+            "intact": 91,
+            "skin_damaged": 113,
+            "spotted": 106
+          }
+        }
+      },
+      "source_archive_before_reconciliation": {
+        "classification_report_macro_f1": 0.6259550750897566,
+        "metrics_test": {
+          "accuracy": 0.6704980842911877,
+          "macro_f1": 0.6259550750897566,
+          "macro_precision": 0.7411933804013591,
+          "macro_recall": 0.6505341908884237,
+          "per_class": {
+            "broken": {
+              "f1": 0.6419753086419753,
+              "precision": 0.8387096774193549,
+              "recall": 0.52,
+              "support": 100
+            },
+            "immature": {
+              "f1": 0.6884057971014492,
+              "precision": 0.5792682926829268,
+              "recall": 0.8482142857142857,
+              "support": 112
+            },
+            "intact": {
+              "f1": 0.2962962962962963,
+              "precision": 0.9411764705882353,
+              "recall": 0.17582417582417584,
+              "support": 91
+            },
+            "skin_damaged": {
+              "f1": 0.7786885245901639,
+              "precision": 0.7251908396946565,
+              "recall": 0.8407079646017699,
+              "support": 113
+            },
+            "spotted": {
+              "f1": 0.7244094488188977,
+              "precision": 0.6216216216216216,
+              "recall": 0.8679245283018868,
+              "support": 106
+            }
+          }
+        },
+        "run_summary": {
+          "best_validation_macro_f1": 0.9231883922779236,
+          "checkpoint": "models\\vision\\resnet18_baseline_best.pt",
+          "class_distribution": {
+            "test": {
+              "broken": 100,
+              "immature": 112,
+              "intact": 91,
+              "skin_damaged": 113,
+              "spotted": 106
+            },
+            "train": {
+              "broken": 802,
+              "immature": 898,
+              "intact": 732,
+              "skin_damaged": 901,
+              "spotted": 846
+            },
+            "validation": {
+              "broken": 100,
+              "immature": 112,
+              "intact": 91,
+              "skin_damaged": 113,
+              "spotted": 106
+            }
+          },
+          "class_weights_used": false,
+          "device": "cuda",
+          "epochs_ran": 11,
+          "smoke_test": false,
+          "test_macro_f1": 0.9178406787519563
+        }
+      },
+      "source_current": {
+        "classification_report_macro_f1": 0.6259550750897566,
+        "metrics_test": {
+          "accuracy": 0.6704980842911877,
+          "macro_f1": 0.6259550750897566,
+          "macro_precision": 0.7411933804013591,
+          "macro_recall": 0.6505341908884237,
+          "per_class": {
+            "broken": {
+              "f1": 0.6419753086419753,
+              "precision": 0.8387096774193549,
+              "recall": 0.52,
+              "support": 100
+            },
+            "immature": {
+              "f1": 0.6884057971014492,
+              "precision": 0.5792682926829268,
+              "recall": 0.8482142857142857,
+              "support": 112
+            },
+            "intact": {
+              "f1": 0.2962962962962963,
+              "precision": 0.9411764705882353,
+              "recall": 0.17582417582417584,
+              "support": 91
+            },
+            "skin_damaged": {
+              "f1": 0.7786885245901639,
+              "precision": 0.7251908396946565,
+              "recall": 0.8407079646017699,
+              "support": 113
+            },
+            "spotted": {
+              "f1": 0.7244094488188977,
+              "precision": 0.6216216216216216,
+              "recall": 0.8679245283018868,
+              "support": 106
+            }
+          }
+        },
+        "run_summary": {
+          "canonical_evaluation": true,
+          "checkpoint": "models\\vision\\resnet18_baseline_best.pt",
+          "checkpoint_best_validation_macro_f1": 0.6605130367624343,
+          "checkpoint_epoch": 1,
+          "classes": [
+            "intact",
+            "spotted",
+            "immature",
+            "broken",
+            "skin_damaged"
+          ],
+          "metrics_source": "results\\vision\\resnet18_baseline\\metrics_test.json",
+          "reconciliation_report": "results\\vision\\resnet18_baseline\\reconciliation_report.json",
+          "split_manifest": "data\\metadata\\dataset_split.csv",
+          "synthetic_in_test": 0,
+          "test_accuracy": 0.6704980842911877,
+          "test_macro_f1": 0.6259550750897566,
+          "test_samples": 522,
+          "test_support": {
+            "broken": 100,
+            "immature": 112,
+            "intact": 91,
+            "skin_damaged": 113,
+            "spotted": 106
+          }
+        }
+      }
+    }
+  },
+  "outputs": {
+    "classification_report": "results/vision/resultados_1_baseline/r1_reporte_clasificacion.csv",
+    "manifest": "results/vision/resultados_1_baseline/manifest.json",
+    "metrics": "results/vision/resultados_1_baseline/r1_metricas.json",
+    "png": [
+      "results/vision/resultados_1_baseline/r1_metricas_resumen.png",
+      "results/vision/resultados_1_baseline/r1_f1_por_clase.png",
+      "results/vision/resultados_1_baseline/r1_precision_recall_por_clase.png",
+      "results/vision/resultados_1_baseline/r1_matriz_confusion.png",
+      "results/vision/resultados_1_baseline/r1_matriz_confusion_normalizada.png",
+      "results/vision/resultados_1_baseline/r1_distribucion_confianza.png"
+    ],
+    "predictions": "results/vision/resultados_1_baseline/r1_predicciones_test.csv",
+    "reconciliation_report_json": "results/vision/resultados_1_baseline/r1_reconciliation_report.json",
+    "reconciliation_report_md": "results/vision/resultados_1_baseline/r1_reconciliation_report.md",
+    "run_summary": "results/vision/resultados_1_baseline/run_summary.json"
+  },
+  "validations": {
+    "checkpoint": {
+      "architecture": "resnet18",
+      "best_validation_macro_f1": 0.6605130367624343,
+      "epoch": 1,
+      "sha256": "38fd4c1f566acf22f538d87adaadb79d7c5b1a062defd86c64e577da4e538f23"
+    },
+    "checkpoint_class_to_idx": {
+      "broken": 3,
+      "immature": 2,
+      "intact": 0,
+      "skin_damaged": 4,
+      "spotted": 1
+    },
+    "classes": [
+      "intact",
+      "spotted",
+      "immature",
+      "broken",
+      "skin_damaged"
+    ],
+    "dataset": {
+      "deterministic_transforms": true,
+      "sample_count": 522,
+      "support": {
+        "broken": 100,
+        "immature": 112,
+        "intact": 91,
+        "skin_damaged": 113,
+        "spotted": 106
+      },
+      "transform": "Compose(\n      Resize(size=[255], interpolation=InterpolationMode.BILINEAR, antialias=True)\n      CenterCrop(size=(224, 224))\n      ToImage()\n      ToDtype(scale=True)\n      Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], inplace=False)\n)"
+    },
+    "evaluation": {
+      "model_eval": true,
+      "torch_inference_mode": true
+    },
+    "manifest": {
+      "sample_count": 522,
+      "support": {
+        "broken": 100,
+        "immature": 112,
+        "intact": 91,
+        "skin_damaged": 113,
+        "spotted": 106
+      },
+      "synthetic_count": 0
+    },
+    "support_sum": 522
+  }
+}

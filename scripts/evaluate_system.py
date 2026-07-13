@@ -248,15 +248,18 @@ def build_real_demo_analyzer(*, vision_config_path: Path, rag_config_path: Path,
 
     from src.pipelines.analyze_seed import analyze_seed, get_nested, load_yaml_config
     from src.rag.retrieval import FaissRetriever
-    from src.vision.inference import build_inference_transform, load_resnet18_checkpoint
+    from src.vision.inference import VisionInferenceEngine
 
     vision_config = load_yaml_config(vision_config_path)
     rag_config = load_yaml_config(rag_config_path)
     device = torch.device(device_name or ("cuda" if torch.cuda.is_available() else "cpu"))
     if device.type == "cuda" and not torch.cuda.is_available():
         raise RuntimeError("CUDA was requested but is not available.")
-    model, labels, _ = load_resnet18_checkpoint(checkpoint_path=checkpoint_path, device=device, config=vision_config)
-    transform = build_inference_transform(image_size=int(get_nested(vision_config, ("data", "image_size"), 224)))
+    engine = VisionInferenceEngine.from_checkpoint(
+        checkpoint_path=checkpoint_path,
+        device=device,
+        config=vision_config,
+    )
     top_k = int(get_nested(rag_config, ("rag", "top_k"), 5))
     retriever = FaissRetriever.from_paths(
         index_dir=index_dir,
@@ -270,9 +273,7 @@ def build_real_demo_analyzer(*, vision_config_path: Path, rag_config_path: Path,
             image=case.image_path,
             vision_config_path=vision_config_path,
             rag_config_path=rag_config_path,
-            model=model,
-            transform=transform,
-            labels=labels,
+            inference_engine=engine,
             retriever=retriever,
             device_name=str(device),
             top_k=top_k,

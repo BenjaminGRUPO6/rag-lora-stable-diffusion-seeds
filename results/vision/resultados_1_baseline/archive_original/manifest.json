@@ -1,0 +1,98 @@
+{
+    "experiment_id":  "resultados_1_baseline",
+    "source_dir":  "results/vision/resnet18_baseline",
+    "destination_dir":  "results/vision/resultados_1_baseline",
+    "created_at_utc":  "2026-07-13T18:29:44Z",
+    "status":  "UNRECONCILED",
+    "metrics_discrepancy_note":  "Existe una discrepancia de metricas entre artefactos historicos/reconciliados; no inventar metricas y tratar estos resultados como no reconciliados hasta revision.",
+    "files":  [
+                  {
+                      "file":  "results/vision/resultados_1_baseline/classification_report.csv",
+                      "origin":  "results/vision/resnet18_baseline/classification_report.csv",
+                      "sha256":  "d9e34a41ae1596921d8da348adaa4ef474650cfc331f5977129bf89e4a022453",
+                      "copied_at_utc":  "2026-07-13T18:29:44Z",
+                      "status":  "UNRECONCILED",
+                      "note":  "Existe una discrepancia de metricas pendiente de reconciliacion; este archivo conserva el resultado baseline actual sin checkpoint."
+                  },
+                  {
+                      "file":  "results/vision/resultados_1_baseline/confusion_matrix.png",
+                      "origin":  "results/vision/resnet18_baseline/confusion_matrix.png",
+                      "sha256":  "38780d22d937b8b7726d630d068dc89016895785621518d0095842a594f4f822",
+                      "copied_at_utc":  "2026-07-13T18:29:44Z",
+                      "status":  "UNRECONCILED",
+                      "note":  "Existe una discrepancia de metricas pendiente de reconciliacion; este archivo conserva el resultado baseline actual sin checkpoint."
+                  },
+                  {
+                      "file":  "results/vision/resultados_1_baseline/confusion_matrix_normalized.png",
+                      "origin":  "results/vision/resnet18_baseline/confusion_matrix_normalized.png",
+                      "sha256":  "bfcfcbed4942c3238cb16a93592500af78001ac50fb3e37b28b1b310aa023340",
+                      "copied_at_utc":  "2026-07-13T18:29:44Z",
+                      "status":  "UNRECONCILED",
+                      "note":  "Existe una discrepancia de metricas pendiente de reconciliacion; este archivo conserva el resultado baseline actual sin checkpoint."
+                  },
+                  {
+                      "file":  "results/vision/resultados_1_baseline/metrics_test.json",
+                      "origin":  "results/vision/resnet18_baseline/metrics_test.json",
+                      "sha256":  "bd682eb7eff76d2f4e13fddd691eac93b9204562d7d0d617e9e7c29f17032f1a",
+                      "copied_at_utc":  "2026-07-13T18:29:44Z",
+                      "status":  "UNRECONCILED",
+                      "note":  "Existe una discrepancia de metricas pendiente de reconciliacion; este archivo conserva el resultado baseline actual sin checkpoint."
+                  },
+                  {
+                      "file":  "results/vision/resultados_1_baseline/metrics_validation.json",
+                      "origin":  "results/vision/resnet18_baseline/metrics_validation.json",
+                      "sha256":  "04af7ebae321c8823d62093bf46480cd5e6f95d3bcd48a476fa6bde6bdfaeb3b",
+                      "copied_at_utc":  "2026-07-13T18:29:44Z",
+                      "status":  "UNRECONCILED",
+                      "note":  "Existe una discrepancia de metricas pendiente de reconciliacion; este archivo conserva el resultado baseline actual sin checkpoint."
+                  },
+                  {
+                      "file":  "results/vision/resultados_1_baseline/reconciliation_report.json",
+                      "origin":  "results/vision/resnet18_baseline/reconciliation_report.json",
+                      "sha256":  "fa885763294378689d90b5ab4633c3ec1aead2aa07f034cf306a2c3f2d1066bb",
+                      "copied_at_utc":  "2026-07-13T18:29:44Z",
+                      "status":  "UNRECONCILED",
+                      "note":  "Existe una discrepancia de metricas pendiente de reconciliacion; este archivo conserva el resultado baseline actual sin checkpoint."
+                  },
+                  {
+                      "file":  "results/vision/resultados_1_baseline/run_config.yaml",
+                      "origin":  "results/vision/resnet18_baseline/run_config.yaml",
+                      "sha256":  "0e02012e87469517bc8e32197963a9af6dd683f7659f704aa5e2c4d01ee5ebe7",
+                      "copied_at_utc":  "2026-07-13T18:29:44Z",
+                      "status":  "UNRECONCILED",
+                      "note":  "Existe una discrepancia de metricas pendiente de reconciliacion; este archivo conserva el resultado baseline actual sin checkpoint."
+                  },
+                  {
+                      "file":  "results/vision/resultados_1_baseline/run_summary.json",
+                      "origin":  "results/vision/resnet18_baseline/run_summary.json",
+                      "sha256":  "3f4bf094610f63e3c0a606fc7fe09253c1a3c03f2597867b1254979c60a61a1c",
+                      "copied_at_utc":  "2026-07-13T18:29:44Z",
+                      "status":  "UNRECONCILED",
+                      "note":  "Existe una discrepancia de metricas pendiente de reconciliacion; este archivo conserva el resultado baseline actual sin checkpoint."
+                  },
+                  {
+                      "file":  "results/vision/resultados_1_baseline/test_predictions.csv",
+                      "origin":  "results/vision/resnet18_baseline/test_predictions.csv",
+                      "sha256":  "0967a557418993e7c73f3503e2cd455d229db5d69d05b45ee7c02d60db3b2fbe",
+                      "copied_at_utc":  "2026-07-13T18:29:44Z",
+                      "status":  "UNRECONCILED",
+                      "note":  "Existe una discrepancia de metricas pendiente de reconciliacion; este archivo conserva el resultado baseline actual sin checkpoint."
+                  },
+                  {
+                      "file":  "results/vision/resultados_1_baseline/training_curves.png",
+                      "origin":  "results/vision/resnet18_baseline/training_curves.png",
+                      "sha256":  "9af002bed8591f98df28b76b6fd93f9392dd837a05ebf19ec69ed594dbb6749d",
+                      "copied_at_utc":  "2026-07-13T18:29:44Z",
+                      "status":  "UNRECONCILED",
+                      "note":  "Existe una discrepancia de metricas pendiente de reconciliacion; este archivo conserva el resultado baseline actual sin checkpoint."
+                  },
+                  {
+                      "file":  "results/vision/resultados_1_baseline/training_history.csv",
+                      "origin":  "results/vision/resnet18_baseline/training_history.csv",
+                      "sha256":  "d13a7c630870ab4201f189ec6545082c872c39e1cc4f5d671c959ac804be75cd",
+                      "copied_at_utc":  "2026-07-13T18:29:44Z",
+                      "status":  "UNRECONCILED",
+                      "note":  "Existe una discrepancia de metricas pendiente de reconciliacion; este archivo conserva el resultado baseline actual sin checkpoint."
+                  }
+              ]
+}

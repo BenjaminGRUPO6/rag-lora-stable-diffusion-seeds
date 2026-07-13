@@ -1,0 +1,92 @@
+{
+  "archive_dir": "results/vision/resultados_1_baseline/archive_original",
+  "checkpoint": "models/vision/resnet18_baseline_best.pt",
+  "checkpoint_sha256": "38fd4c1f566acf22f538d87adaadb79d7c5b1a062defd86c64e577da4e538f23",
+  "created_at_utc": "2026-07-13T18:29:44Z",
+  "destination_dir": "results/vision/resultados_1_baseline",
+  "experiment_id": "resultados_1_baseline",
+  "files": [
+    {
+      "file": "results/vision/resultados_1_baseline/r1_metricas.json",
+      "generated_at_utc": "2026-07-13T18:51:38+00:00",
+      "sha256": "bd682eb7eff76d2f4e13fddd691eac93b9204562d7d0d617e9e7c29f17032f1a",
+      "status": "RECONCILED"
+    },
+    {
+      "file": "results/vision/resultados_1_baseline/r1_reporte_clasificacion.csv",
+      "generated_at_utc": "2026-07-13T18:51:38+00:00",
+      "sha256": "d9e34a41ae1596921d8da348adaa4ef474650cfc331f5977129bf89e4a022453",
+      "status": "RECONCILED"
+    },
+    {
+      "file": "results/vision/resultados_1_baseline/r1_predicciones_test.csv",
+      "generated_at_utc": "2026-07-13T18:51:38+00:00",
+      "sha256": "0967a557418993e7c73f3503e2cd455d229db5d69d05b45ee7c02d60db3b2fbe",
+      "status": "RECONCILED"
+    },
+    {
+      "file": "results/vision/resultados_1_baseline/r1_reconciliation_report.json",
+      "generated_at_utc": "2026-07-13T18:51:38+00:00",
+      "sha256": "aed360360a67a7f4d95a2d4bc6c32a5be92cff5c6f306360c07aea854a3f7477",
+      "status": "RECONCILED"
+    },
+    {
+      "file": "results/vision/resultados_1_baseline/r1_reconciliation_report.md",
+      "generated_at_utc": "2026-07-13T18:51:38+00:00",
+      "sha256": "c64d0bea13b187b3c5ea6941013991730ef775307840da6296be98241b729d12",
+      "status": "RECONCILED"
+    },
+    {
+      "file": "results/vision/resultados_1_baseline/r1_metricas_resumen.png",
+      "generated_at_utc": "2026-07-13T18:51:38+00:00",
+      "sha256": "73d5c834e93301c86254e12696e5b760d16fc502d6765a2dd508ad1962de7e57",
+      "status": "RECONCILED"
+    },
+    {
+      "file": "results/vision/resultados_1_baseline/r1_f1_por_clase.png",
+      "generated_at_utc": "2026-07-13T18:51:38+00:00",
+      "sha256": "d1cbb52328a969bd6cdc8427d2f14d65ed7b0d7a03e455b8afadf26b1829b863",
+      "status": "RECONCILED"
+    },
+    {
+      "file": "results/vision/resultados_1_baseline/r1_precision_recall_por_clase.png",
+      "generated_at_utc": "2026-07-13T18:51:38+00:00",
+      "sha256": "b4fd58d50e678f6cd20153f79945c618ed07377b934f66852bc3d8b7b99e1a36",
+      "status": "RECONCILED"
+    },
+    {
+      "file": "results/vision/resultados_1_baseline/r1_matriz_confusion.png",
+      "generated_at_utc": "2026-07-13T18:51:38+00:00",
+      "sha256": "8c0fe8fc8b5fcae29c9c2e3e2c4c1f3574b345b8fe5224a108000fe10e73ce4a",
+      "status": "RECONCILED"
+    },
+    {
+      "file": "results/vision/resultados_1_baseline/r1_matriz_confusion_normalizada.png",
+      "generated_at_utc": "2026-07-13T18:51:38+00:00",
+      "sha256": "09b5659a26eae4f5c2e15631b4bbd1658b91dd129b6afe052d97dfa8c4974795",
+      "status": "RECONCILED"
+    },
+    {
+      "file": "results/vision/resultados_1_baseline/r1_distribucion_confianza.png",
+      "generated_at_utc": "2026-07-13T18:51:38+00:00",
+      "sha256": "de1d3aa57d14f6f2235a6ce58459c4a085e62257792e34c8d5af693e68e0aa6a",
+      "status": "RECONCILED"
+    },
+    {
+      "file": "results/vision/resultados_1_baseline/run_summary.json",
+      "generated_at_utc": "2026-07-13T18:51:38+00:00",
+      "sha256": "91ce1ffc43196d870d3acf964d6bcd2913b8917364323d72bf9fda0d4a2fd290",
+      "status": "RECONCILED"
+    }
+  ],
+  "final_metrics": {
+    "accuracy": 0.6704980842911877,
+    "macro_f1": 0.6259550750897566,
+    "macro_precision": 0.7411933804013591,
+    "macro_recall": 0.6505341908884237
+  },
+  "reconciled_at_utc": "2026-07-13T18:51:38+00:00",
+  "source_dir": "results/vision/resnet18_baseline",
+  "status": "RECONCILED",
+  "test_samples": 522
+}
