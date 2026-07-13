@@ -95,3 +95,40 @@ python scripts/audit_dataset.py --dataset data/raw/soybean_seeds --output result
 ## Documentación
 
 La carpeta `docs/` contiene el contexto completo, metodología, plan de entrenamiento, GitHub, Codex, evaluación, ética y estructura del informe IEEE.
+
+## Depuracion controlada y split
+
+Politica de depuracion:
+
+- `data/raw/` es inmutable: no eliminar, renombrar, mover ni modificar archivos originales.
+- La preparacion copia imagenes validas hacia `data/processed/`; nunca mueve datos.
+- Los archivos corruptos se excluyen.
+- Los duplicados exactos se agrupan por `sha256`; se conserva una sola imagen canonica por grupo y se registra la razon de exclusion.
+- Los posibles duplicados visuales no se excluyen automaticamente. Se registran en `data/metadata/near_duplicates_review.csv` para revision humana.
+- Si un par visual se marca como equivalente en la revision, sus imagenes deben quedar en el mismo split.
+- Las imagenes sinteticas solo pueden entrar en `train` despues de revision humana; nunca en `validation` ni `test`.
+
+Preparar el dataset limpio y dividido:
+
+```powershell
+python scripts/prepare_dataset.py `
+  --dataset data/raw/soybean_seeds `
+  --audit-dir results/dataset_audit `
+  --output data/processed `
+  --metadata-output data/metadata `
+  --seed 42
+```
+
+Validar el split generado:
+
+```powershell
+python scripts/validate_dataset_split.py --dataset-split data/metadata/dataset_split.csv
+```
+
+Archivos generados por la preparacion:
+
+- `data/metadata/exclusions.csv`
+- `data/metadata/near_duplicates_review.csv`
+- `data/metadata/dataset_split.csv`
+- `results/dataset_preparation/summary.json`
+- `results/dataset_preparation/class_distribution_by_split.csv`
