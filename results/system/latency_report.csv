@@ -1,0 +1,6 @@
+case_id,class_name,image_path,vision_seconds,retrieval_seconds,report_seconds,total_seconds,success
+demo_01,intact,data/processed/validation/intact/1007.jpg,43.609935,3.934650,0.002088,47.552274,true
+demo_02,broken,data/processed/validation/broken/12.jpg,0.415265,0.035170,0.000638,0.467471,true
+demo_03,immature,data/processed/validation/immature/1.jpg,0.107976,0.033627,0.000333,0.150622,true
+demo_04,spotted,data/processed/validation/spotted/101.jpg,0.079347,0.034780,0.000533,0.122519,true
+demo_05,skin_damaged,data/processed/validation/skin_damaged/1008.jpg,0.041906,0.011574,0.000132,0.063282,true

@@ -1,0 +1,5 @@
+failure_type,item_id,component,details,source
+rag_hit_at_5,RAG009,rag,Expected document was not retrieved in top 5.,results/rag/evaluation/query_results.csv
+rag_hit_at_5,RAG012,rag,Expected document was not retrieved in top 5.,results/rag/evaluation/query_results.csv
+rag_hit_at_5,RAG017,rag,Expected document was not retrieved in top 5.,results/rag/evaluation/query_results.csv
+rag_hit_at_5,RAG020,rag,Expected document was not retrieved in top 5.,results/rag/evaluation/query_results.csv

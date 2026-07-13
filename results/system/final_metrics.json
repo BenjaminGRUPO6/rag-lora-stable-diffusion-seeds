@@ -1,0 +1,265 @@
+{
+  "failures": [
+    {
+      "component": "rag",
+      "details": "Expected document was not retrieved in top 5.",
+      "failure_type": "rag_hit_at_5",
+      "item_id": "RAG009",
+      "source": "results/rag/evaluation/query_results.csv"
+    },
+    {
+      "component": "rag",
+      "details": "Expected document was not retrieved in top 5.",
+      "failure_type": "rag_hit_at_5",
+      "item_id": "RAG012",
+      "source": "results/rag/evaluation/query_results.csv"
+    },
+    {
+      "component": "rag",
+      "details": "Expected document was not retrieved in top 5.",
+      "failure_type": "rag_hit_at_5",
+      "item_id": "RAG017",
+      "source": "results/rag/evaluation/query_results.csv"
+    },
+    {
+      "component": "rag",
+      "details": "Expected document was not retrieved in top 5.",
+      "failure_type": "rag_hit_at_5",
+      "item_id": "RAG020",
+      "source": "results/rag/evaluation/query_results.csv"
+    }
+  ],
+  "generated_at_utc": "2026-07-13T09:42:47.692584+00:00",
+  "lora": {
+    "adapter": {
+      "exists": true,
+      "file_name": "pytorch_lora_weights.safetensors",
+      "last_modified_utc": "2026-07-13T05:25:33.389334+00:00",
+      "path": "models/lora/soybean_sd15/pytorch_lora_weights.safetensors",
+      "size_bytes": 6414992,
+      "size_mb": 6.12
+    },
+    "base_vs_lora_evidence": "N/A",
+    "confirmed_parameters": {
+      "base_model": {
+        "source": "configs/lora_sd15.yaml",
+        "value": "stable-diffusion-v1-5/stable-diffusion-v1-5"
+      },
+      "gradient_accumulation_steps": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 4
+      },
+      "learning_rate": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 0.0001
+      },
+      "max_train_steps_full": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 800
+      },
+      "max_train_steps_initial": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 100
+      },
+      "mixed_precision": {
+        "source": "configs/lora_sd15.yaml",
+        "value": "fp16"
+      },
+      "rank": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 8
+      },
+      "resolution": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 512
+      },
+      "seed": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 42
+      },
+      "train_batch_size": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 1
+      },
+      "train_text_encoder": {
+        "source": "configs/lora_sd15.yaml",
+        "value": false
+      },
+      "trigger_word": {
+        "source": "configs/lora_sd15.yaml",
+        "value": "soybeanseed"
+      }
+    },
+    "dataset_class_distribution": {
+      "broken": 200,
+      "immature": 200,
+      "intact": 200,
+      "skin_damaged": 200,
+      "spotted": 200
+    },
+    "dataset_metadata_records": 1000,
+    "missing_evidence": [
+      "Human visual evaluation of LoRA samples is not available.",
+      "No base-vs-LoRA comparison evidence is available.",
+      "No base-vs-LoRA comparison images were found.",
+      "No external run manifest was found.",
+      "Notebook outputs/logs are missing; hardware and training time are not verified.",
+      "Parameter not verified: hardware",
+      "Parameter not verified: training_time"
+    ],
+    "no_retraining_performed": true,
+    "sample_count": 7,
+    "source": "results/lora/run_manifest.json",
+    "status": "PARTIAL",
+    "training_summary_source": "results/lora/training_summary.json",
+    "visual_evaluation_status": "N/A"
+  },
+  "missing_data": [
+    "Human visual evaluation of LoRA samples is not available.",
+    "No base-vs-LoRA comparison evidence is available.",
+    "No base-vs-LoRA comparison images were found.",
+    "No external run manifest was found.",
+    "Notebook outputs/logs are missing; hardware and training time are not verified.",
+    "Parameter not verified: hardware",
+    "Parameter not verified: training_time",
+    "RAG human-review metrics are pending."
+  ],
+  "rag": {
+    "failed_query_ids_at_5": [
+      "RAG009",
+      "RAG012",
+      "RAG017",
+      "RAG020"
+    ],
+    "hit_at_1": 0.45,
+    "hit_at_3": 0.7,
+    "hit_at_5": 0.8,
+    "human_review": {
+      "metrics": "pending",
+      "pending_queries": 20,
+      "reviewed_queries": 0,
+      "status": "pending"
+    },
+    "latency_ms": 12.807399999292102,
+    "mrr": 0.5891666666666666,
+    "query_count": 20,
+    "query_results_source": "results/rag/evaluation/query_results.csv",
+    "source": "results/rag/evaluation/metrics.json"
+  },
+  "system": {
+    "demo_case_count": 5,
+    "demo_split": "validation",
+    "demo_success_count": 5,
+    "mean_retrieval_seconds": 0.8099601999999999,
+    "mean_total_seconds": 9.671233599999999,
+    "mean_visual_inference_seconds": 8.8508858,
+    "source": "results/system/demo_cases.csv",
+    "source_availability": [
+      {
+        "available": true,
+        "path": "data/metadata/dataset_split.csv",
+        "source_name": "dataset_split"
+      },
+      {
+        "available": true,
+        "path": "results/lora/run_manifest.json",
+        "source_name": "lora_run_manifest"
+      },
+      {
+        "available": true,
+        "path": "results/lora/training_summary.json",
+        "source_name": "lora_training_summary"
+      },
+      {
+        "available": true,
+        "path": "vector_db/index.faiss",
+        "source_name": "rag_index"
+      },
+      {
+        "available": true,
+        "path": "vector_db/metadata.json",
+        "source_name": "rag_metadata"
+      },
+      {
+        "available": true,
+        "path": "results/rag/evaluation/metrics.json",
+        "source_name": "rag_metrics"
+      },
+      {
+        "available": true,
+        "path": "results/rag/evaluation/query_results.csv",
+        "source_name": "rag_query_results"
+      },
+      {
+        "available": true,
+        "path": "models/vision/resnet18_baseline_best.pt",
+        "source_name": "vision_checkpoint"
+      },
+      {
+        "available": true,
+        "path": "results/vision/resnet18_baseline/metrics_test.json",
+        "source_name": "vision_metrics"
+      },
+      {
+        "available": true,
+        "path": "results/vision/resnet18_baseline/test_predictions.csv",
+        "source_name": "vision_predictions"
+      }
+    ]
+  },
+  "vision": {
+    "accuracy": 0.6704980842911877,
+    "canonical_evaluation": true,
+    "classification_report_source": "results/vision/resnet18_baseline/classification_report.csv",
+    "confusion_matrix": {
+      "broken": {
+        "broken": 52,
+        "immature": 8,
+        "intact": 0,
+        "skin_damaged": 13,
+        "spotted": 27
+      },
+      "immature": {
+        "broken": 0,
+        "immature": 95,
+        "intact": 1,
+        "skin_damaged": 6,
+        "spotted": 10
+      },
+      "intact": {
+        "broken": 1,
+        "immature": 48,
+        "intact": 16,
+        "skin_damaged": 13,
+        "spotted": 13
+      },
+      "skin_damaged": {
+        "broken": 3,
+        "immature": 9,
+        "intact": 0,
+        "skin_damaged": 95,
+        "spotted": 6
+      },
+      "spotted": {
+        "broken": 6,
+        "immature": 4,
+        "intact": 0,
+        "skin_damaged": 4,
+        "spotted": 92
+      }
+    },
+    "macro_f1": 0.6259550750897566,
+    "macro_precision": 0.7411933804013591,
+    "macro_recall": 0.6505341908884237,
+    "per_class_f1": {
+      "broken": 0.6419753086419753,
+      "immature": 0.6884057971014492,
+      "intact": 0.2962962962962963,
+      "skin_damaged": 0.7786885245901639,
+      "spotted": 0.7244094488188977
+    },
+    "prediction_source": "results/vision/resnet18_baseline/test_predictions.csv",
+    "source": "results/vision/resnet18_baseline/metrics_test.json",
+    "test_samples": 522
+  }
+}
