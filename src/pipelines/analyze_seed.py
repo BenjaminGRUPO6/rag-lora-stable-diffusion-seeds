@@ -16,9 +16,8 @@ from src.reports.report_generator import (
 )
 from src.vision.inference import (
     ImageInput,
+    VisionInferenceEngine,
     build_inference_transform,
-    load_resnet18_checkpoint,
-    predict_image,
 )
 
 
@@ -43,6 +42,7 @@ def analyze_seed(
     model: torch.nn.Module | None = None,
     transform: Callable[[Any], torch.Tensor] | None = None,
     labels: list[str] | None = None,
+    inference_engine: VisionInferenceEngine | None = None,
     retriever: Callable[..., list[dict]] | None = None,
     prediction: dict | None = None,
     report_provider: ReportProvider | None = None,
@@ -63,25 +63,26 @@ def analyze_seed(
         if image is None:
             raise ValueError("Debe proporcionar una imagen o una prediccion simulada.")
         device = resolve_device(device_name)
-        active_checkpoint = checkpoint_path or default_checkpoint_path(vision_config)
-        active_model = model
-        active_labels = labels
-        if active_model is None or active_labels is None:
-            active_model, active_labels, _ = load_resnet18_checkpoint(
-                checkpoint_path=active_checkpoint,
-                device=device,
-                config=vision_config,
-            )
-        active_transform = transform or build_inference_transform(
-            image_size=int(get_nested(vision_config, ("data", "image_size"), 224))
-        )
-        prediction = predict_image(
-            model=active_model,
-            image_path=image,
-            transform=active_transform,
-            labels=active_labels,
-            device=device,
-        )
+        active_engine = inference_engine
+        if active_engine is None:
+            active_checkpoint = checkpoint_path or default_checkpoint_path(vision_config)
+            if model is None or labels is None:
+                active_engine = VisionInferenceEngine.from_checkpoint(
+                    checkpoint_path=active_checkpoint,
+                    device=device,
+                    config=vision_config,
+                )
+            else:
+                active_engine = VisionInferenceEngine(
+                    model=model,
+                    labels=labels,
+                    transform=transform
+                    or build_inference_transform(
+                        image_size=int(get_nested(vision_config, ("data", "image_size"), 224))
+                    ),
+                    device=device,
+                )
+        prediction = active_engine.predict_dict(image)
     processing_times["vision_seconds"] = elapsed(vision_started)
 
     normalized_prediction = normalize_prediction(prediction)
@@ -143,6 +144,8 @@ def analyze_seed(
         "prediction": normalized_prediction["label"],
         "confidence": normalized_prediction["confidence"],
         "probabilities": normalized_prediction["probabilities"],
+        "logits": normalized_prediction["logits"],
+        "top_3": normalized_prediction["top_3"],
         "uncertainty_status": uncertainty_status,
         "retrieved_sources": retrieved_sources,
         "preliminary_report": preliminary_report,
@@ -231,10 +234,20 @@ def normalize_prediction(prediction: dict) -> dict:
     if not isinstance(raw_probabilities, dict):
         raise ValueError("prediction['probabilities'] debe ser un diccionario.")
     probabilities = {str(key): float(value) for key, value in raw_probabilities.items()}
+    raw_logits = prediction.get("logits") or {}
+    if raw_logits and not isinstance(raw_logits, dict):
+        raise ValueError("prediction['logits'] debe ser un diccionario.")
+    logits = {str(key): float(value) for key, value in dict(raw_logits).items()}
+    raw_top_3 = prediction.get("top_3") or []
+    if raw_top_3 and not isinstance(raw_top_3, list):
+        raise ValueError("prediction['top_3'] debe ser una lista.")
+    top_3 = [dict(item) for item in raw_top_3 if isinstance(item, dict)]
     return {
         "label": label,
         "confidence": confidence,
         "probabilities": probabilities,
+        "logits": logits,
+        "top_3": top_3,
     }
 
 

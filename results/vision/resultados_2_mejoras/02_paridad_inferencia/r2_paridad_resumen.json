@@ -1,0 +1,218 @@
+{
+  "artifacts": [
+    "results/vision/resultados_2_mejoras/02_paridad_inferencia/r2_paridad_inferencia.csv",
+    "results/vision/resultados_2_mejoras/02_paridad_inferencia/r2_paridad_resumen.json",
+    "results/vision/resultados_2_mejoras/02_paridad_inferencia/r2_cli_vs_streamlit_probabilidades.png",
+    "results/vision/resultados_2_mejoras/02_paridad_inferencia/r2_diferencia_probabilidades.png",
+    "results/vision/resultados_2_mejoras/02_paridad_inferencia/r2_paridad_por_clase.png"
+  ],
+  "class_match_count": 25,
+  "class_match_rate": 1.0,
+  "class_order": [
+    "intact",
+    "spotted",
+    "immature",
+    "broken",
+    "skin_damaged"
+  ],
+  "experiment_id": "02_paridad_inferencia",
+  "generated_at_utc": "2026-07-13T19:08:22+00:00",
+  "image_count": 25,
+  "images_per_class": 5,
+  "inference_contract": {
+    "checkpoint": "models/vision/resnet18_baseline_best.pt",
+    "crop": null,
+    "engine": "src.vision.inference_engine.VisionInferenceEngine",
+    "normalization": {
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ]
+    },
+    "probability_tolerance_note": "Se exige igualdad de clase en 100% y diferencias absolutas de probabilidad <= 1e-06; se registra la diferencia maxima.",
+    "resize": [
+      224,
+      224
+    ],
+    "rgb_conversion": true,
+    "softmax": "torch.softmax(logits, dim=0)",
+    "vision_config": "configs/vision_config.yaml"
+  },
+  "logit_tolerance": 1e-06,
+  "max_logit_abs_diff": 0.0,
+  "max_probability_abs_diff": 0.0,
+  "mean_logit_abs_diff": 0.0,
+  "mean_probability_abs_diff": 0.0,
+  "parity_passed": true,
+  "per_class": {
+    "broken": {
+      "class_match_count": 5,
+      "class_match_rate": 1.0,
+      "image_count": 5,
+      "max_probability_abs_diff": 0.0
+    },
+    "immature": {
+      "class_match_count": 5,
+      "class_match_rate": 1.0,
+      "image_count": 5,
+      "max_probability_abs_diff": 0.0
+    },
+    "intact": {
+      "class_match_count": 5,
+      "class_match_rate": 1.0,
+      "image_count": 5,
+      "max_probability_abs_diff": 0.0
+    },
+    "skin_damaged": {
+      "class_match_count": 5,
+      "class_match_rate": 1.0,
+      "image_count": 5,
+      "max_probability_abs_diff": 0.0
+    },
+    "spotted": {
+      "class_match_count": 5,
+      "class_match_rate": 1.0,
+      "image_count": 5,
+      "max_probability_abs_diff": 0.0
+    }
+  },
+  "probability_tolerance": 1e-06,
+  "seed": 42,
+  "selected_images": [
+    {
+      "image_id": "1020",
+      "image_path": "data/processed/validation/intact/1020.jpg",
+      "true_class": "intact"
+    },
+    {
+      "image_id": "1143",
+      "image_path": "data/processed/validation/intact/1143.jpg",
+      "true_class": "intact"
+    },
+    {
+      "image_id": "26",
+      "image_path": "data/processed/validation/intact/26.jpg",
+      "true_class": "intact"
+    },
+    {
+      "image_id": "291",
+      "image_path": "data/processed/validation/intact/291.jpg",
+      "true_class": "intact"
+    },
+    {
+      "image_id": "742",
+      "image_path": "data/processed/validation/intact/742.jpg",
+      "true_class": "intact"
+    },
+    {
+      "image_id": "173",
+      "image_path": "data/processed/validation/spotted/173.jpg",
+      "true_class": "spotted"
+    },
+    {
+      "image_id": "215",
+      "image_path": "data/processed/validation/spotted/215.jpg",
+      "true_class": "spotted"
+    },
+    {
+      "image_id": "310",
+      "image_path": "data/processed/validation/spotted/310.jpg",
+      "true_class": "spotted"
+    },
+    {
+      "image_id": "857",
+      "image_path": "data/processed/validation/spotted/857.jpg",
+      "true_class": "spotted"
+    },
+    {
+      "image_id": "93",
+      "image_path": "data/processed/validation/spotted/93.jpg",
+      "true_class": "spotted"
+    },
+    {
+      "image_id": "1064",
+      "image_path": "data/processed/validation/immature/1064.jpg",
+      "true_class": "immature"
+    },
+    {
+      "image_id": "433",
+      "image_path": "data/processed/validation/immature/433.jpg",
+      "true_class": "immature"
+    },
+    {
+      "image_id": "58",
+      "image_path": "data/processed/validation/immature/58.jpg",
+      "true_class": "immature"
+    },
+    {
+      "image_id": "620",
+      "image_path": "data/processed/validation/immature/620.jpg",
+      "true_class": "immature"
+    },
+    {
+      "image_id": "850",
+      "image_path": "data/processed/validation/immature/850.jpg",
+      "true_class": "immature"
+    },
+    {
+      "image_id": "156",
+      "image_path": "data/processed/validation/broken/156.jpg",
+      "true_class": "broken"
+    },
+    {
+      "image_id": "176",
+      "image_path": "data/processed/validation/broken/176.jpg",
+      "true_class": "broken"
+    },
+    {
+      "image_id": "275",
+      "image_path": "data/processed/validation/broken/275.jpg",
+      "true_class": "broken"
+    },
+    {
+      "image_id": "455",
+      "image_path": "data/processed/validation/broken/455.jpg",
+      "true_class": "broken"
+    },
+    {
+      "image_id": "460",
+      "image_path": "data/processed/validation/broken/460.jpg",
+      "true_class": "broken"
+    },
+    {
+      "image_id": "102",
+      "image_path": "data/processed/validation/skin_damaged/102.jpg",
+      "true_class": "skin_damaged"
+    },
+    {
+      "image_id": "209",
+      "image_path": "data/processed/validation/skin_damaged/209.jpg",
+      "true_class": "skin_damaged"
+    },
+    {
+      "image_id": "56",
+      "image_path": "data/processed/validation/skin_damaged/56.jpg",
+      "true_class": "skin_damaged"
+    },
+    {
+      "image_id": "629",
+      "image_path": "data/processed/validation/skin_damaged/629.jpg",
+      "true_class": "skin_damaged"
+    },
+    {
+      "image_id": "748",
+      "image_path": "data/processed/validation/skin_damaged/748.jpg",
+      "true_class": "skin_damaged"
+    }
+  ],
+  "split": "validation",
+  "top_3_match_count": 25,
+  "top_3_match_rate": 1.0,
+  "validation_dir": "data/processed/validation"
+}
