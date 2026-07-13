@@ -1,8 +1,9 @@
 {
   "canonical_evaluation": true,
-  "checkpoint": "models\\vision\\resnet18_baseline_best.pt",
+  "checkpoint": "models/vision/resnet18_baseline_best.pt",
   "checkpoint_best_validation_macro_f1": 0.6605130367624343,
   "checkpoint_epoch": 1,
+  "checkpoint_sha256": "38fd4c1f566acf22f538d87adaadb79d7c5b1a062defd86c64e577da4e538f23",
   "classes": [
     "intact",
     "spotted",
@@ -10,12 +11,20 @@
     "broken",
     "skin_damaged"
   ],
-  "metrics_source": "results\\vision\\resnet18_baseline\\metrics_test.json",
-  "reconciliation_report": "results\\vision\\resnet18_baseline\\reconciliation_report.json",
-  "split_manifest": "data\\metadata\\dataset_split.csv",
+  "correction_reason": [
+    "Archived run_summary.json reported test_macro_f1=0.917840678752, while archived metrics_test.json reported macro_f1=0.625955075090.",
+    "Archived classification_report.csv agrees with metrics_test.json at macro-F1=0.625955075090.",
+    "The new checkpoint evaluation exactly reproduces metrics_test.json and classification_report.csv, so the higher run_summary value is stale.",
+    "Checkpoint metadata also contradicts the archived summary: checkpoint epoch=1, checkpoint best_validation_macro_f1=0.6605130367624343, summary epochs_ran=11, summary best_validation_macro_f1=0.9231883922779236."
+  ],
+  "metrics_source": "results/vision/resultados_1_baseline/r1_metricas.json",
+  "reconciliation_report": "results/vision/resultados_1_baseline/r1_reconciliation_report.json",
+  "split_manifest": "data/metadata/dataset_split.csv",
   "synthetic_in_test": 0,
   "test_accuracy": 0.6704980842911877,
   "test_macro_f1": 0.6259550750897566,
+  "test_macro_precision": 0.7411933804013591,
+  "test_macro_recall": 0.6505341908884237,
   "test_samples": 522,
   "test_support": {
     "broken": 100,

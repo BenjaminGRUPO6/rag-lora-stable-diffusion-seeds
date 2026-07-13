@@ -39,25 +39,35 @@ def test_vision_result_structure_exists() -> None:
 
 
 def test_resultados_1_manifest_hashes_match_files() -> None:
-    """The baseline copy manifest must keep origin, state and SHA-256 for each file."""
+    """The reconciled baseline manifest must keep state and SHA-256 for canonical files."""
     manifest = json.loads((BASELINE_COPY_DIR / "manifest.json").read_text(encoding="utf-8"))
 
     assert manifest["experiment_id"] == BASELINE_EXPERIMENT_ID
-    assert manifest["status"] == "UNRECONCILED"
-    assert "discrepancia de metricas" in manifest["metrics_discrepancy_note"]
+    assert manifest["status"] == "RECONCILED"
+    assert manifest["checkpoint_sha256"]
+    assert manifest["test_samples"] == 522
+    assert manifest["archive_dir"] == "results/vision/resultados_1_baseline/archive_original"
 
     manifest_files = {Path(entry["file"]).name: entry for entry in manifest["files"]}
-    actual_files = {
-        path.name
-        for path in BASELINE_COPY_DIR.iterdir()
-        if path.is_file() and path.name != "manifest.json"
+    expected_files = {
+        "r1_metricas.json",
+        "r1_reporte_clasificacion.csv",
+        "r1_predicciones_test.csv",
+        "r1_reconciliation_report.json",
+        "r1_reconciliation_report.md",
+        "r1_metricas_resumen.png",
+        "r1_f1_por_clase.png",
+        "r1_precision_recall_por_clase.png",
+        "r1_matriz_confusion.png",
+        "r1_matriz_confusion_normalizada.png",
+        "r1_distribucion_confianza.png",
+        "run_summary.json",
     }
 
-    assert set(manifest_files) == actual_files
+    assert set(manifest_files) == expected_files
     for file_name, entry in manifest_files.items():
         file_path = BASELINE_COPY_DIR / file_name
-        assert entry["status"] == "UNRECONCILED"
-        assert Path(entry["origin"]).name == file_name
+        assert entry["status"] == "RECONCILED"
         assert entry["sha256"] == _sha256(file_path)
 
 
