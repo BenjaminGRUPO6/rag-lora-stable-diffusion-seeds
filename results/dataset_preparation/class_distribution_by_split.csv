@@ -1,0 +1,16 @@
+split,label,count
+test,broken,100
+test,immature,112
+test,intact,91
+test,skin_damaged,113
+test,spotted,106
+train,broken,802
+train,immature,898
+train,intact,732
+train,skin_damaged,901
+train,spotted,846
+validation,broken,100
+validation,immature,112
+validation,intact,91
+validation,skin_damaged,113
+validation,spotted,106
