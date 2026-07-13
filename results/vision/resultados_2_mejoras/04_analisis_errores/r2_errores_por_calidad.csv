@@ -1,0 +1,7 @@
+quality_status,total,errors,error_rate
+low_crop_confidence,1,0,0.0
+ok,355,118,0.3323943661971831
+warning:low_brightness,2,0,0.0
+warning:multiple_candidate_components,98,34,0.3469387755102041
+warning:possible_blur,55,6,0.10909090909090909
+warning:possible_blur;multiple_candidate_components,11,2,0.18181818181818182

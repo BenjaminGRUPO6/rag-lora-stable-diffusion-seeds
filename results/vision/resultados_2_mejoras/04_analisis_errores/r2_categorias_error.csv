@@ -1,0 +1,6 @@
+category,count
+low_confidence,283
+low_top1_top2_margin,128
+true_intact_predicted_other,70
+true_broken_predicted_other,49
+predicted_broken_true_other,7

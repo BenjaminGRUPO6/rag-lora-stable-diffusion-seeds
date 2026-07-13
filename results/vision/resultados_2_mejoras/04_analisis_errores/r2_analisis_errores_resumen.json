@@ -1,0 +1,240 @@
+{
+  "checkpoint": "models/vision/resnet18_baseline_best.pt",
+  "checkpoint_sha256": "38fd4c1f566acf22f538d87adaadb79d7c5b1a062defd86c64e577da4e538f23",
+  "classes": [
+    "intact",
+    "spotted",
+    "immature",
+    "broken",
+    "skin_damaged"
+  ],
+  "confusion_matrix": {
+    "broken": {
+      "broken": 51,
+      "immature": 0,
+      "intact": 0,
+      "skin_damaged": 2,
+      "spotted": 5
+    },
+    "immature": {
+      "broken": 5,
+      "immature": 98,
+      "intact": 47,
+      "skin_damaged": 11,
+      "spotted": 1
+    },
+    "intact": {
+      "broken": 0,
+      "immature": 0,
+      "intact": 21,
+      "skin_damaged": 0,
+      "spotted": 0
+    },
+    "skin_damaged": {
+      "broken": 17,
+      "immature": 6,
+      "intact": 13,
+      "skin_damaged": 96,
+      "spotted": 4
+    },
+    "spotted": {
+      "broken": 27,
+      "immature": 8,
+      "intact": 10,
+      "skin_damaged": 4,
+      "spotted": 96
+    }
+  },
+  "error_counts": {
+    "by_category": {
+      "low_confidence": 283,
+      "low_top1_top2_margin": 128,
+      "predicted_broken_true_other": 7,
+      "true_broken_predicted_other": 49,
+      "true_intact_predicted_other": 70
+    },
+    "total_errors": 160
+  },
+  "evaluation": {
+    "deterministic_transforms": true,
+    "model_eval": true,
+    "sample_count": 522,
+    "torch_inference_mode": true,
+    "transform": "Compose(\n      Resize(size=[255], interpolation=InterpolationMode.BILINEAR, antialias=True)\n      CenterCrop(size=(224, 224))\n      ToImage()\n      ToDtype(scale=True)\n      Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225], inplace=False)\n)"
+  },
+  "experiment_id": "04_analisis_errores",
+  "generated_at_utc": "2026-07-13T19:35:35+00:00",
+  "metrics": {
+    "accuracy": 0.6934865900383141,
+    "macro_f1": 0.6543845327599342,
+    "macro_precision": 0.7704399869781885,
+    "macro_recall": 0.674197426050323,
+    "per_class": {
+      "broken": {
+        "f1": 0.6455696202531646,
+        "precision": 0.8793103448275862,
+        "recall": 0.51,
+        "support": 100
+      },
+      "immature": {
+        "f1": 0.7153284671532847,
+        "precision": 0.6049382716049383,
+        "recall": 0.875,
+        "support": 112
+      },
+      "intact": {
+        "f1": 0.375,
+        "precision": 1.0,
+        "recall": 0.23076923076923078,
+        "support": 91
+      },
+      "skin_damaged": {
+        "f1": 0.7710843373493976,
+        "precision": 0.7058823529411765,
+        "recall": 0.8495575221238938,
+        "support": 113
+      },
+      "spotted": {
+        "f1": 0.7649402390438247,
+        "precision": 0.6620689655172414,
+        "recall": 0.9056603773584906,
+        "support": 106
+      }
+    }
+  },
+  "outputs": {
+    "predictions": "results/vision/resultados_2_mejoras/04_analisis_errores/r2_predicciones_validation.csv",
+    "recommendations": "results/vision/resultados_2_mejoras/04_analisis_errores/recommendations.json",
+    "review_csv": "data/metadata/vision_error_review.csv",
+    "summary": "results/vision/resultados_2_mejoras/04_analisis_errores/r2_analisis_errores_resumen.json"
+  },
+  "png": [
+    "results/vision/resultados_2_mejoras/04_analisis_errores/r2_errores_intact.png",
+    "results/vision/resultados_2_mejoras/04_analisis_errores/r2_errores_broken.png",
+    "results/vision/resultados_2_mejoras/04_analisis_errores/r2_confusiones_intact_broken.png",
+    "results/vision/resultados_2_mejoras/04_analisis_errores/r2_confianza_correctos_vs_errores.png",
+    "results/vision/resultados_2_mejoras/04_analisis_errores/r2_calidad_vs_error.png"
+  ],
+  "policy_notes": [
+    "Validation split only; test is not used for development decisions.",
+    "No labels are modified or declared incorrect by this script.",
+    "spotted is treated only as a visual category."
+  ],
+  "quality_vs_error": [
+    {
+      "error_rate": 0.0,
+      "errors": 0,
+      "quality_status": "low_crop_confidence",
+      "total": 1
+    },
+    {
+      "error_rate": 0.3323943661971831,
+      "errors": 118,
+      "quality_status": "ok",
+      "total": 355
+    },
+    {
+      "error_rate": 0.0,
+      "errors": 0,
+      "quality_status": "warning:low_brightness",
+      "total": 2
+    },
+    {
+      "error_rate": 0.3469387755102041,
+      "errors": 34,
+      "quality_status": "warning:multiple_candidate_components",
+      "total": 98
+    },
+    {
+      "error_rate": 0.10909090909090909,
+      "errors": 6,
+      "quality_status": "warning:possible_blur",
+      "total": 55
+    },
+    {
+      "error_rate": 0.18181818181818182,
+      "errors": 2,
+      "quality_status": "warning:possible_blur;multiple_candidate_components",
+      "total": 11
+    }
+  ],
+  "review_rows": 309,
+  "split": "validation",
+  "thresholds": {
+    "confidence": 0.6,
+    "margin_top1_top2": 0.15
+  },
+  "top_confusions": [
+    {
+      "count": 47,
+      "predicted_label": "immature",
+      "rate_within_true_label": 0.5164835164835165,
+      "true_label": "intact"
+    },
+    {
+      "count": 27,
+      "predicted_label": "spotted",
+      "rate_within_true_label": 0.27,
+      "true_label": "broken"
+    },
+    {
+      "count": 17,
+      "predicted_label": "skin_damaged",
+      "rate_within_true_label": 0.17,
+      "true_label": "broken"
+    },
+    {
+      "count": 13,
+      "predicted_label": "skin_damaged",
+      "rate_within_true_label": 0.14285714285714285,
+      "true_label": "intact"
+    },
+    {
+      "count": 11,
+      "predicted_label": "immature",
+      "rate_within_true_label": 0.09734513274336283,
+      "true_label": "skin_damaged"
+    },
+    {
+      "count": 10,
+      "predicted_label": "spotted",
+      "rate_within_true_label": 0.10989010989010989,
+      "true_label": "intact"
+    },
+    {
+      "count": 8,
+      "predicted_label": "spotted",
+      "rate_within_true_label": 0.07142857142857142,
+      "true_label": "immature"
+    },
+    {
+      "count": 6,
+      "predicted_label": "skin_damaged",
+      "rate_within_true_label": 0.05357142857142857,
+      "true_label": "immature"
+    },
+    {
+      "count": 5,
+      "predicted_label": "immature",
+      "rate_within_true_label": 0.05,
+      "true_label": "broken"
+    },
+    {
+      "count": 5,
+      "predicted_label": "broken",
+      "rate_within_true_label": 0.04716981132075472,
+      "true_label": "spotted"
+    }
+  ],
+  "validation": {
+    "sample_count": 522,
+    "support": {
+      "broken": 100,
+      "immature": 112,
+      "intact": 91,
+      "skin_damaged": 113,
+      "spotted": 106
+    },
+    "synthetic_count": 0
+  }
+}
