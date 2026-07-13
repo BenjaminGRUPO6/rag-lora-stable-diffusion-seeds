@@ -1,0 +1,59 @@
+seed: 42
+image_size: 224
+batch_size: 8
+fallback_batch_size: 4
+max_epochs: 25
+patience: 5
+frozen_head_epochs: 2
+layer4_epochs: 5
+learning_rate_head: 0.001
+learning_rate_backbone: 0.00003
+weight_decay: 0.0001
+optimizer: AdamW
+scheduler: cosine
+mixed_precision: true
+monitor: validation_macro_f1
+use_class_weights: false
+
+model:
+  architecture: resnet18
+  pretrained: true
+  num_classes: 5
+  dropout: 0.20
+
+data:
+  root: data/processed
+  num_workers: 0
+
+preprocessing:
+  auto_crop: true
+  fallback: full_image_square_crop
+
+augmentation:
+  train:
+    random_resized_crop:
+      scale: [0.85, 1.0]
+      ratio: [0.9, 1.1]
+    horizontal_flip: 0.5
+    rotate_degrees: 10
+    brightness: 0.08
+    contrast: 0.08
+    translate: [0.04, 0.04]
+    scale: [0.95, 1.05]
+    gaussian_blur_probability: 0.12
+    perspective_probability: 0.12
+    perspective_distortion_scale: 0.08
+  evaluation:
+    deterministic: true
+    random_transforms: false
+
+classes:
+  - intact
+  - spotted
+  - immature
+  - broken
+  - skin_damaged
+
+output:
+  checkpoint_path: models/vision/resnet18_v2_best.pt
+  results_dir: results/vision/resultados_2_mejoras/05_resnet18_v2

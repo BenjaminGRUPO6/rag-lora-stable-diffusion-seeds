@@ -1,0 +1,2 @@
+epoch,phase,train_loss,validation_loss,train_accuracy,validation_accuracy,train_macro_f1,validation_macro_f1,learning_rate,epoch_time_seconds,is_best
+1,head,1.7964205980300902,1.6196658134460449,0.0,0.2,0.0,0.06666666666666667,0.0,13.02207730000373,True
