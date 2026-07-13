@@ -1,27 +1,16 @@
 # Estado del proyecto
 
-## Preparado
+## Estado reconciliado
 
-- [x] Título y alcance corregidos.
-- [x] Estructura final del repositorio.
-- [x] Metadatos y mapa de etiquetas iniciales.
-- [x] Configuraciones base.
-- [x] Guías para GitHub y Codex.
-- [x] Scripts seguros de verificación y auditoría.
-- [x] Dataset Soybean Seeds descargado fuera de Git.
-- [x] Cinco carpetas oficiales disponibles.
-- [x] Estructura del dataset verificada.
+- [x] Dataset: completado.
+- [x] Baseline ResNet18: entrenado; metricas por reconciliar.
+- [x] LoRA: entrenado; evidencia por consolidar.
+- [ ] Experimento B: aplazado.
+- [ ] RAG: pendiente de corpus e indice.
+- [ ] Streamlit: integracion pendiente.
 
-## Pendiente
+## Alcance actual
 
-- [ ] Ejecutar nuevamente la auditoría completa y revisar sus seis reportes.
-- [ ] Crear splits sin fuga de datos.
-- [ ] Entrenar clasificador visual.
-- [ ] Preparar captions para LoRA.
-- [ ] Entrenar Stable Diffusion 1.5 + LoRA en Colab.
-- [ ] Revisar imágenes sintéticas.
-- [ ] Ejecutar comparación del clasificador.
-- [ ] Reunir documentos técnicos.
-- [ ] Construir y evaluar el RAG.
-- [ ] Integrar Streamlit.
-- [ ] Completar informe IEEE y presentación.
+El segundo entrenamiento de ResNet18 con imagenes sinteticas no se ejecuta en la integracion final actual. El proyecto conserva el baseline ResNet18 y evalua el LoRA directamente.
+
+La categoria `spotted` se mantiene como categoria visual; no debe presentarse como diagnostico de hongo.
