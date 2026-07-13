@@ -71,7 +71,7 @@ def test_metadata_jsonl_count_and_distribution(tmp_path: Path) -> None:
 def test_metadata_private_absolute_paths_are_detected() -> None:
     records = [
         {
-            "file_name": r"C:\Users\Luis\private\seed.jpg",
+            "file_name": r"C:\Users\ExampleUser\private\seed.jpg",
             "text": "photo of intact soybean seed",
         }
     ]

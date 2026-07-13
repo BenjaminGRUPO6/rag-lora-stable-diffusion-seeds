@@ -1,14 +1,14 @@
 # Informe IEEE
 
-Estructura sugerida:
+Contenido actualizado:
 
-1. Resumen e Index Terms.
-2. Introducción.
-3. Marco teórico y trabajos relacionados.
-4. Metodología e implementación.
-5. Resultados y evaluación.
-6. Reflexión ética.
-7. Conclusiones y trabajo futuro.
-8. Referencias.
+- `DRAFT_IEEE_REPORT.md`: borrador textual de 6 a 10 paginas estimadas en formato Markdown.
 
-Use métricas reales y cite fuentes primarias o documentación oficial.
+Reglas aplicadas:
+
+- Usa metricas reales de `results/`.
+- No inventa bibliografia.
+- Usa referencias registradas en `docs/11_REFERENCIAS_BASE.md` y fuentes del corpus en `data/metadata/document_sources.csv`.
+- Declara que la herramienta no es diagnostica.
+- Declara que LoRA y ResNet18 fueron entrenados.
+- Declara que el Experimento B fue aplazado.

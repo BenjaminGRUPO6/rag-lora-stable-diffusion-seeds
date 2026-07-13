@@ -21,3 +21,9 @@ def test_find_free_port_returns_listenable_port() -> None:
 
     assert isinstance(port, int)
     assert port > 0
+
+
+def test_forbidden_log_marker_detection() -> None:
+    assert smoke_test_app.contains_forbidden_log_marker("Traceback\nImportError")
+    assert smoke_test_app.contains_forbidden_log_marker("ModuleNotFoundError: No module named 'app'")
+    assert not smoke_test_app.contains_forbidden_log_marker("You can now view your Streamlit app.")

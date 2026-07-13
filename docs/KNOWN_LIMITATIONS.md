@@ -7,3 +7,4 @@
 - El fallback lexical local es menos preciso que embeddings FAISS, pero no inventa fuentes.
 - No se incorporaron datos sinteticos a `train`.
 - No se reentreno ningun modelo durante la auditoria.
+- El titulo renderizado de la app se valida con `streamlit.testing.v1.AppTest`; una descarga HTTP simple de `/` solo comprueba que el shell de Streamlit responde.

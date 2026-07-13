@@ -33,19 +33,31 @@ Test-Path data\documents
 
 ## Ejecutar Streamlit
 
-Smoke finito:
+Demo persistente oficial:
 
 ```powershell
 python scripts/run_demo.py
 ```
 
-Uso interactivo:
-
 ```powershell
-python scripts/run_demo.py --serve --port 8501
+python scripts/run_demo.py --port 8501
 ```
 
-Detener Streamlit interactivo: presionar `Ctrl+C` en la terminal.
+Ejecucion directa equivalente:
+
+```powershell
+python -m streamlit run app/streamlit_app.py --server.port 8501
+```
+
+Detener Streamlit: presionar `Ctrl+C` en la terminal. `scripts/run_demo.py`
+usa el Python del entorno activo, calcula rutas con `pathlib`, fija el `cwd`
+en la raiz del repositorio y ejecuta exclusivamente `app/streamlit_app.py`.
+
+El smoke test finito esta separado y cierra su servidor temporal:
+
+```powershell
+python scripts/smoke_test_app.py
+```
 
 ## Smoke y prueba funcional
 
