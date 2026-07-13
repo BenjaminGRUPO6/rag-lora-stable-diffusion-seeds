@@ -13,10 +13,11 @@ Como evidencia de entrenamiento generativo, Stable Diffusion 1.5 se ajustará me
 ## Estado actual
 
 - Repositorio y estructura: preparados.
-- Dataset: **descargado**; cinco carpetas disponibles y estructura verificada.
-- Auditoría completa del dataset: **pendiente de nueva ejecución** con los seis reportes esperados.
-- Corpus documental del RAG: **aún no recopilado**.
-- Entrenamientos: **pendientes**.
+- Dataset: **completado**.
+- Baseline ResNet18: **entrenado**; metricas por reconciliar.
+- Stable Diffusion 1.5 + LoRA: **entrenado**; evidencia por consolidar.
+- Experimento B con imagenes sinteticas en ResNet18: **aplazado** como trabajo futuro.
+- Corpus documental e indice del RAG: **pendientes**.
 - Aplicación final: **pendiente de integración**.
 
 ## Dataset principal previsto
@@ -30,13 +31,31 @@ Como evidencia de entrenamiento generativo, Stable Diffusion 1.5 se ajustará me
 
 La etiqueta `spotted` describe una anomalía visible; no confirma por sí sola hongos o una enfermedad específica.
 
-## Entrenamientos que realizará el equipo
+## Entrenamientos y evaluacion
 
-1. **Fine-tuning visual:** ResNet18 o EfficientNet-B0 para clasificar las cinco categorías.
-2. **Stable Diffusion 1.5 + LoRA:** ajuste generativo para crear ejemplos sintéticos controlados.
-3. **Comparación experimental:** clasificador con datos reales frente al clasificador con datos reales más imágenes sintéticas aceptadas.
+1. **Fine-tuning visual:** baseline ResNet18 para clasificar las cinco categorias.
+2. **Stable Diffusion 1.5 + LoRA:** ajuste generativo para evaluar el comportamiento del LoRA entrenado.
+3. **Trabajo futuro:** segundo entrenamiento de ResNet18 con datos sinteticos aceptados despues de revision humana.
 
 El RAG no sustituye esos entrenamientos: recupera evidencia documental y fundamenta el informe generado.
+
+## Evidencia local del entrenamiento LoRA SD1.5
+
+El ajuste Stable Diffusion 1.5 + LoRA ya fue realizado y la etapa actual solo consolida evidencia
+reproducible desde artefactos locales. No se ejecuto reentrenamiento ni inferencia masiva durante
+la consolidacion.
+
+Artefactos locales usados como evidencia:
+
+- Configuracion: `configs/lora_sd15.yaml`
+- Metadata de entrenamiento: `data/lora/train/metadata.jsonl`
+- Notebook de entrenamiento: `notebooks/06_entrenamiento_lora_sd15_colab.ipynb`
+- Pesos locales del adaptador: `models/lora/soybean_sd15/pytorch_lora_weights.safetensors`
+- Evidencia consolidada: `results/lora/`
+
+Los pesos LoRA son artefactos locales y no deben versionarse en Git. Los reportes consolidados
+registran la evidencia disponible, los faltantes y el estado `PARTIAL` cuando no existan salidas
+ejecutadas del notebook, logs, hardware, tiempo de entrenamiento o comparativas base vs. LoRA.
 
 ## Experimento A: ResNet18 con imagenes reales
 

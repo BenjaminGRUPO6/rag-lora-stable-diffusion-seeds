@@ -1,0 +1,24 @@
+{
+  "source_metadata": "data/lora/train/metadata.jsonl",
+  "metadata_records": 1000,
+  "image_files_observed": 1000,
+  "metadata_fields": [
+    "file_name",
+    "text"
+  ],
+  "file_name_paths": "relative",
+  "absolute_paths_detected": 0,
+  "private_information_detected": 0,
+  "class_distribution": {
+    "broken": 200,
+    "immature": 200,
+    "intact": 200,
+    "skin_damaged": 200,
+    "spotted": 200
+  },
+  "notes": [
+    "Resumen generado desde metadata.jsonl; no incluye imagenes.",
+    "Las imagenes de data/lora/train/images/ permanecen excluidas de Git.",
+    "spotted se registra como categoria visual, no como diagnostico de hongo."
+  ]
+}

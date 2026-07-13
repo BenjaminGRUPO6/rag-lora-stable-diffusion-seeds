@@ -2,14 +2,12 @@ model:
   architecture: resnet18
   pretrained: true
   num_classes: 5
-  dropout: 0.20
-
+  dropout: 0.2
 data:
   root: data/processed
   image_size: 224
   batch_size: 16
   num_workers: 2
-
 training:
   seed: 42
   epochs: 12
@@ -20,18 +18,12 @@ training:
   patience: 4
   mixed_precision: true
   monitor_metric: macro_f1
-
 classes:
-  - intact
-  - spotted
-  - immature
-  - broken
-  - skin_damaged
-
+- intact
+- spotted
+- immature
+- broken
+- skin_damaged
 output:
   model_dir: models/vision
   results_dir: results/vision/resnet18_baseline
-
-inference:
-  confidence_threshold: 0.60
-  margin_threshold: 0.15

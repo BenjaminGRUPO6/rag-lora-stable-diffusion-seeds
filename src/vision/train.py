@@ -206,11 +206,14 @@ def train_experiment(
         metrics_filename="metrics_test.json",
         save_predictions=True,
     )
+    canonical_test_metrics = _read_json(results_dir / "metrics_test.json")
 
     summary = {
         "checkpoint": str(checkpoint_path),
         "best_validation_macro_f1": best_validation_macro_f1,
-        "test_macro_f1": test_metrics["macro_f1"],
+        "test_macro_f1": canonical_test_metrics["macro_f1"],
+        "test_accuracy": canonical_test_metrics["accuracy"],
+        "metrics_source": str(results_dir / "metrics_test.json"),
         "epochs_ran": len(history),
         "device": str(device),
         "class_weights_used": class_weights_used,
@@ -413,6 +416,11 @@ def _write_json(path: str | Path, payload: dict[str, Any]) -> None:
     output_path = Path(path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
+
+
+def _read_json(path: str | Path) -> dict[str, Any]:
+    input_path = Path(path)
+    return json.loads(input_path.read_text(encoding="utf-8"))
 
 
 def _write_yaml(path: str | Path, payload: dict[str, Any]) -> None:

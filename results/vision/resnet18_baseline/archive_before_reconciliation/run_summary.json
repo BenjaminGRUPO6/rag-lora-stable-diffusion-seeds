@@ -1,0 +1,32 @@
+{
+  "best_validation_macro_f1": 0.9231883922779236,
+  "checkpoint": "models\\vision\\resnet18_baseline_best.pt",
+  "class_distribution": {
+    "test": {
+      "broken": 100,
+      "immature": 112,
+      "intact": 91,
+      "skin_damaged": 113,
+      "spotted": 106
+    },
+    "train": {
+      "broken": 802,
+      "immature": 898,
+      "intact": 732,
+      "skin_damaged": 901,
+      "spotted": 846
+    },
+    "validation": {
+      "broken": 100,
+      "immature": 112,
+      "intact": 91,
+      "skin_damaged": 113,
+      "spotted": 106
+    }
+  },
+  "class_weights_used": false,
+  "device": "cuda",
+  "epochs_ran": 11,
+  "smoke_test": false,
+  "test_macro_f1": 0.9178406787519563
+}

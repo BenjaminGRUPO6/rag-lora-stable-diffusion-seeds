@@ -17,6 +17,7 @@ __pycache__/
 # Datos no versionables
 data/raw/**
 data/processed/**
+data/lora/train/images/**
 data/augmented/**
 data/synthetic/**
 data/documents/**
@@ -27,12 +28,14 @@ data/documents/**
 !data/documents/README.md
 !data/metadata/**
 !data/sample/**
+*.zip
 
 # Modelos, checkpoints y cachés
 models/**/*.pt
 models/**/*.pth
 models/**/*.ckpt
 models/**/*.safetensors
+models/**/checkpoint-*/
 models/.gitkeep
 !models/README.md
 checkpoints/
@@ -40,11 +43,13 @@ checkpoints/
 *.pth
 *.ckpt
 *.safetensors
+*.bin
 .cache/
 huggingface_cache/
 
 # Bases vectoriales y resultados regenerables
 vector_db/**
+vector_db/*.faiss
 !vector_db/README.md
 
 # Resultados masivos o regenerables.
@@ -61,6 +66,7 @@ results/lora/**
 !results/lora/
 !results/lora/README.md
 !results/lora/.gitkeep
+!results/lora/dataset_summary.json
 results/rag/**
 !results/rag/
 !results/rag/README.md
