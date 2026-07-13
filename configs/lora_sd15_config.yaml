@@ -1,0 +1,38 @@
+model:
+  base_model: stable-diffusion-v1-5/stable-diffusion-v1-5
+  resolution: 512
+  revision: null
+
+dataset:
+  source_dir: data/processed/train
+  output_dir: data/lora/train
+  metadata_file: metadata.jsonl
+  trigger_word: soyseed
+  images_per_class: 200
+  seed: 42
+
+training:
+  rank: 8
+  learning_rate: 0.0001
+  train_batch_size: 1
+  gradient_accumulation_steps: 4
+  max_train_steps: 1200
+  checkpointing_steps: 250
+  validation_steps: 250
+  mixed_precision: fp16
+  gradient_checkpointing: true
+  use_8bit_adam: false
+  seed: 42
+
+output:
+  directory: models/lora/soybean_sd15
+  logging_dir: results/lora/training
+  synthetic_pending_dir: data/synthetic/pending_review
+  synthetic_reviewed_dir: data/synthetic/reviewed
+
+classes:
+  - intact
+  - spotted
+  - immature
+  - broken
+  - skin_damaged

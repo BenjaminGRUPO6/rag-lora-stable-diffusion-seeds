@@ -81,6 +81,44 @@ Resultados esperados:
 Los checkpoints no deben subirse a Git. Las metricas, CSV y graficos seleccionados del
 entrenamiento real pueden versionarse si son necesarios para documentar el experimento.
 
+## Preparacion del dataset LoRA SD 1.5
+
+El objetivo del entrenamiento LoRA es ajustar Stable Diffusion 1.5 para generar imagenes de
+semillas de soja condicionadas por la palabra trigger `soyseed` y por las cinco categorias
+visuales originales. Esta etapa solo prepara el dataset; no entrena Stable Diffusion ni descarga
+modelos.
+
+La preparacion usa exclusivamente imagenes reales de `data/processed/train/`. No utiliza
+`data/processed/validation/` ni `data/processed/test/`.
+
+Validar candidatos sin crear archivos:
+
+```powershell
+python scripts/prepare_lora_dataset.py --config configs/lora_sd15_config.yaml --dry-run
+```
+
+Preparar el dataset LoRA:
+
+```powershell
+python scripts/prepare_lora_dataset.py --config configs/lora_sd15_config.yaml --overwrite
+```
+
+Validar el dataset preparado:
+
+```powershell
+python scripts/validate_lora_dataset.py --config configs/lora_sd15_config.yaml
+```
+
+Salidas esperadas:
+
+- Imagenes copiadas y normalizadas: `data/lora/train/images/`
+- Metadata de captions: `data/lora/train/metadata.jsonl`
+- Reporte de seleccion: `data/lora/train/selection_report.csv`
+
+Las imagenes preparadas, metadata completa, pesos LoRA y logs de entrenamiento no deben subirse a
+GitHub. El reporte de seleccion puede versionarse cuando contenga rutas relativas y no rutas
+privadas absolutas.
+
 ## Arquitectura
 
 ```text

@@ -20,11 +20,18 @@ data/processed/**
 data/augmented/**
 data/synthetic/**
 data/documents/**
+data/lora/train/images/**
+data/lora/train/metadata.jsonl
 !data/raw/README.md
 !data/processed/README.md
 !data/augmented/README.md
 !data/synthetic/README.md
 !data/documents/README.md
+!data/lora/
+!data/lora/README.md
+!data/lora/validation_prompts.json
+!data/lora/train/
+!data/lora/train/selection_report.csv
 !data/metadata/**
 !data/sample/**
 
@@ -33,6 +40,7 @@ models/**/*.pt
 models/**/*.pth
 models/**/*.ckpt
 models/**/*.safetensors
+models/lora/**
 models/.gitkeep
 !models/README.md
 checkpoints/
@@ -58,6 +66,7 @@ results/vision/smoke_test/**
 !results/vision/README.md
 !results/vision/.gitkeep
 results/lora/**
+results/lora/training/**
 !results/lora/
 !results/lora/README.md
 !results/lora/.gitkeep
@@ -80,6 +89,10 @@ logs/
 runs/
 outputs/
 wandb/
+
+# Salidas sinteticas pendientes de revision humana
+data/synthetic/pending_review/**
+data/synthetic/reviewed/**
 
 # Editor y sistema
 .vscode/

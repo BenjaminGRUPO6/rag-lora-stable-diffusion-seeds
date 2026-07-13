@@ -1,0 +1,27 @@
+{
+  "seed": 42,
+  "base_model": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+  "trigger_word": "soyseed",
+  "prompts": [
+    {
+      "label": "intact",
+      "prompt": "photo of a soyseed soybean seed, intact condition, clean surface, centered inspection photography"
+    },
+    {
+      "label": "spotted",
+      "prompt": "photo of a soyseed soybean seed, spotted visual surface pattern, centered inspection photography"
+    },
+    {
+      "label": "immature",
+      "prompt": "photo of a soyseed soybean seed, immature condition, pale surface, centered inspection photography"
+    },
+    {
+      "label": "broken",
+      "prompt": "photo of a soyseed soybean seed, broken condition, visible fracture, centered inspection photography"
+    },
+    {
+      "label": "skin_damaged",
+      "prompt": "photo of a soyseed soybean seed, skin_damaged condition, damaged seed coat, centered inspection photography"
+    }
+  ]
+}
