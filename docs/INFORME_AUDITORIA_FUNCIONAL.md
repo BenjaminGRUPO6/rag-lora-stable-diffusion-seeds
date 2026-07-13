@@ -32,15 +32,20 @@ Se detectaron causas secundarias:
 - El RAG podia intentar red para cargar SentenceTransformer.
 - Faltaba fallback local cuando embeddings no estaban disponibles.
 
+En la revision final de 2026-07-13 se confirmo que `app/app.py` ya no existe como fuente, `streamlit_app.py` no importa ni ejecuta `app.app`, y el artefacto compilado obsoleto `app/__pycache__/app.cpython-310.pyc` fue eliminado.
+
 ## Cambios realizados
 
 - Entry point final: `app/streamlit_app.py`.
-- Comando oficial: `python scripts/run_demo.py`.
+- Comando oficial: `python scripts/run_demo.py --port 8501`.
+- Comando directo equivalente: `python -m streamlit run app/streamlit_app.py --server.port 8501`.
 - Rutas absolutas desde `__file__` para independencia del cwd.
+- `app/streamlit_app.py` inserta la raiz del repositorio en `sys.path` antes de importar `app.*` o `src.*`.
 - Fallback local `MetadataKeywordRetriever` sobre `vector_db/metadata.json`.
 - `TextEmbedder(local_files_only=True)` por defecto.
 - Smoke test real en `scripts/smoke_test_app.py`.
 - Prueba funcional en `scripts/run_functional_test.py`.
+- `scripts/smoke_test_app.py` falla ante `ModuleNotFoundError`, `No module named 'app'`, `Traceback` o `ImportError` en stdout/stderr.
 
 ## Arquitectura final
 
@@ -87,7 +92,8 @@ Archivos modificados principales:
 python scripts/check_environment.py
 python -m compileall app src scripts
 python -m pytest -q
-python scripts/run_demo.py
+python -m streamlit run app/streamlit_app.py --server.port 8501
+python scripts/run_demo.py --port 8501
 python scripts/smoke_test_app.py
 python scripts/run_functional_test.py
 ```
@@ -95,7 +101,7 @@ python scripts/run_functional_test.py
 ## Resultados de pytest
 
 ```text
-61 passed
+65 passed
 ```
 
 ## Resultado del smoke test
@@ -107,7 +113,10 @@ Archivo: `results/app_smoke_test/summary.json`
 - Puerto escuchando: true.
 - Proceso vivo durante la prueba: true.
 - Titulo renderizado: true.
-- Traceback: false.
+- Streamlit exceptions: 0.
+- Forbidden log found: false.
+
+La prueba temporal directa en puerto 8501 confirmo proceso activo, puerto escuchando, HTTP 200, titulo renderizado por `AppTest`, cero excepciones y ausencia de `ModuleNotFoundError`, `No module named 'app'`, `Traceback` e `ImportError`.
 
 ## Resultado de la prueba funcional
 
@@ -154,7 +163,8 @@ pip install -r requirements-vision.txt
 pip install -r requirements-rag.txt
 python -m pytest -q
 python scripts/check_environment.py
-python scripts/run_demo.py
+python scripts/run_demo.py --port 8501
+python -m streamlit run app/streamlit_app.py --server.port 8501
 ```
 
 ## Conclusion

@@ -145,6 +145,24 @@ python scripts/check_environment.py
 python scripts/run_demo.py
 ```
 
+La demo oficial queda activa hasta presionar `Ctrl+C`:
+
+```powershell
+python scripts/run_demo.py --port 8501
+```
+
+Tambien puede iniciarse directamente con Streamlit, sin configurar `PYTHONPATH`:
+
+```powershell
+python -m streamlit run app/streamlit_app.py --server.port 8501
+```
+
+El unico entrypoint Streamlit mantenido es `app/streamlit_app.py`. El antiguo
+`app/app.py` fue retirado porque al ejecutarse como script sombreaba el paquete
+`app/` y podia provocar `ModuleNotFoundError`. El entrypoint actual inserta la
+raiz del repositorio en `sys.path` antes de importar `app.*` o `src.*`, una
+solucion estable en Windows tanto desde la raiz como desde otro directorio.
+
 ## Primera etapa
 
 1. Mantener el dataset fuera de Git en `data/raw/soybean_seeds/`.

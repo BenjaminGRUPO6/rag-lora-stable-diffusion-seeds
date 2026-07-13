@@ -18,6 +18,13 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 APP_PATH = PROJECT_ROOT / "app" / "streamlit_app.py"
 DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "results" / "app_smoke_test"
 EXPECTED_TITLE = "SeedCare-RAG"
+FORBIDDEN_LOG_MARKERS = (
+    "ModuleNotFoundError",
+    "No module named 'app'",
+    'No module named "app"',
+    "Traceback",
+    "ImportError",
+)
 
 
 @dataclass(frozen=True)
@@ -32,7 +39,8 @@ class SmokeSummary:
     http_status: int
     http_ok: bool
     rendered_title_found: bool
-    traceback_found: bool
+    streamlit_exceptions: int
+    forbidden_log_found: bool
     stdout_log: str
     stderr_log: str
 
@@ -71,19 +79,28 @@ def run_smoke_test(timeout: float = 30.0, output_dir: Path = DEFAULT_OUTPUT_DIR)
     port_listening = False
     process_alive = False
     rendered_title_found = False
+    streamlit_exceptions = 0
     try:
         http_status = wait_for_http_status(port=port, timeout=timeout)
         http_ok = http_status == 200
         port_listening = is_port_listening(port)
         process_alive = process.poll() is None
-        rendered_title_found = render_contains_title(APP_PATH, EXPECTED_TITLE)
+        rendered_title_found, streamlit_exceptions = render_contains_title(APP_PATH, EXPECTED_TITLE)
     finally:
         stdout, stderr = stop_and_collect(process)
 
-    traceback_found = "Traceback (most recent call last)" in f"{stdout}\n{stderr}"
+    combined_logs = f"{stdout}\n{stderr}"
+    forbidden_log_found = contains_forbidden_log_marker(combined_logs)
     status = (
         "PASS"
-        if http_ok and port_listening and process_alive and rendered_title_found and not traceback_found
+        if (
+            http_ok
+            and port_listening
+            and process_alive
+            and rendered_title_found
+            and streamlit_exceptions == 0
+            and not forbidden_log_found
+        )
         else "FAIL"
     )
     stdout_path = output_dir / "stdout.log"
@@ -99,7 +116,8 @@ def run_smoke_test(timeout: float = 30.0, output_dir: Path = DEFAULT_OUTPUT_DIR)
         http_status=http_status,
         http_ok=http_ok,
         rendered_title_found=rendered_title_found,
-        traceback_found=traceback_found,
+        streamlit_exceptions=streamlit_exceptions,
+        forbidden_log_found=forbidden_log_found,
         stdout_log=relative_to_project(stdout_path),
         stderr_log=relative_to_project(stderr_path),
     )
@@ -169,11 +187,16 @@ def is_port_listening(port: int) -> bool:
         return sock.connect_ex(("127.0.0.1", port)) == 0
 
 
-def render_contains_title(app_path: Path, expected_title: str) -> bool:
-    """Render the Streamlit script with AppTest and check for the app title."""
+def render_contains_title(app_path: Path, expected_title: str) -> tuple[bool, int]:
+    """Render the Streamlit script with AppTest and report title plus exceptions."""
     app = AppTest.from_file(str(app_path), default_timeout=30)
     app.run()
-    return any(title.value == expected_title for title in app.title)
+    return any(title.value == expected_title for title in app.title), len(app.exception)
+
+
+def contains_forbidden_log_marker(text: str) -> bool:
+    """Return true when Streamlit emitted import or traceback failures."""
+    return any(marker in text for marker in FORBIDDEN_LOG_MARKERS)
 
 
 def stop_and_collect(process: subprocess.Popen[str]) -> tuple[str, str]:

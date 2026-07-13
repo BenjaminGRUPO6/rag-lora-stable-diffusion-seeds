@@ -11,17 +11,18 @@
     "--server.address",
     "127.0.0.1",
     "--server.port",
-    "49265",
+    "50779",
     "--browser.gatherUsageStats",
     "false"
   ],
-  "port": 49265,
+  "port": 50779,
   "process_alive": true,
   "port_listening": true,
   "http_status": 200,
   "http_ok": true,
   "rendered_title_found": true,
-  "traceback_found": false,
+  "streamlit_exceptions": 0,
+  "forbidden_log_found": false,
   "stdout_log": "results/app_smoke_test/stdout.log",
   "stderr_log": "results/app_smoke_test/stderr.log"
 }
