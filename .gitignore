@@ -29,7 +29,11 @@ data/documents/**
 !data/sample/**
 
 # Modelos, checkpoints y cachés
-models/**
+models/**/*.pt
+models/**/*.pth
+models/**/*.ckpt
+models/**/*.safetensors
+models/.gitkeep
 !models/README.md
 checkpoints/
 *.pt
@@ -49,7 +53,7 @@ results/dataset_audit/**
 !results/dataset_audit/
 !results/dataset_audit/README.md
 !results/dataset_audit/.gitkeep
-results/vision/**
+results/vision/smoke_test/**
 !results/vision/
 !results/vision/README.md
 !results/vision/.gitkeep

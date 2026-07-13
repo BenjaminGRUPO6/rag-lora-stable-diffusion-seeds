@@ -38,6 +38,49 @@ La etiqueta `spotted` describe una anomalía visible; no confirma por sí sola h
 
 El RAG no sustituye esos entrenamientos: recupera evidencia documental y fundamenta el informe generado.
 
+## Experimento A: ResNet18 con imagenes reales
+
+El Experimento A ajusta un clasificador ResNet18 preentrenado usando solo imagenes reales de
+`data/processed/train/`. La seleccion del mejor checkpoint se hace con
+`data/processed/validation/` mediante macro-F1. El split `data/processed/test/` se usa una sola
+vez al final para reportar el desempeno definitivo.
+
+Clases utilizadas, en orden:
+
+1. `intact`
+2. `spotted`
+3. `immature`
+4. `broken`
+5. `skin_damaged`
+
+Smoke test en CPU:
+
+```powershell
+python scripts/train_vision_model.py --config configs/vision_config.yaml --smoke-test --device cpu
+```
+
+Entrenamiento real:
+
+```powershell
+python scripts/train_vision_model.py --config configs/vision_config.yaml
+```
+
+Evaluacion final del checkpoint:
+
+```powershell
+python scripts/evaluate_vision_model.py `
+  --config configs/vision_config.yaml `
+  --checkpoint models/vision/resnet18_baseline_best.pt
+```
+
+Resultados esperados:
+
+- Checkpoint: `models/vision/resnet18_baseline_best.pt`
+- Metricas, CSV y graficos: `results/vision/resnet18_baseline/`
+
+Los checkpoints no deben subirse a Git. Las metricas, CSV y graficos seleccionados del
+entrenamiento real pueden versionarse si son necesarios para documentar el experimento.
+
 ## Arquitectura
 
 ```text
