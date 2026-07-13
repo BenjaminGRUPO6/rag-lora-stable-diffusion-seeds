@@ -15,7 +15,7 @@ requirements-rag.txt
 requirements-vision.txt
 .env.example
 app/__init__.py
-app/app.py
+app/streamlit_app.py
 app/components/__init__.py
 codex/00_PROMPT_MAESTRO.md
 codex/01_AUDITORIA_DATASET.md

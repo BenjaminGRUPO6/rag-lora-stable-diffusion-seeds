@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 from pathlib import Path
+import json
 
+import pytest
 import torch
 from PIL import Image
 
@@ -114,3 +116,68 @@ def test_analyze_seed_spotted_limitations_do_not_diagnose(tmp_path: Path) -> Non
     assert result["preliminary_report"]["informacion_documental"] == []
     assert "no confirma hongo" in limitations
     assert "alteraciones visibles" in result["retrieval_query"]
+
+
+def test_analyze_seed_uses_metadata_fallback_when_embeddings_unavailable(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """RAG should remain local and honest when embedding retrieval is unavailable."""
+    vision_config, rag_config = _write_configs(tmp_path)
+    index_dir = tmp_path / "vector_db"
+    index_dir.mkdir()
+    (index_dir / "metadata.json").write_text(
+        json.dumps(
+            [
+                {
+                    "chunk_id": "DOC001-p001-c0001",
+                    "document_id": "DOC001",
+                    "title": "Soybean standards",
+                    "topic": "broken/mechanical damage; dano mecanico; rotura",
+                    "text": "La rotura de semillas de soja puede relacionarse con dano mecanico durante manejo.",
+                    "source_url": "https://example.org/soybean.pdf",
+                    "page": 1,
+                }
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    def fail_faiss(*args: object, **kwargs: object) -> object:
+        raise RuntimeError("embedding model unavailable")
+
+    monkeypatch.setattr("src.pipelines.analyze_seed.build_faiss_retriever", fail_faiss)
+
+    result = analyze_seed(
+        prediction={
+            "label": "broken",
+            "confidence": 0.9,
+            "probabilities": {"broken": 0.9, "intact": 0.1},
+        },
+        vision_config_path=vision_config,
+        rag_config_path=rag_config,
+        index_dir=index_dir,
+    )
+
+    assert result["rag_status"] == "metadata_fallback"
+    assert result["retrieved_sources"][0]["document_id"] == "DOC001"
+    assert "recuperacion lexical local" in " ".join(result["limitations"])
+
+
+def test_analyze_seed_handles_missing_rag_index_honestly(tmp_path: Path) -> None:
+    vision_config, rag_config = _write_configs(tmp_path)
+
+    result = analyze_seed(
+        prediction={
+            "label": "intact",
+            "confidence": 0.82,
+            "probabilities": {"intact": 0.82, "broken": 0.18},
+        },
+        vision_config_path=vision_config,
+        rag_config_path=rag_config,
+        index_dir=tmp_path / "missing_vector_db",
+    )
+
+    assert result["rag_status"] == "unavailable"
+    assert result["retrieved_sources"] == []
+    assert "RAG no disponible localmente" in " ".join(result["limitations"])

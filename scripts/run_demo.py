@@ -10,7 +10,8 @@ from urllib.error import URLError
 from urllib.request import urlopen
 
 
-APP_PATH = Path("app/app.py")
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+APP_PATH = PROJECT_ROOT / "app" / "streamlit_app.py"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -39,7 +40,7 @@ def main(argv: list[str] | None = None) -> int:
     command = streamlit_command(port)
     if args.serve:
         print(f"SeedCare-RAG demo: http://localhost:{port}")
-        return subprocess.call(command)
+        return subprocess.call(command, cwd=PROJECT_ROOT)
     return smoke_test(command, port, args.timeout)
 
 
@@ -64,6 +65,7 @@ def smoke_test(command: list[str], port: int, timeout: float) -> int:
     """Start Streamlit, wait for health endpoint, then stop it."""
     process = subprocess.Popen(
         command,
+        cwd=PROJECT_ROOT,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         text=True,

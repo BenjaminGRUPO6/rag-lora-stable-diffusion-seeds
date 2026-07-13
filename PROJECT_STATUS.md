@@ -6,8 +6,8 @@
 - [x] Baseline ResNet18: entrenado; metricas por reconciliar.
 - [x] LoRA: entrenado; evidencia por consolidar.
 - [ ] Experimento B: aplazado.
-- [ ] RAG: pendiente de corpus e indice.
-- [ ] Streamlit: integracion pendiente.
+- [x] RAG: corpus e indice locales disponibles; fallback lexical local implementado.
+- [x] Streamlit: integracion funcional auditada.
 
 ## Alcance actual
 
