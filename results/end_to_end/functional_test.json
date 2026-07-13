@@ -1,0 +1,230 @@
+{
+  "summary": {
+    "passed": true,
+    "image_path": "data/processed/test/broken/10.jpg",
+    "checkpoint_available": true,
+    "tensor_created": true,
+    "model_loaded": true,
+    "prediction": "skin_damaged",
+    "confidence": 0.4687288701534271,
+    "probabilities_sum": 0.9999999664723873,
+    "class_valid": true,
+    "confidence_valid": true,
+    "probabilities_valid": true,
+    "report_structured": true,
+    "no_private_paths": true,
+    "no_forbidden_diagnostic": true,
+    "rag_status": "faiss",
+    "sources_count": 5,
+    "sources_real_when_available": true,
+    "output_json": "results/end_to_end/functional_test.json",
+    "output_markdown": "results/end_to_end/functional_test.md",
+    "errors": []
+  },
+  "result": {
+    "prediction": "skin_damaged",
+    "confidence": 0.4687288701534271,
+    "probabilities": {
+      "intact": 0.010241895914077759,
+      "spotted": 0.171355202794075,
+      "immature": 0.034639161080121994,
+      "broken": 0.3150348365306854,
+      "skin_damaged": 0.4687288701534271
+    },
+    "uncertainty_status": "uncertain",
+    "retrieved_sources": [
+      {
+        "score": 0.35719841718673706,
+        "chunk_id": "DOC001-p088-c0319",
+        "document_id": "DOC001",
+        "title": "Genebank Standards for Plant Genetic Resources for Food and Agriculture",
+        "source_url": "",
+        "local_path": "data/documents/accepted/01_fao_genebank_standards.pdf",
+        "page": 88,
+        "topic": "intact/general quality; broken/mechanical damage; immature; spotted/visible surface alterations; storage; handling",
+        "text": "egetal . D.F. Brasil, Embrapa Recursos Genéticos.",
+        "sha256": "a1f9df0971e0dd756183dd6bb7e80ba823512e73f1f24c56f2e87536b2a69279"
+      },
+      {
+        "score": 0.3254607915878296,
+        "chunk_id": "DOC003-p013-c0073",
+        "document_id": "DOC003",
+        "title": "Evaluation of soybean genotypes for reaction to natural field infection by Cercospora species causing purple seed stain",
+        "source_url": "",
+        "local_path": "data/documents/accepted/03_plos_purple_seed_stain.pdf",
+        "page": 13,
+        "topic": "intact/general quality; broken/mechanical damage; immature; spotted/visible surface alterations; skin_damaged; storage; handling",
+        "text": " Cercos pora species PLOS ONE | https://doi.or g/10.137 1/journal.po ne.02226 73 October 10, 2019 13 / 15",
+        "sha256": "25d65a481aaa68a5bee0cdd738fe777b183fb879a9fa2680f150e17aff16ecf9"
+      },
+      {
+        "score": 0.3096614480018616,
+        "chunk_id": "DOC001-p125-c0462",
+        "document_id": "DOC001",
+        "title": "Genebank Standards for Plant Genetic Resources for Food and Agriculture",
+        "source_url": "",
+        "local_path": "data/documents/accepted/01_fao_genebank_standards.pdf",
+        "page": 125,
+        "topic": "intact/general quality; broken/mechanical damage; immature; spotted/visible surface alterations; storage; handling",
+        "text": "ystems. Working closely with local communities to raise awareness of the purpose and value of the collection can give a sense of ownership and increased protection to the ﬁeld area.",
+        "sha256": "a1f9df0971e0dd756183dd6bb7e80ba823512e73f1f24c56f2e87536b2a69279"
+      },
+      {
+        "score": 0.30232810974121094,
+        "chunk_id": "DOC003-p006-c0033",
+        "document_id": "DOC003",
+        "title": "Evaluation of soybean genotypes for reaction to natural field infection by Cercospora species causing purple seed stain",
+        "source_url": "",
+        "local_path": "data/documents/accepted/03_plos_purple_seed_stain.pdf",
+        "page": 6,
+        "topic": "intact/general quality; broken/mechanical damage; immature; spotted/visible surface alterations; skin_damaged; storage; handling",
+        "text": "le, MS during soybean growing seasons for the months of April through October in 2010, 2011, and 2012. A: Air maximum temperature s. B: Maxim um relative humidit y. C: Total precipitati on. D: Number of rainy days. https://doi.o rg/10.1371/j ournal.pone .0222673.g002 Reaction of soybean to Cercos pora species PLOS ONE | https://doi.or g/10.137 1/journal.po ne.02226 73 October 10, 2019 6 / 15",
+        "sha256": "25d65a481aaa68a5bee0cdd738fe777b183fb879a9fa2680f150e17aff16ecf9"
+      },
+      {
+        "score": 0.30133122205734253,
+        "chunk_id": "DOC003-p009-c0049",
+        "document_id": "DOC003",
+        "title": "Evaluation of soybean genotypes for reaction to natural field infection by Cercospora species causing purple seed stain",
+        "source_url": "",
+        "local_path": "data/documents/accepted/03_plos_purple_seed_stain.pdf",
+        "page": 9,
+        "topic": "intact/general quality; broken/mechanical damage; immature; spotted/visible surface alterations; skin_damaged; storage; handling",
+        "text": "/j ournal.pone .0222673.t004 Reaction of soybean to Cercos pora species PLOS ONE | https://doi.or g/10.137 1/journal.po ne.02226 73 October 10, 2019 9 / 15",
+        "sha256": "25d65a481aaa68a5bee0cdd738fe777b183fb879a9fa2680f150e17aff16ecf9"
+      }
+    ],
+    "preliminary_report": {
+      "categoria_estimada": "skin_damaged",
+      "confianza": 0.4687,
+      "estado_incertidumbre": "uncertain",
+      "observaciones": [],
+      "resumen_visual": "Clasificacion visual preliminar: skin_damaged con confianza 0.4687.",
+      "informacion_documental": [
+        {
+          "id": 1,
+          "title": "Genebank Standards for Plant Genetic Resources for Food and Agriculture",
+          "document_id": "DOC001",
+          "page": 88,
+          "source": "data/documents/accepted/01_fao_genebank_standards.pdf",
+          "score": 0.35719841718673706,
+          "fragment": "egetal . D.F. Brasil, Embrapa Recursos Genéticos."
+        },
+        {
+          "id": 2,
+          "title": "Evaluation of soybean genotypes for reaction to natural field infection by Cercospora species causing purple seed stain",
+          "document_id": "DOC003",
+          "page": 13,
+          "source": "data/documents/accepted/03_plos_purple_seed_stain.pdf",
+          "score": 0.3254607915878296,
+          "fragment": "Cercos pora species PLOS ONE | https://doi.or g/10.137 1/journal.po ne.02226 73 October 10, 2019 13 / 15"
+        },
+        {
+          "id": 3,
+          "title": "Genebank Standards for Plant Genetic Resources for Food and Agriculture",
+          "document_id": "DOC001",
+          "page": 125,
+          "source": "data/documents/accepted/01_fao_genebank_standards.pdf",
+          "score": 0.3096614480018616,
+          "fragment": "ystems. Working closely with local communities to raise awareness of the purpose and value of the collection can give a sense of ownership and increased protection to the ﬁeld area."
+        },
+        {
+          "id": 4,
+          "title": "Evaluation of soybean genotypes for reaction to natural field infection by Cercospora species causing purple seed stain",
+          "document_id": "DOC003",
+          "page": 6,
+          "source": "data/documents/accepted/03_plos_purple_seed_stain.pdf",
+          "score": 0.30232810974121094,
+          "fragment": "le, MS during soybean growing seasons for the months of April through October in 2010, 2011, and 2012. A: Air maximum temperature s. B: Maxim um relative humidit y. C: Total precipitati on. D: Number of rainy days. https://doi.o rg/10.1371/j ournal.pone .0222673.g002 Reaction of soybean to Cercos pora species PLOS ONE | https://doi.or g/10.137 1/journal.po ne.02226 73 October 10, 2019 6 / 15"
+        },
+        {
+          "id": 5,
+          "title": "Evaluation of soybean genotypes for reaction to natural field infection by Cercospora species causing purple seed stain",
+          "document_id": "DOC003",
+          "page": 9,
+          "source": "data/documents/accepted/03_plos_purple_seed_stain.pdf",
+          "score": 0.30133122205734253,
+          "fragment": "/j ournal.pone .0222673.t004 Reaction of soybean to Cercos pora species PLOS ONE | https://doi.or g/10.137 1/journal.po ne.02226 73 October 10, 2019 9 / 15"
+        }
+      ],
+      "posibles_factores_descritos_por_las_fuentes": [
+        {
+          "id": 1,
+          "title": "Genebank Standards for Plant Genetic Resources for Food and Agriculture",
+          "document_id": "DOC001",
+          "page": 88,
+          "source": "data/documents/accepted/01_fao_genebank_standards.pdf",
+          "score": 0.35719841718673706,
+          "fragment": "egetal . D.F. Brasil, Embrapa Recursos Genéticos."
+        },
+        {
+          "id": 2,
+          "title": "Evaluation of soybean genotypes for reaction to natural field infection by Cercospora species causing purple seed stain",
+          "document_id": "DOC003",
+          "page": 13,
+          "source": "data/documents/accepted/03_plos_purple_seed_stain.pdf",
+          "score": 0.3254607915878296,
+          "fragment": "Cercos pora species PLOS ONE | https://doi.or g/10.137 1/journal.po ne.02226 73 October 10, 2019 13 / 15"
+        },
+        {
+          "id": 3,
+          "title": "Genebank Standards for Plant Genetic Resources for Food and Agriculture",
+          "document_id": "DOC001",
+          "page": 125,
+          "source": "data/documents/accepted/01_fao_genebank_standards.pdf",
+          "score": 0.3096614480018616,
+          "fragment": "ystems. Working closely with local communities to raise awareness of the purpose and value of the collection can give a sense of ownership and increased protection to the ﬁeld area."
+        },
+        {
+          "id": 4,
+          "title": "Evaluation of soybean genotypes for reaction to natural field infection by Cercospora species causing purple seed stain",
+          "document_id": "DOC003",
+          "page": 6,
+          "source": "data/documents/accepted/03_plos_purple_seed_stain.pdf",
+          "score": 0.30232810974121094,
+          "fragment": "le, MS during soybean growing seasons for the months of April through October in 2010, 2011, and 2012. A: Air maximum temperature s. B: Maxim um relative humidit y. C: Total precipitati on. D: Number of rainy days. https://doi.o rg/10.1371/j ournal.pone .0222673.g002 Reaction of soybean to Cercos pora species PLOS ONE | https://doi.or g/10.137 1/journal.po ne.02226 73 October 10, 2019 6 / 15"
+        },
+        {
+          "id": 5,
+          "title": "Evaluation of soybean genotypes for reaction to natural field infection by Cercospora species causing purple seed stain",
+          "document_id": "DOC003",
+          "page": 9,
+          "source": "data/documents/accepted/03_plos_purple_seed_stain.pdf",
+          "score": 0.30133122205734253,
+          "fragment": "/j ournal.pone .0222673.t004 Reaction of soybean to Cercos pora species PLOS ONE | https://doi.or g/10.137 1/journal.po ne.02226 73 October 10, 2019 9 / 15"
+        }
+      ],
+      "prevencion_o_manejo": [
+        "No se recuperaron fragmentos especificos de prevencion o manejo dentro del top_k solicitado."
+      ],
+      "referencias": [
+        "[1] DOC001 (s. f.). Genebank Standards for Plant Genetic Resources for Food and Agriculture, p. 88. data/documents/accepted/01_fao_genebank_standards.pdf",
+        "[2] DOC003 (s. f.). Evaluation of soybean genotypes for reaction to natural field infection by Cercospora species causing purple seed stain, p. 13. data/documents/accepted/03_plos_purple_seed_stain.pdf",
+        "[3] DOC001 (s. f.). Genebank Standards for Plant Genetic Resources for Food and Agriculture, p. 125. data/documents/accepted/01_fao_genebank_standards.pdf",
+        "[4] DOC003 (s. f.). Evaluation of soybean genotypes for reaction to natural field infection by Cercospora species causing purple seed stain, p. 6. data/documents/accepted/03_plos_purple_seed_stain.pdf",
+        "[5] DOC003 (s. f.). Evaluation of soybean genotypes for reaction to natural field infection by Cercospora species causing purple seed stain, p. 9. data/documents/accepted/03_plos_purple_seed_stain.pdf"
+      ],
+      "limitaciones": [
+        "La salida es una clasificacion visual preliminar y no constituye diagnostico.",
+        "No sustituye una evaluacion especializada ni analisis de laboratorio cuando corresponda.",
+        "El contenido documental se limita a los fragmentos recuperados por el indice RAG.",
+        "La prediccion fue marcada como incierta por confianza baja o margen estrecho."
+      ]
+    },
+    "limitations": [
+      "La salida es una clasificacion visual preliminar y no constituye diagnostico.",
+      "No sustituye una evaluacion especializada ni analisis de laboratorio cuando corresponda.",
+      "El contenido documental se limita a los fragmentos recuperados por el indice RAG.",
+      "La prediccion fue marcada como incierta por confianza baja o margen estrecho."
+    ],
+    "processing_times": {
+      "vision_seconds": 1.234314,
+      "retrieval_seconds": 18.042428,
+      "report_seconds": 0.000435,
+      "total_seconds": 19.281893
+    },
+    "retrieval_query": "dano de cubierta en semillas de soja, posibles causas y medidas de manejo. Recuperar evidencia sobre factores descritos, prevencion, manejo y limitaciones.",
+    "rag_status": "faiss",
+    "rag_warning": ""
+  }
+}

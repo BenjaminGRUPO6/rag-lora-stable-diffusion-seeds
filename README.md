@@ -17,8 +17,8 @@ Como evidencia de entrenamiento generativo, Stable Diffusion 1.5 se ajustará me
 - Baseline ResNet18: **entrenado**; metricas por reconciliar.
 - Stable Diffusion 1.5 + LoRA: **entrenado**; evidencia por consolidar.
 - Experimento B con imagenes sinteticas en ResNet18: **aplazado** como trabajo futuro.
-- Corpus documental e indice del RAG: **pendientes**.
-- Aplicación final: **pendiente de integración**.
+- Corpus documental e indice del RAG: **disponibles localmente**.
+- Aplicación Streamlit: **integrada y auditada funcionalmente**.
 
 ## Dataset principal previsto
 
@@ -137,8 +137,12 @@ py -3.10 -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 pip install -r requirements-core.txt
+pip install -r requirements-app.txt
+pip install -r requirements-vision.txt
+pip install -r requirements-rag.txt
 python -m pytest -q
 python scripts/check_environment.py
+python scripts/run_demo.py
 ```
 
 ## Primera etapa
