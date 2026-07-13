@@ -31,3 +31,7 @@ classes:
 output:
   model_dir: models/vision
   results_dir: results/vision/resnet18_baseline
+
+inference:
+  confidence_threshold: 0.60
+  margin_threshold: 0.15
