@@ -1,0 +1,66 @@
+results:
+  baseline_id: resultados_1_baseline
+  improvements_id: resultados_2_mejoras
+  root: results/vision
+  protected:
+    - resultados_1_baseline
+
+baseline:
+  source_dir: results/vision/resnet18_baseline
+  destination_dir: results/vision/resultados_1_baseline
+  status: UNRECONCILED
+  allowed_copy_extensions:
+    - .json
+    - .csv
+    - .png
+    - .yaml
+  forbidden_extensions:
+    - .pt
+    - .pth
+    - .ckpt
+    - .safetensors
+  note: Existe una discrepancia de metricas pendiente de reconciliacion.
+
+experiments:
+  - id: 01_metricas_reconciliadas
+    status: planned
+    allows_training: false
+  - id: 02_paridad_inferencia
+    status: planned
+    allows_training: false
+  - id: 03_recorte_y_calidad
+    status: planned
+    allows_training: false
+  - id: 04_analisis_errores
+    status: planned
+    allows_training: false
+  - id: 05_resnet18_v2
+    status: planned
+    allows_training: false
+  - id: 06_calibracion
+    status: planned
+    allows_training: false
+  - id: 07_tta
+    status: planned
+    allows_training: false
+  - id: 08_comparacion_modelos
+    status: planned
+    allows_training: false
+  - id: 09_gradcam_interfaz
+    status: planned
+    allows_training: false
+  - id: 10_lora_generativo
+    status: planned
+    allows_training: false
+    requires_human_review_before_train: true
+  - id: final
+    status: planned
+    allows_training: false
+
+plot_policy:
+  backend: matplotlib
+  format: png
+  min_dpi: 180
+  facecolor: white
+  require_title: true
+  require_experiment_name: true
