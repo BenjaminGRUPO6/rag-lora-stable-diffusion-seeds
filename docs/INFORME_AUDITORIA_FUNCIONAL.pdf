@@ -1,0 +1,448 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Length 1746 >>
+stream
+BT
+/F1 10 Tf
+50 792 Td
+14 TL
+(INFORME DE AUDITORIA FUNCIONAL) Tj
+T*
+() Tj
+T*
+(PORTADA) Tj
+T*
+() Tj
+T*
+(Proyecto: SeedCare-RAG LoRA) Tj
+T*
+(Repositorio: `rag-lora-stable-diffusion-seeds`) Tj
+T*
+(Fecha: 2026-07-13) Tj
+T*
+(Entorno: Windows 10, Python 3.10.11) Tj
+T*
+() Tj
+T*
+(ESTADO INICIAL) Tj
+T*
+() Tj
+T*
+(La aplicacion Streamlit presentaba:) Tj
+T*
+() Tj
+T*
+(```text) Tj
+T*
+(ModuleNotFoundError: No module named 'app.components'; 'app' is not a package) Tj
+T*
+(```) Tj
+T*
+() Tj
+T*
+(El error se reprodujo con:) Tj
+T*
+() Tj
+T*
+(```powershell) Tj
+T*
+(python app\\app.py) Tj
+T*
+(```) Tj
+T*
+() Tj
+T*
+(DIAGNOSTICO Y CAUSA RAIZ) Tj
+T*
+() Tj
+T*
+(El archivo `app/app.py` ocultaba el paquete `app/` cuando se ejecutaba como script. Python) Tj
+T*
+(resolvia `app` como el archivo `app.py`, no como el paquete, y fallaba la importacion) Tj
+T*
+(`app.components.demo_helpers`.) Tj
+T*
+() Tj
+T*
+(Se detectaron causas secundarias:) Tj
+T*
+() Tj
+T*
+(- `scripts/run_demo.py` apuntaba al entrypoint conflictivo.) Tj
+T*
+(- El smoke test anterior no validaba el render real.) Tj
+T*
+(- El RAG podia intentar red para cargar SentenceTransformer.) Tj
+T*
+(- Faltaba fallback local cuando embeddings no estaban disponibles.) Tj
+T*
+() Tj
+T*
+(En la revision final de 2026-07-13 se confirmo que `app/app.py` ya no existe como fuente,) Tj
+T*
+(`streamlit_app.py` no importa ni ejecuta `app.app`, y el artefacto compilado obsoleto) Tj
+T*
+(`app/__pycache__/app.cpython-310.pyc` fue eliminado.) Tj
+T*
+() Tj
+T*
+(CAMBIOS REALIZADOS) Tj
+T*
+() Tj
+T*
+(- Entry point final: `app/streamlit_app.py`.) Tj
+T*
+(- Comando oficial: `python scripts/run_demo.py --port 8501`.) Tj
+T*
+(- Comando directo equivalente: `python -m streamlit run app/streamlit_app.py --server.port) Tj
+T*
+(8501`.) Tj
+T*
+ET
+endstream
+endobj
+3 0 obj
+<< /Length 1777 >>
+stream
+BT
+/F1 10 Tf
+50 792 Td
+14 TL
+(- Rutas absolutas desde `__file__` para independencia del cwd.) Tj
+T*
+(- `app/streamlit_app.py` inserta la raiz del repositorio en `sys.path` antes de importar) Tj
+T*
+(`app.*` o `src.*`.) Tj
+T*
+(- Fallback local `MetadataKeywordRetriever` sobre `vector_db/metadata.json`.) Tj
+T*
+(- `TextEmbedder\(local_files_only=True\)` por defecto.) Tj
+T*
+(- Smoke test real en `scripts/smoke_test_app.py`.) Tj
+T*
+(- Prueba funcional en `scripts/run_functional_test.py`.) Tj
+T*
+(- `scripts/smoke_test_app.py` falla ante `ModuleNotFoundError`, `No module named 'app'`,) Tj
+T*
+(`Traceback` o `ImportError` en stdout/stderr.) Tj
+T*
+() Tj
+T*
+(ARQUITECTURA FINAL) Tj
+T*
+() Tj
+T*
+(```text) Tj
+T*
+(Imagen local o cargada) Tj
+T*
+(  -> validacion PIL) Tj
+T*
+(  -> ResNet18 local) Tj
+T*
+(  -> probabilidades) Tj
+T*
+(  -> RAG FAISS local o fallback metadata) Tj
+T*
+(  -> informe preliminar determinista) Tj
+T*
+(  -> limitaciones y fuentes) Tj
+T*
+(```) Tj
+T*
+() Tj
+T*
+(ARCHIVOS CREADOS Y MODIFICADOS) Tj
+T*
+() Tj
+T*
+(Archivos creados principales:) Tj
+T*
+() Tj
+T*
+(- `app/streamlit_app.py`) Tj
+T*
+(- `scripts/smoke_test_app.py`) Tj
+T*
+(- `scripts/run_functional_test.py`) Tj
+T*
+(- `tests/test_app_startup.py`) Tj
+T*
+(- `tests/test_smoke_test_app.py`) Tj
+T*
+(- `tests/test_vision_inference.py`) Tj
+T*
+(- `tests/test_rag_embeddings.py`) Tj
+T*
+(- `tests/test_functional_test_script.py`) Tj
+T*
+(- `docs/FUNCTIONAL_AUDIT.md`) Tj
+T*
+(- `docs/CHANGES_IMPLEMENTED.md`) Tj
+T*
+(- `docs/RUNBOOK.md`) Tj
+T*
+(- `docs/KNOWN_LIMITATIONS.md`) Tj
+T*
+(- `docs/RELEASE_CHECKLIST.md`) Tj
+T*
+() Tj
+T*
+(Archivos modificados principales:) Tj
+T*
+() Tj
+T*
+(- `scripts/run_demo.py`) Tj
+T*
+(- `src/pipelines/analyze_seed.py`) Tj
+T*
+(- `src/rag/retrieval.py`) Tj
+T*
+(- `src/rag/embeddings.py`) Tj
+T*
+ET
+endstream
+endobj
+4 0 obj
+<< /Length 1532 >>
+stream
+BT
+/F1 10 Tf
+50 792 Td
+14 TL
+(- `README.md`) Tj
+T*
+(- `PROJECT_STATUS.md`) Tj
+T*
+() Tj
+T*
+(PRUEBAS EJECUTADAS) Tj
+T*
+() Tj
+T*
+(```powershell) Tj
+T*
+(python scripts/check_environment.py) Tj
+T*
+(python -m compileall app src scripts) Tj
+T*
+(python -m pytest -q) Tj
+T*
+(python -m streamlit run app/streamlit_app.py --server.port 8501) Tj
+T*
+(python scripts/run_demo.py --port 8501) Tj
+T*
+(python scripts/smoke_test_app.py) Tj
+T*
+(python scripts/run_functional_test.py) Tj
+T*
+(```) Tj
+T*
+() Tj
+T*
+(RESULTADOS DE PYTEST) Tj
+T*
+() Tj
+T*
+(```text) Tj
+T*
+(65 passed) Tj
+T*
+(```) Tj
+T*
+() Tj
+T*
+(RESULTADO DEL SMOKE TEST) Tj
+T*
+() Tj
+T*
+(Archivo: `results/app_smoke_test/summary.json`) Tj
+T*
+() Tj
+T*
+(- Estado: PASS.) Tj
+T*
+(- HTTP status: 200.) Tj
+T*
+(- Puerto escuchando: true.) Tj
+T*
+(- Proceso vivo durante la prueba: true.) Tj
+T*
+(- Titulo renderizado: true.) Tj
+T*
+(- Streamlit exceptions: 0.) Tj
+T*
+(- Forbidden log found: false.) Tj
+T*
+() Tj
+T*
+(La prueba temporal directa en puerto 8501 confirmo proceso activo, puerto escuchando, HTTP) Tj
+T*
+(200, titulo renderizado por `AppTest`, cero excepciones y ausencia de `ModuleNotFoundError`,) Tj
+T*
+(`No module named 'app'`, `Traceback` e `ImportError`.) Tj
+T*
+() Tj
+T*
+(RESULTADO DE LA PRUEBA FUNCIONAL) Tj
+T*
+() Tj
+T*
+(Archivo: `results/end_to_end/functional_test.json`) Tj
+T*
+() Tj
+T*
+(- passed: true.) Tj
+T*
+(- Imagen: `data/processed/test/broken/10.jpg`.) Tj
+T*
+(- Checkpoint disponible: true.) Tj
+T*
+(- Prediccion: `skin_damaged`.) Tj
+T*
+(- Confianza: 0.4687288701534271.) Tj
+T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Length 1981 >>
+stream
+BT
+/F1 10 Tf
+50 792 Td
+14 TL
+(- Suma de probabilidades: 0.9999999664723873.) Tj
+T*
+(- RAG status: `faiss`.) Tj
+T*
+(- Fuentes recuperadas: 5.) Tj
+T*
+() Tj
+T*
+(ARTEFACTOS ENCONTRADOS) Tj
+T*
+() Tj
+T*
+(- `models/vision/resnet18_baseline_best.pt`: disponible.) Tj
+T*
+(- `models/lora/soybean_sd15/pytorch_lora_weights.safetensors`: disponible.) Tj
+T*
+(- `data/metadata/dataset_split.csv`: disponible.) Tj
+T*
+(- `vector_db/index.faiss`: disponible.) Tj
+T*
+(- `vector_db/metadata.json`: disponible.) Tj
+T*
+(- `data/documents/`: disponible.) Tj
+T*
+(- `results/vision/resnet18_baseline/`: disponible.) Tj
+T*
+() Tj
+T*
+(LIMITACIONES) Tj
+T*
+() Tj
+T*
+(- El informe es preliminar y no es diagnostico fitosanitario.) Tj
+T*
+(- `spotted` se trata solo como categoria visual.) Tj
+T*
+(- El fallback lexical local es una degradacion honesta si embeddings no estan disponibles.) Tj
+T*
+(- Algunos chunks PDF contienen ruido de extraccion.) Tj
+T*
+() Tj
+T*
+(RIESGOS) Tj
+T*
+() Tj
+T*
+(- Si se borra el checkpoint local, la clasificacion no podra ejecutarse hasta restaurarlo.) Tj
+T*
+(- Si se borra `vector_db/metadata.json`, el fallback RAG no tendra corpus local.) Tj
+T*
+(- Los pesos y datasets no deben agregarse a Git.) Tj
+T*
+() Tj
+T*
+(INSTRUCCIONES DE EJECUCION) Tj
+T*
+() Tj
+T*
+(```powershell) Tj
+T*
+(pip install -r requirements-core.txt) Tj
+T*
+(pip install -r requirements-app.txt) Tj
+T*
+(pip install -r requirements-vision.txt) Tj
+T*
+(pip install -r requirements-rag.txt) Tj
+T*
+(python -m pytest -q) Tj
+T*
+(python scripts/check_environment.py) Tj
+T*
+(python scripts/run_demo.py --port 8501) Tj
+T*
+(python -m streamlit run app/streamlit_app.py --server.port 8501) Tj
+T*
+(```) Tj
+T*
+() Tj
+T*
+(CONCLUSION) Tj
+T*
+() Tj
+T*
+(Estado final: SUCCESS. La aplicacion inicia, responde HTTP 200, renderiza el titulo) Tj
+T*
+(esperado, ejecuta clasificacion con checkpoint local, recupera fuentes reales con RAG local) Tj
+T*
+(y genera una salida estructurada valida sin entrenar modelos ni inventar fuentes.) Tj
+T*
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 10 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 2 0 R >>
+endobj
+7 0 obj
+<< /Type /Page /Parent 10 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 3 0 R >>
+endobj
+8 0 obj
+<< /Type /Page /Parent 10 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 4 0 R >>
+endobj
+9 0 obj
+<< /Type /Page /Parent 10 0 R /MediaBox [0 0 612 842] /Resources << /Font << /F1 1 0 R >> >> /Contents 5 0 R >>
+endobj
+10 0 obj
+<< /Type /Pages /Kids [6 0 R 7 0 R 8 0 R 9 0 R] /Count 4 >>
+endobj
+11 0 obj
+<< /Type /Catalog /Pages 10 0 R >>
+endobj
+xref
+0 12
+0000000000 65535 f
+0000000015 00000 n
+0000000085 00000 n
+0000001883 00000 n
+0000003712 00000 n
+0000005296 00000 n
+0000007329 00000 n
+0000007456 00000 n
+0000007583 00000 n
+0000007710 00000 n
+0000007837 00000 n
+0000007913 00000 n
+trailer
+<< /Size 12 /Root 11 0 R >>
+startxref
+7964
+%%EOF

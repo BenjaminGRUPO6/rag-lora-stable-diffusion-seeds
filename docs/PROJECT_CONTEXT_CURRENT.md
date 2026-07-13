@@ -95,7 +95,7 @@ vector_db/               README; indice regenerable no versionado.
 - `scripts/prepare_lora_dataset.py`: placeholder que imprime que la preparacion LoRA esta pendiente.
 - `scripts/build_vector_db.py`: placeholder que imprime que falta construir la base vectorial tras reunir documentos.
 - `scripts/evaluate_system.py`: crea `results/metrics` y pide completar matrices de evaluacion; no consolida metricas reales.
-- `scripts/run_demo.py`: ejecuta `streamlit run app/app.py`.
+- `scripts/run_demo.py`: ejecuta `streamlit run app/streamlit_app.py` desde la raiz del repositorio.
 
 ## 8. Notebooks disponibles y salidas ejecutadas
 
@@ -235,14 +235,14 @@ Todos los notebooks inspeccionados tienen `cells_with_outputs=0` y `executed_cod
   - `results/rag/index/` solo contiene `.gitkeep`.
   - `scripts/build_vector_db.py` sigue como placeholder.
 - Streamlit:
-  - `app/app.py` muestra titulo, uploader, campo de observaciones, imagen cargada y avisos.
+  - `app/streamlit_app.py` muestra titulo, uploader, campo de observaciones, imagen cargada y avisos.
   - El propio mensaje de la app indica que falta integrar el clasificador entrenado y el RAG.
 
 ## 16. Errores, TODO o NotImplementedError encontrados
 
 - No se encontraron ocurrencias de `NotImplementedError`.
 - Marcadores o placeholders relevantes encontrados:
-  - `app/app.py`: "Falta integrar el clasificador entrenado y el RAG."
+  - `app/streamlit_app.py`: integra clasificador visual, RAG local e informe preliminar cuando los artefactos estan disponibles.
   - `scripts/prepare_lora_dataset.py`: indica que falta preparar el dataset LoRA despues del baseline visual.
   - `scripts/build_vector_db.py`: indica que falta construir la base vectorial despues de reunir documentos tecnicos.
   - `scripts/evaluate_system.py`: indica que se implementara despues de obtener predicciones visuales, resultados RAG y evaluaciones sinteticas.

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "command": [
+    "python",
+    "-m",
+    "streamlit",
+    "run",
+    "app/streamlit_app.py",
+    "--server.headless",
+    "true",
+    "--server.address",
+    "127.0.0.1",
+    "--server.port",
+    "51396",
+    "--browser.gatherUsageStats",
+    "false"
+  ],
+  "port": 51396,
+  "process_alive": true,
+  "port_listening": true,
+  "http_status": 200,
+  "http_ok": true,
+  "rendered_title_found": true,
+  "streamlit_exceptions": 0,
+  "forbidden_log_found": false,
+  "stdout_log": "results/app_smoke_test/stdout.log",
+  "stderr_log": "results/app_smoke_test/stderr.log"
+}

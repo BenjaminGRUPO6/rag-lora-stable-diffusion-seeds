@@ -1,0 +1,20 @@
+{
+  "status": "SUCCESS",
+  "tests_passed": 65,
+  "tests_failed": 0,
+  "app_http_status": 200,
+  "entrypoint": "app/streamlit_app.py",
+  "run_demo_entrypoint": "app/streamlit_app.py",
+  "direct_streamlit_command": "python -m streamlit run app/streamlit_app.py --server.port 8501",
+  "run_demo_command": "python scripts/run_demo.py --port 8501",
+  "streamlit_exceptions": 0,
+  "forbidden_log_found": false,
+  "rendered_title_found": true,
+  "legacy_app_py_present": false,
+  "legacy_app_py_in_traceback": false,
+  "functional_test_passed": true,
+  "pdf_generated": true,
+  "pdf_path": "docs/INFORME_AUDITORIA_FUNCIONAL.pdf",
+  "pdf_sha256": "38efaacd957e450a6765ef260798b7f8021cda5b25e2a46757fcc917d2652b61",
+  "remaining_blockers": []
+}

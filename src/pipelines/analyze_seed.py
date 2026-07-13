@@ -27,7 +27,7 @@ DEFAULT_RAG_CONFIG = Path("configs/rag.yaml")
 DEFAULT_INDEX_DIR = Path("vector_db")
 
 if TYPE_CHECKING:
-    from src.rag.retrieval import FaissRetriever
+    from src.rag.retrieval import FaissRetriever, Retriever
 
 
 def analyze_seed(
@@ -101,12 +101,21 @@ def analyze_seed(
         str(normalized_prediction["label"]),
         observations_text or None,
     )
-    active_retriever = retriever or build_faiss_retriever(
-        rag_config=rag_config,
-        index_dir=index_dir,
-        top_k=active_top_k,
+    rag_status = "injected"
+    rag_warning = ""
+    if retriever is None:
+        active_retriever, rag_status, rag_warning = build_available_retriever(
+            rag_config=rag_config,
+            index_dir=index_dir,
+            top_k=active_top_k,
+        )
+    else:
+        active_retriever = retriever
+    retrieved_sources = (
+        call_retriever(active_retriever, retrieval_query, active_top_k)
+        if active_retriever is not None
+        else []
     )
-    retrieved_sources = call_retriever(active_retriever, retrieval_query, active_top_k)
     processing_times["retrieval_seconds"] = elapsed(retrieval_started)
 
     report_started = time.perf_counter()
@@ -116,6 +125,8 @@ def analyze_seed(
         label=normalized_prediction["label"],
         uncertainty_status=uncertainty_status,
     )
+    if rag_warning:
+        limitations.append(rag_warning)
     preliminary_report = generate_preliminary_report(
         prediction=normalized_prediction,
         retrieved_sources=retrieved_sources,
@@ -138,6 +149,8 @@ def analyze_seed(
         "limitations": limitations,
         "processing_times": processing_times,
         "retrieval_query": retrieval_query,
+        "rag_status": rag_status,
+        "rag_warning": rag_warning,
     }
 
 
@@ -175,6 +188,28 @@ def build_faiss_retriever(
         top_k=top_k,
         normalize_embeddings=normalize_embeddings,
     )
+
+
+def build_available_retriever(
+    rag_config: dict[str, Any],
+    index_dir: str | Path,
+    top_k: int,
+) -> tuple[Retriever | None, str, str]:
+    """Build the best local retriever available without requiring network access."""
+    try:
+        return build_faiss_retriever(rag_config=rag_config, index_dir=index_dir, top_k=top_k), "faiss", ""
+    except (FileNotFoundError, ImportError, OSError, RuntimeError, ValueError) as exc:
+        metadata_path = Path(index_dir) / "metadata.json"
+        if metadata_path.exists():
+            from src.rag.retrieval import MetadataKeywordRetriever
+
+            warning = (
+                "El recuperador FAISS con embeddings no estuvo disponible; "
+                "se uso recuperacion lexical local sobre metadata RAG."
+            )
+            return MetadataKeywordRetriever.from_path(metadata_path, top_k=top_k), "metadata_fallback", warning
+        warning = f"RAG no disponible localmente: {exc.__class__.__name__}."
+        return None, "unavailable", warning
 
 
 def normalize_observations(observations: list[str] | str | None) -> list[str]:

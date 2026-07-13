@@ -1,0 +1,101 @@
+{
+  "audit_started_at_local": "2026-07-13T05:24:00-05:00",
+  "repository": "rag-lora-stable-diffusion-seeds",
+  "branch": "fix/end-to-end-functional-audit",
+  "environment": {
+    "python": "3.10.11",
+    "pip": "26.1.2",
+    "platform": "Windows-10-10.0.19045-SP0"
+  },
+  "commands_executed": [
+    {
+      "command": "git status --short --branch",
+      "exit_code": 0,
+      "summary": "## fix/end-to-end-functional-audit"
+    },
+    {
+      "command": "python --version",
+      "exit_code": 0,
+      "summary": "Python 3.10.11"
+    },
+    {
+      "command": "python -m pip --version",
+      "exit_code": 0,
+      "summary": "pip 26.1.2 from .venv"
+    },
+    {
+      "command": "python scripts/check_environment.py",
+      "exit_code": 0,
+      "summary": "Entorno core correcto"
+    },
+    {
+      "command": "python -m pytest -q",
+      "exit_code": 0,
+      "summary": "48 passed"
+    },
+    {
+      "command": "python scripts/run_demo.py",
+      "exit_code": 0,
+      "summary": "Health endpoint responded, but this did not validate Streamlit script execution"
+    },
+    {
+      "command": "python app/app.py",
+      "exit_code": 1,
+      "summary": "ModuleNotFoundError: No module named 'app.components'; 'app' is not a package"
+    }
+  ],
+  "inspected_paths": [
+    "pyproject.toml",
+    "requirements.txt",
+    "requirements-core.txt",
+    "requirements-app.txt",
+    "requirements-rag.txt",
+    "requirements-vision.txt",
+    ".gitignore",
+    "app/",
+    "scripts/run_demo.py",
+    "scripts/check_environment.py",
+    "scripts/evaluate_system.py",
+    "src/",
+    "configs/",
+    "tests/",
+    "models/README.md",
+    "PROJECT_STATUS.md",
+    "README.md"
+  ],
+  "package_layout": {
+    "app_package": "AVAILABLE: app/__init__.py exists",
+    "app_components_package": "AVAILABLE: app/components/__init__.py exists",
+    "current_streamlit_entrypoint": "app/app.py",
+    "issue": "Running app/app.py as a script shadows the app package name"
+  },
+  "requirements_observations": [
+    "requirements.txt only includes requirements-core.txt",
+    "Streamlit dependencies are in requirements-app.txt",
+    "Vision dependencies are in requirements-vision.txt",
+    "RAG dependencies are in requirements-rag.txt",
+    "check_environment.py validates only core packages"
+  ],
+  "artifact_status": {
+    "models/vision/resnet18_baseline_best.pt": "AVAILABLE",
+    "models/lora/soybean_sd15/pytorch_lora_weights.safetensors": "AVAILABLE",
+    "data/metadata/dataset_split.csv": "AVAILABLE",
+    "vector_db/index.faiss": "AVAILABLE",
+    "vector_db/metadata.json": "AVAILABLE",
+    "data/documents/": "AVAILABLE",
+    "results/vision/resnet18_baseline/": "AVAILABLE"
+  },
+  "static_findings": [
+    "scripts/run_demo.py points to app/app.py",
+    "app/app.py imports app.components.demo_helpers and src.*",
+    "docs/PROJECT_CONTEXT_CURRENT.md and docs/PROJECT_FILES_CURRENT.txt reference app/app.py",
+    "scripts/evaluate_system.py is a placeholder-style entrypoint outside the current execution path",
+    "scripts/prepare_dataset.py contains an if False guard outside the current execution path",
+    "PROJECT_STATUS.md and README.md still describe Streamlit and RAG as pending despite local artifacts existing"
+  ],
+  "initial_test_result": {
+    "pytest_passed": 48,
+    "pytest_failed": 0,
+    "notes": "Existing tests do not cover direct Streamlit script import collision or a page-level app smoke test."
+  }
+}

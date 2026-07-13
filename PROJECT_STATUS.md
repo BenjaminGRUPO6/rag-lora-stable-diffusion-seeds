@@ -2,7 +2,16 @@
 
 Actualizado con evidencia local disponible al 2026-07-13.
 
+<<<<<<< HEAD
 ## Estado final documentado
+=======
+- [x] Dataset: completado.
+- [x] Baseline ResNet18: entrenado; metricas por reconciliar.
+- [x] LoRA: entrenado; evidencia por consolidar.
+- [ ] Experimento B: aplazado.
+- [x] RAG: corpus e indice locales disponibles; fallback lexical local implementado.
+- [x] Streamlit: integracion funcional auditada.
+>>>>>>> fix/end-to-end-functional-audit
 
 - [x] Dataset Soybean Seeds v6 auditado, depurado y dividido.
 - [x] Baseline ResNet18 entrenado y evaluado con metrica canonica reconciliada.

@@ -1,11 +1,16 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
 import streamlit as st
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
 from app.components.demo_helpers import (
     DISCLAIMER,
@@ -23,6 +28,7 @@ from src.pipelines.analyze_seed import (
     DEFAULT_INDEX_DIR,
     DEFAULT_RAG_CONFIG,
     DEFAULT_VISION_CONFIG,
+    build_available_retriever,
     default_checkpoint_path,
     get_nested,
     load_yaml_config,
@@ -30,12 +36,9 @@ from src.pipelines.analyze_seed import (
 )
 from src.pipelines.analyze_seed import analyze_seed
 from src.rag.embeddings import TextEmbedder
-from src.rag.retrieval import FaissRetriever
+from src.rag.retrieval import Retriever
 from src.rag.vector_store import FaissStore
 from src.vision.inference import build_inference_transform, load_resnet18_checkpoint
-
-
-REPO_ROOT = Path.cwd()
 
 
 @st.cache_resource(show_spinner="Cargando modelo ResNet18...")
@@ -83,24 +86,15 @@ def reset_form() -> None:
     st.session_state.pop("preview_image", None)
 
 
-def build_cached_retriever(rag_config: dict[str, Any]) -> tuple[FaissRetriever, int]:
-    """Build a retriever from cached FAISS and embedding resources."""
+def build_cached_retriever(rag_config: dict[str, Any]) -> tuple[Retriever | None, int]:
+    """Build the best available local retriever."""
     top_k = int(get_nested(rag_config, ("rag", "top_k"), 5))
-    embedding_model = str(
-        get_nested(rag_config, ("rag", "embedding_model"), "sentence-transformers/all-MiniLM-L6-v2")
+    retriever, _, _ = build_available_retriever(
+        rag_config=rag_config,
+        index_dir=DEFAULT_INDEX_DIR,
+        top_k=top_k,
     )
-    normalize_embeddings = bool(get_nested(rag_config, ("rag", "normalize_embeddings"), True))
-    store = load_faiss_index_resource(str(DEFAULT_INDEX_DIR))
-    embedder = load_embeddings_resource(embedding_model)
-    return (
-        FaissRetriever(
-            store=store,
-            embedder=embedder,
-            top_k=top_k,
-            normalize_embeddings=normalize_embeddings,
-        ),
-        top_k,
-    )
+    return retriever, top_k
 
 
 def run_analysis(image: Any, observations: str) -> dict[str, Any]:
