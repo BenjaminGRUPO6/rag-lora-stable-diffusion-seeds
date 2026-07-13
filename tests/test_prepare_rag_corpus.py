@@ -24,8 +24,8 @@ def test_process_corpus_accepts_text_and_rejects_empty_and_duplicates(tmp_path: 
         "Seed coat skin damage, testa, hull and wrinkled seed coat are noted. "
         "Storage moisture humidity drying temperature and stored viability loss are covered."
     )
-    (inbox / "soybean_quality.md").write_text(corpus_text, encoding="utf-8")
-    (inbox / "duplicate.txt").write_text(corpus_text, encoding="utf-8")
+    (inbox / "a_soybean_quality.md").write_text(corpus_text, encoding="utf-8")
+    (inbox / "b_duplicate.txt").write_text(corpus_text, encoding="utf-8")
     (inbox / "empty.txt").write_text("   \n\t", encoding="utf-8")
 
     records, summary = process_corpus(
@@ -43,10 +43,11 @@ def test_process_corpus_accepts_text_and_rejects_empty_and_duplicates(tmp_path: 
     assert summary["duplicates"] == 1
     assert all(count >= 1 for count in summary["coverage_by_topic"].values())
     assert not summary["missing_topics"]
-    assert (accepted / "duplicate.txt").exists()
+    assert (accepted / "a_soybean_quality.md").exists()
+    assert (rejected / "b_duplicate.txt").exists()
     assert (rejected / "empty.txt").exists()
-    assert (rejected / "soybean_quality.md").exists()
-    assert (inbox / "soybean_quality.md").read_text(encoding="utf-8") == corpus_text
+    assert (inbox / "a_soybean_quality.md").read_text(encoding="utf-8") == corpus_text
+    assert (inbox / "b_duplicate.txt").read_text(encoding="utf-8") == corpus_text
 
     accepted_records = [record for record in records if record.status == "accepted"]
     assert len(accepted_records) == 1
@@ -63,7 +64,7 @@ def test_process_corpus_accepts_text_and_rejects_empty_and_duplicates(tmp_path: 
 
     rejected_rows = list(csv.DictReader((results / "rejected_documents.csv").open(encoding="utf-8")))
     assert {row["notes"] for row in rejected_rows} == {
-        "exact duplicate of duplicate.txt",
+        "exact duplicate of a_soybean_quality.md",
         "empty extracted text",
     }
 
@@ -98,3 +99,32 @@ def test_process_corpus_reports_unsupported_files(tmp_path: Path) -> None:
 
     summary_json = json.loads((results / "corpus_summary.json").read_text(encoding="utf-8"))
     assert summary_json["rejected"] == 1
+
+
+def test_process_corpus_blocks_when_inbox_is_empty(tmp_path: Path) -> None:
+    inbox = tmp_path / "inbox"
+    accepted = tmp_path / "accepted"
+    rejected = tmp_path / "rejected"
+    metadata = tmp_path / "metadata.csv"
+    results = tmp_path / "results"
+
+    records, summary = process_corpus(
+        input_dir=inbox,
+        accepted_dir=accepted,
+        rejected_dir=rejected,
+        metadata_path=metadata,
+        results_dir=results,
+        base_dir=tmp_path,
+    )
+
+    assert records == []
+    assert summary["blocked"] is True
+    assert summary["documents_found"] == 0
+    assert not metadata.exists()
+    assert (results / "corpus_report.md").exists()
+    assert not (results / "corpus_summary.json").exists()
+    assert not (results / "corpus_distribution.csv").exists()
+    assert not (results / "rejected_documents.csv").exists()
+
+    report = (results / "corpus_report.md").read_text(encoding="utf-8")
+    assert "blocked" in report.lower()
