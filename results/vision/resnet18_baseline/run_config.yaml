@@ -1,0 +1,29 @@
+model:
+  architecture: resnet18
+  pretrained: true
+  num_classes: 5
+  dropout: 0.2
+data:
+  root: data/processed
+  image_size: 224
+  batch_size: 16
+  num_workers: 2
+training:
+  seed: 42
+  epochs: 12
+  frozen_epochs: 2
+  learning_rate_head: 0.001
+  learning_rate_backbone: 0.0001
+  weight_decay: 0.0001
+  patience: 4
+  mixed_precision: true
+  monitor_metric: macro_f1
+classes:
+- intact
+- spotted
+- immature
+- broken
+- skin_damaged
+output:
+  model_dir: models/vision
+  results_dir: results/vision/resnet18_baseline
