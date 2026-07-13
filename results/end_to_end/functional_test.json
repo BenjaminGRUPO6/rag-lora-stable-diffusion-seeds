@@ -239,10 +239,10 @@
       "La prediccion fue marcada como incierta por confianza baja o margen estrecho."
     ],
     "processing_times": {
-      "vision_seconds": 0.53981,
-      "retrieval_seconds": 13.09837,
-      "report_seconds": 0.00032,
-      "total_seconds": 13.648474
+      "vision_seconds": 0.324672,
+      "retrieval_seconds": 6.573397,
+      "report_seconds": 0.000188,
+      "total_seconds": 6.902801
     },
     "retrieval_query": "dano de cubierta en semillas de soja, posibles causas y medidas de manejo. Recuperar evidencia sobre factores descritos, prevencion, manejo y limitaciones.",
     "rag_status": "faiss",

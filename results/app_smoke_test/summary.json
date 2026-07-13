@@ -11,11 +11,11 @@
     "--server.address",
     "127.0.0.1",
     "--server.port",
-    "54365",
+    "55676",
     "--browser.gatherUsageStats",
     "false"
   ],
-  "port": 54365,
+  "port": 55676,
   "process_alive": true,
   "port_listening": true,
   "http_status": 200,

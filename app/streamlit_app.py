@@ -39,6 +39,7 @@ from src.rag.embeddings import TextEmbedder
 from src.rag.retrieval import Retriever
 from src.rag.vector_store import FaissStore
 from src.vision.inference import VisionInferenceEngine
+from src.vision.preprocessing import PreprocessingConfig, PreprocessingResult, preprocess_image
 
 
 @st.cache_resource(show_spinner="Cargando modelo ResNet18...")
@@ -86,6 +87,9 @@ def reset_form() -> None:
     st.session_state.pop("analysis_result", None)
     st.session_state.pop("report_payload", None)
     st.session_state.pop("preview_image", None)
+    st.session_state.pop("preview_original", None)
+    st.session_state.pop("preview_preprocessing", None)
+    st.session_state.pop("image_input_choice", None)
 
 
 def build_cached_retriever(rag_config: dict[str, Any]) -> tuple[Retriever | None, int]:
@@ -121,6 +125,52 @@ def run_analysis(image: Any, observations: str) -> dict[str, Any]:
         top_k=top_k,
         device_name=device_name,
     )
+
+
+def render_preprocessing_preview(
+    original_image: Any,
+    preprocessing: PreprocessingResult,
+) -> None:
+    """Render original image, automatic crop and visual quality controls."""
+    st.subheader("Preprocesamiento visual")
+    col_original, col_crop = st.columns(2)
+    col_original.image(original_image, caption="Imagen original", width=280)
+    crop_caption = "Recorte automatico"
+    if preprocessing.used_fallback:
+        crop_caption = f"Recorte automatico (fallback: {preprocessing.fallback_reason})"
+    col_crop.image(preprocessing.crop, caption=crop_caption, width=280)
+
+    selected = st.radio(
+        "Imagen para inferencia",
+        ["Usar imagen original", "Usar recorte automatico"],
+        index=0 if st.session_state.get("image_input_choice") != "crop" else 1,
+        horizontal=True,
+    )
+    st.session_state["image_input_choice"] = (
+        "crop" if selected == "Usar recorte automatico" else "original"
+    )
+    st.session_state["preview_image"] = (
+        preprocessing.crop
+        if st.session_state["image_input_choice"] == "crop"
+        else original_image
+    )
+
+    quality = preprocessing.quality
+    metric_cols = st.columns(3)
+    metric_cols[0].metric("Blur score", f"{quality.blur_score:.2f}")
+    metric_cols[1].metric("Brillo", f"{quality.brightness_score:.3f}")
+    metric_cols[2].metric("Contraste", f"{quality.contrast_score:.3f}")
+    metric_cols = st.columns(3)
+    metric_cols[0].metric("Foreground", f"{quality.foreground_ratio:.3f}")
+    metric_cols[1].metric("Componentes", str(quality.component_count))
+    metric_cols[2].metric("Confianza crop", f"{quality.crop_confidence:.3f}")
+    if quality.warnings:
+        st.caption("Warnings de control visual")
+        st.dataframe(
+            pd.DataFrame({"warning": quality.warnings}),
+            hide_index=True,
+            width="stretch",
+        )
 
 
 def render_prediction(result: dict[str, Any]) -> None:
@@ -325,10 +375,21 @@ with right:
     else:
         try:
             image = validate_uploaded_image(uploaded.name, uploaded.getvalue())
-            st.session_state["preview_image"] = image
-            st.image(image, caption="Imagen cargada", width=360)
+            preprocessing = preprocess_image(
+                image,
+                config=PreprocessingConfig(
+                    output_size=int(
+                        get_nested(load_yaml_config(DEFAULT_VISION_CONFIG), ("data", "image_size"), 224)
+                    )
+                ),
+            )
+            st.session_state["preview_original"] = image
+            st.session_state["preview_preprocessing"] = preprocessing
+            render_preprocessing_preview(image, preprocessing)
         except ImageValidationError as exc:
             st.session_state.pop("preview_image", None)
+            st.session_state.pop("preview_original", None)
+            st.session_state.pop("preview_preprocessing", None)
             st.error(str(exc))
 
 if run_clicked:
