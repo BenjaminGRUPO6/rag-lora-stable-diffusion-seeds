@@ -1,0 +1,33 @@
+{
+  "aggregation": "mean_logits",
+  "best_validation_candidate": "light",
+  "checkpoint": "models/vision/resnet18_v2_best.pt",
+  "class_names": [
+    "intact",
+    "spotted",
+    "immature",
+    "broken",
+    "skin_damaged"
+  ],
+  "config": "configs/vision_v2_resnet18.yaml",
+  "default_enabled": true,
+  "generated_at_utc": "2026-07-14T02:25:33+00:00",
+  "policy_description": "Original y flip horizontal; no altera color, textura ni defectos visibles.",
+  "reason": "enabled: validation macro-F1 improved over no TTA",
+  "selected_policy": "light",
+  "selection_rules": [
+    "validation macro-F1",
+    "validation recall intact",
+    "validation recall broken",
+    "lower validation latency",
+    "fallback to none unless macro-F1 improves over no TTA"
+  ],
+  "temperature": 1.1193019151687622,
+  "tta_enabled": true,
+  "validation_baseline_macro_f1": 0.9207006744711761,
+  "validation_selected_latency_seconds_per_image": 0.2715996957854729,
+  "validation_selected_macro_f1": 0.9265034540520689,
+  "validation_selected_recall_broken": 0.86,
+  "validation_selected_recall_intact": 0.989010989010989,
+  "views": 2
+}

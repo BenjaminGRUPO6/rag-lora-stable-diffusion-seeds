@@ -11,7 +11,9 @@ from src.vision.dataset import EXPECTED_CLASSES
 from src.vision.train_v2 import (
     AutoCropTransform,
     build_class_weights,
+    build_crop_cache,
     build_v2_transforms,
+    create_v2_dataloaders,
     phase_for_epoch,
     train_resnet18_v2,
 )
@@ -65,6 +67,62 @@ def test_class_weights_are_optional_and_train_only() -> None:
     assert weights is not None
     assert weights.shape == (5,)
     assert float(weights[1]) < float(weights[0])
+
+
+def test_cached_dataloader_does_not_write_or_preprocess_on_cache_miss(
+    tmp_path: Path,
+    monkeypatch: Any,
+) -> None:
+    """Training DataLoader workers must not create crops inside __getitem__."""
+    data_root = tmp_path / "processed"
+    cache_dir = tmp_path / "cache" / "vision_crops"
+    _make_image_dataset(data_root, images_per_class=1, image_size=44)
+
+    def fail_preprocess(*_args: Any, **_kwargs: Any) -> None:
+        raise AssertionError("preprocess_image must not run on cached training miss")
+
+    monkeypatch.setattr("src.vision.train_v2.preprocess_image", fail_preprocess)
+    loaders = create_v2_dataloaders(
+        data_root=data_root,
+        classes=EXPECTED_CLASSES,
+        image_size=32,
+        batch_size=2,
+        num_workers=0,
+        seed=42,
+        auto_crop=True,
+        cache_preprocessing=True,
+        compute_quality=False,
+        fallback_to_original=True,
+        cache_dir=cache_dir,
+        max_samples=1,
+    )
+
+    inputs, labels = next(iter(loaders.train))
+
+    assert tuple(inputs.shape[1:]) == (3, 32, 32)
+    assert labels.numel() == 1
+    assert not cache_dir.exists()
+
+
+def test_build_crop_cache_writes_regenerable_crops(tmp_path: Path) -> None:
+    """Crop cache generation is explicit and outside the DataLoader loop."""
+    data_root = tmp_path / "processed"
+    cache_dir = tmp_path / "cache" / "vision_crops"
+    _make_image_dataset(data_root, images_per_class=1, image_size=44)
+
+    summary = build_crop_cache(
+        data_root=data_root,
+        classes=EXPECTED_CLASSES,
+        image_size=32,
+        cache_dir=cache_dir,
+        splits=("train",),
+        max_samples=2,
+        compute_quality=False,
+        fallback_to_original=True,
+    )
+
+    assert summary["created"] == 2
+    assert len(list(cache_dir.rglob("*.jpg"))) == 2
 
 
 def test_train_resnet18_v2_writes_required_outputs(

@@ -1,0 +1,5 @@
+split,policy,views,latency_seconds_total,latency_seconds_per_image,expected_forward_pass_multiplier
+validation,none,1,195.21064430000845,0.3739667515325832,1
+validation,light,2,141.77504120001686,0.2715996957854729,2
+validation,standard,4,168.27088720002212,0.3223580214559811,4
+test,light,2,149.96679579999181,0.2872927122605207,2

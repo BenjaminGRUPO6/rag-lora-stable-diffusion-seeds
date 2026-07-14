@@ -1,0 +1,10 @@
+{
+  "branch": "feature/vision-v2-results-2",
+  "commit": "2833d21dac2c4819669e5206fe434adf338afd45",
+  "count_objects": "count: 938\nsize: 29.35 MiB\nin-pack: 0\npacks: 0\nsize-pack: 0 bytes\nprune-packable: 0\ngarbage: 0\nsize-garbage: 0 bytes\n",
+  "github_sync_inference": "NO VERIFICADA sin fetch; HEAD local parece posterior a origin/feature por log inicial.",
+  "ignored_count": 64453,
+  "initial_status_note": "Estado inicial observado antes de crear artefactos: rama feature/vision-v2-results-2 con cambios locales preexistentes en .gitignore, README/PROJECT_STATUS, app/streamlit_app.py, docs, resultados, src/vision, src/pipelines y tests; multiples archivos no versionados de Resultados 2. La auditoria no modifico esos archivos.",
+  "remote": "origin\thttps://github.com/BenjaminGRUPO6/rag-lora-stable-diffusion-seeds.git (fetch)\norigin\thttps://github.com/BenjaminGRUPO6/rag-lora-stable-diffusion-seeds.git (push)\n",
+  "tracked_large_count": 4
+}

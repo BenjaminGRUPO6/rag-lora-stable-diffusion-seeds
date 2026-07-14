@@ -1,0 +1,130 @@
+[
+  {
+    "command": "git branch --show-current",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 0.072,
+    "stdout": "results/project_audit/command_outputs/01_git_branch_--show-current.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/01_git_branch_--show-current.stderr.txt"
+  },
+  {
+    "command": "git status --short",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 0.08,
+    "stdout": "results/project_audit/command_outputs/02_git_status_--short.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/02_git_status_--short.stderr.txt"
+  },
+  {
+    "command": "git remote -v",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 0.067,
+    "stdout": "results/project_audit/command_outputs/03_git_remote_-v.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/03_git_remote_-v.stderr.txt"
+  },
+  {
+    "command": "git log -10 --oneline --decorate",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 0.085,
+    "stdout": "results/project_audit/command_outputs/04_git_log_-10_--oneline.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/04_git_log_-10_--oneline.stderr.txt"
+  },
+  {
+    "command": "git branch --all",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 0.065,
+    "stdout": "results/project_audit/command_outputs/05_git_branch_--all.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/05_git_branch_--all.stderr.txt"
+  },
+  {
+    "command": "git diff --check",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 0.09,
+    "stdout": "results/project_audit/command_outputs/06_git_diff_--check.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/06_git_diff_--check.stderr.txt"
+  },
+  {
+    "command": "git count-objects -vH",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 0.1,
+    "stdout": "results/project_audit/command_outputs/07_git_count-objects_-vH.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/07_git_count-objects_-vH.stderr.txt"
+  },
+  {
+    "command": "python --version",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 0.042,
+    "stdout": "results/project_audit/command_outputs/08_python_--version.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/08_python_--version.stderr.txt"
+  },
+  {
+    "command": "python -m pip --version",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 1.604,
+    "stdout": "results/project_audit/command_outputs/09_python_-m_pip_--version.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/09_python_-m_pip_--version.stderr.txt"
+  },
+  {
+    "command": "python -m pip freeze",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 1.58,
+    "stdout": "results/project_audit/command_outputs/10_python_-m_pip_freeze.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/10_python_-m_pip_freeze.stderr.txt"
+  },
+  {
+    "command": "python scripts/check_environment.py",
+    "returncode": 1,
+    "status": "FAIL",
+    "duration_seconds": 0.476,
+    "stdout": "results/project_audit/command_outputs/11_python_scripts_check_environment.py.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/11_python_scripts_check_environment.py.stderr.txt"
+  },
+  {
+    "command": "python -m compileall app src scripts",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 0.238,
+    "stdout": "results/project_audit/command_outputs/12_python_-m_compileall_app.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/12_python_-m_compileall_app.stderr.txt"
+  },
+  {
+    "command": "python -m pytest -q",
+    "returncode": 1,
+    "status": "FAIL",
+    "duration_seconds": 0.121,
+    "stdout": "results/project_audit/command_outputs/13_python_-m_pytest_-q.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/13_python_-m_pytest_-q.stderr.txt"
+  },
+  {
+    "command": "python scripts/check_environment.py",
+    "returncode": 1,
+    "status": "FAIL",
+    "duration_seconds": 0.418,
+    "stdout": "results/project_audit/command_outputs/14_python_scripts_check_environment.py.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/14_python_scripts_check_environment.py.stderr.txt"
+  },
+  {
+    "command": "python scripts/smoke_test_app.py --timeout 30 --output-dir results/project_audit/command_outputs/app_smoke_test",
+    "returncode": 1,
+    "status": "FAIL",
+    "duration_seconds": 0.259,
+    "stdout": "results/project_audit/command_outputs/15_python_scripts_smoke_test_app.py_--timeout_30.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/15_python_scripts_smoke_test_app.py_--timeout_30.stderr.txt"
+  },
+  {
+    "command": "python scripts/run_functional_test.py --output-dir results/project_audit/command_outputs/end_to_end",
+    "returncode": 1,
+    "status": "FAIL",
+    "duration_seconds": 0.429,
+    "stdout": "results/project_audit/command_outputs/16_python_scripts_run_functional_test.py_--output-dir_results_project_audit_command_outputs_end_to_end.stdout.txt",
+    "stderr": "results/project_audit/command_outputs/16_python_scripts_run_functional_test.py_--output-dir_results_project_audit_command_outputs_end_to_end.stderr.txt"
+  }
+]

@@ -1,0 +1,137 @@
+{
+  "architecture": "resnet18",
+  "checkpoint": {
+    "exists": true,
+    "load_error": "UnpicklingError('Weights only load failed. This file can still be loaded, to do so you have two options, \\x1b[1mdo those steps only if you trust the source of the checkpoint\\x1b[0m. \\n\\t(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.\\n\\t(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.\\n\\tWeightsUnpickler error: Unsupported global: GLOBAL torch.torch_version.TorchVersion was not an allowed global by default. Please use `torch.serialization.add_safe_globals([torch.torch_version.TorchVersion])` or the `torch.serialization.safe_globals([torch.torch_version.TorchVersion])` context manager to allowlist this global if you trust this class/function.\\n\\nCheck the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.')",
+    "path": "models/vision/resnet18_v2_best.pt",
+    "sha256": "5368128d6bbe47a7e11e5b440116211c0e2a0a8a91c19a285944ddd641112e5b",
+    "size_bytes": 128797419
+  },
+  "classes": [
+    "intact",
+    "spotted",
+    "immature",
+    "broken",
+    "skin_damaged"
+  ],
+  "image_size": 224,
+  "normalization": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "source": "src/vision/inference_engine.py",
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "production_config": {
+    "architecture": "resnet18",
+    "auto_crop": true,
+    "calibration_path": "models/vision/resnet18_v2_temperature.json",
+    "checkpoint_path": "models/vision/resnet18_v2_best.pt",
+    "class_names": [
+      "intact",
+      "spotted",
+      "immature",
+      "broken",
+      "skin_damaged"
+    ],
+    "image_size": 224,
+    "model_name": "resnet18_v2_tta_light",
+    "result_version": "Resultados 2 final",
+    "selected_at": "2026-07-14T06:08:55.358452+00:00",
+    "selection_criteria_order": [
+      "validation_macro_f1"
+    ],
+    "selection_reason": "Selected by validation macro-F1; test reported only after selection.",
+    "selection_source": "results/vision/resultados_2_mejoras/final/final_metrics.json",
+    "temperature": 1.1193019151687622,
+    "test_accuracy": 0.9176245210727969,
+    "test_macro_f1": 0.9168669642726247,
+    "tta_enabled": true,
+    "tta_policy": "results/vision/resultados_2_mejoras/07_tta/selected_tta_policy.json",
+    "tta_selected_policy": "light",
+    "tta_views": 2,
+    "validation_macro_f1": 0.9265034540520689
+  },
+  "training_config": {
+    "augmentation": {
+      "evaluation": {
+        "deterministic": true,
+        "random_transforms": false
+      },
+      "train": {
+        "brightness": 0.08,
+        "contrast": 0.08,
+        "gaussian_blur_probability": 0.12,
+        "horizontal_flip": 0.5,
+        "perspective_distortion_scale": 0.08,
+        "perspective_probability": 0.12,
+        "random_resized_crop": {
+          "ratio": [
+            0.9,
+            1.1
+          ],
+          "scale": [
+            0.85,
+            1.0
+          ]
+        },
+        "rotate_degrees": 10,
+        "scale": [
+          0.95,
+          1.05
+        ],
+        "translate": [
+          0.04,
+          0.04
+        ]
+      }
+    },
+    "batch_size": 8,
+    "classes": [
+      "intact",
+      "spotted",
+      "immature",
+      "broken",
+      "skin_damaged"
+    ],
+    "data": {
+      "num_workers": 0,
+      "root": "data/processed"
+    },
+    "fallback_batch_size": 4,
+    "frozen_head_epochs": 2,
+    "image_size": 224,
+    "layer4_epochs": 5,
+    "learning_rate_backbone": 3e-05,
+    "learning_rate_head": 0.001,
+    "max_epochs": 25,
+    "mixed_precision": true,
+    "model": {
+      "architecture": "resnet18",
+      "dropout": 0.2,
+      "num_classes": 5,
+      "pretrained": true
+    },
+    "monitor": "validation_macro_f1",
+    "optimizer": "AdamW",
+    "output": {
+      "checkpoint_path": "models/vision/resnet18_v2_best.pt",
+      "results_dir": "results/vision/resultados_2_mejoras/05_resnet18_v2"
+    },
+    "patience": 5,
+    "preprocessing": {
+      "auto_crop": true,
+      "fallback": "full_image_square_crop"
+    },
+    "scheduler": "cosine",
+    "seed": 42,
+    "use_class_weights": false,
+    "weight_decay": 0.0001
+  }
+}

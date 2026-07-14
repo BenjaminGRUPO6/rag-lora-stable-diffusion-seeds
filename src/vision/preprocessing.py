@@ -70,6 +70,8 @@ class PreprocessingResult:
 def preprocess_image(
     image: ImageInput,
     config: PreprocessingConfig | None = None,
+    *,
+    compute_quality: bool = True,
 ) -> PreprocessingResult:
     """Correct orientation, segment a candidate object and produce a safe crop."""
     active_config = config or PreprocessingConfig()
@@ -81,6 +83,7 @@ def preprocess_image(
             config=active_config,
             reason="invalid_dimensions",
             component_count=0,
+            compute_quality=compute_quality,
         )
 
     mask_array = detect_candidate_mask(original, active_config)
@@ -100,6 +103,7 @@ def preprocess_image(
             config=active_config,
             reason="no_object_detected",
             component_count=component_count,
+            compute_quality=compute_quality,
         )
     if component_count > active_config.max_component_count:
         return _fallback_result(
@@ -108,6 +112,7 @@ def preprocess_image(
             config=active_config,
             reason="too_many_components",
             component_count=component_count,
+            compute_quality=compute_quality,
         )
 
     component = max(significant, key=lambda item: item.area)
@@ -118,6 +123,7 @@ def preprocess_image(
             config=active_config,
             reason="object_too_small",
             component_count=component_count,
+            compute_quality=compute_quality,
         )
 
     crop, crop_mask, crop_bbox = crop_square_with_padding(
@@ -133,13 +139,18 @@ def preprocess_image(
             config=active_config,
             reason="invalid_crop",
             component_count=component_count,
+            compute_quality=compute_quality,
         )
 
-    quality = assess_visual_quality(
-        image=crop,
-        mask=crop_mask,
-        component_count=component_count,
-        used_fallback=False,
+    quality = (
+        assess_visual_quality(
+            image=crop,
+            mask=crop_mask,
+            component_count=component_count,
+            used_fallback=False,
+        )
+        if compute_quality
+        else _skipped_quality(component_count=component_count)
     )
     return PreprocessingResult(
         original=original,
@@ -483,15 +494,23 @@ def _fallback_result(
     config: PreprocessingConfig,
     reason: str,
     component_count: int,
+    compute_quality: bool = True,
 ) -> PreprocessingResult:
     crop = fallback_crop(original, config)
     empty_mask = fallback_mask(original, config)
-    quality = assess_visual_quality(
-        image=crop,
-        mask=empty_mask,
-        component_count=component_count,
-        used_fallback=True,
-        fallback_reason=reason,
+    quality = (
+        assess_visual_quality(
+            image=crop,
+            mask=empty_mask,
+            component_count=component_count,
+            used_fallback=True,
+            fallback_reason=reason,
+        )
+        if compute_quality
+        else _skipped_quality(
+            component_count=component_count,
+            warnings=[f"fallback_preprocessing:{reason}"],
+        )
     )
     return PreprocessingResult(
         original=original,
@@ -502,4 +521,21 @@ def _fallback_result(
         used_fallback=True,
         fallback_reason=reason,
         quality=quality,
+    )
+
+
+def _skipped_quality(
+    *,
+    component_count: int,
+    warnings: list[str] | None = None,
+) -> VisualQuality:
+    """Return a cheap placeholder when quality metrics are disabled for training."""
+    return VisualQuality(
+        blur_score=0.0,
+        brightness_score=0.0,
+        contrast_score=0.0,
+        foreground_ratio=0.0,
+        component_count=int(component_count),
+        crop_confidence=0.0,
+        warnings=warnings or ["quality_not_computed"],
     )

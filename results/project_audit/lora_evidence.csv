@@ -1,0 +1,15 @@
+item,value,source,status
+base_model,stable-diffusion-v1-5/stable-diffusion-v1-5,configs/lora_sd15.yaml,verified
+trigger_word,soybeanseed,configs/lora_sd15.yaml,verified
+resolution,512,configs/lora_sd15.yaml,verified
+train_batch_size,1,configs/lora_sd15.yaml,verified
+gradient_accumulation_steps,4,configs/lora_sd15.yaml,verified
+learning_rate,0.0001,configs/lora_sd15.yaml,verified
+max_train_steps_initial,100,configs/lora_sd15.yaml,verified
+max_train_steps_full,800,configs/lora_sd15.yaml,verified
+rank,8,configs/lora_sd15.yaml,verified
+mixed_precision,fp16,configs/lora_sd15.yaml,verified
+train_text_encoder,False,configs/lora_sd15.yaml,verified
+seed,42,configs/lora_sd15.yaml,verified
+hardware,NO VERIFICADA,notebook sin salidas,missing
+streamlit_loads_lora,no; solo evidencia,app/streamlit_app.py,verified

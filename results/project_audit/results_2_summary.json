@@ -1,0 +1,71 @@
+{
+  "final_model": {
+    "architecture": "resnet18",
+    "checkpoint": "models/vision/resnet18_v2_best.pt",
+    "config": "configs/vision_v2_resnet18.yaml",
+    "model_id": "resnet18_v2_tta_light",
+    "seed": 42,
+    "temperature": 1.1193019151687622,
+    "test_accuracy": 0.9176245210727969,
+    "test_macro_f1": 0.9168669642726247,
+    "tta_policy": "light",
+    "tta_views": 2,
+    "validation_macro_f1": 0.9265034540520689
+  },
+  "improvement_vs_resultados_1": {
+    "test_accuracy": {
+      "absolute": 0.24712643678160917,
+      "percent": 36.857142857142854
+    },
+    "test_macro_f1": {
+      "absolute": 0.29091188918286814,
+      "percent": 46.47488306427644
+    },
+    "validation_macro_f1": {
+      "absolute": 0.2659904172896346,
+      "percent": 40.270275147544574
+    }
+  },
+  "metrics": {
+    "accuracy": 0.9176245210727969,
+    "macro_f1": 0.9168669642726247,
+    "macro_precision": 0.9183318667782963,
+    "macro_recall": 0.9181644966321038,
+    "per_class": {
+      "broken": {
+        "f1": 0.9090909090909091,
+        "precision": 0.9183673469387755,
+        "recall": 0.9,
+        "support": 100
+      },
+      "immature": {
+        "f1": 0.9150943396226415,
+        "precision": 0.97,
+        "recall": 0.8660714285714286,
+        "support": 112
+      },
+      "intact": {
+        "f1": 0.8958333333333334,
+        "precision": 0.8514851485148515,
+        "recall": 0.945054945054945,
+        "support": 91
+      },
+      "skin_damaged": {
+        "f1": 0.9316239316239316,
+        "precision": 0.9008264462809917,
+        "recall": 0.9646017699115044,
+        "support": 113
+      },
+      "spotted": {
+        "f1": 0.9326923076923077,
+        "precision": 0.9509803921568627,
+        "recall": 0.9150943396226415,
+        "support": 106
+      }
+    },
+    "recall_broken": 0.9,
+    "recall_intact": 0.945054945054945
+  },
+  "source": "results/vision/resultados_2_mejoras/final/final_metrics.json",
+  "status": "final_selected_by_validation"
+}

@@ -1,0 +1,75 @@
+seed: 42
+image_size: 224
+batch_size: 4
+fallback_batch_size: 4
+max_epochs: 1
+patience: 5
+frozen_head_epochs: 2
+layer4_epochs: 5
+learning_rate_head: 0.001
+learning_rate_backbone: 3.0e-05
+weight_decay: 0.0001
+optimizer: AdamW
+scheduler: cosine
+mixed_precision: true
+monitor: validation_macro_f1
+use_class_weights: false
+model:
+  architecture: efficientnet_b0
+  pretrained: true
+  num_classes: 5
+  dropout: 0.2
+data:
+  root: data/processed
+  num_workers: 0
+  max_samples: 64
+preprocessing:
+  auto_crop: true
+  cache_preprocessing: true
+  compute_quality: false
+  fallback_to_original: true
+  cache_dir: data/cache/vision_crops
+  fallback: full_image_square_crop
+augmentation:
+  train:
+    random_resized_crop:
+      scale:
+      - 0.85
+      - 1.0
+      ratio:
+      - 0.9
+      - 1.1
+    horizontal_flip: 0.5
+    rotate_degrees: 10
+    brightness: 0.08
+    contrast: 0.08
+    translate:
+    - 0.04
+    - 0.04
+    scale:
+    - 0.95
+    - 1.05
+    gaussian_blur_probability: 0.12
+    perspective_probability: 0.12
+    perspective_distortion_scale: 0.08
+  evaluation:
+    deterministic: true
+    random_transforms: false
+classes:
+- intact
+- spotted
+- immature
+- broken
+- skin_damaged
+output:
+  checkpoint_path: results\vision\resultados_2_mejoras\08_comparacion_modelos\smoke_test\efficientnet_b0_v2_smoke.pt
+  results_dir: results\vision\resultados_2_mejoras\08_comparacion_modelos\smoke_test
+  plot_suffix: efficientnet_b0
+  baseline_comparison_suffix: efficientnet_b0
+  metrics_validation_file: efficientnet_metrics_validation.json
+  metrics_test_file: efficientnet_metrics_test.json
+  classification_report_file: efficientnet_classification_report.csv
+  predictions_file: efficientnet_predictions_test.csv
+log_every_n_batches: 1
+checkpoint_every_epoch: true
+profile_dataloader: false

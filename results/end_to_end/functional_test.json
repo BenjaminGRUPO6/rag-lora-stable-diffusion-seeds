@@ -65,6 +65,11 @@
     "second_class": "broken",
     "second_confidence": 0.3150348365306854,
     "top1_top2_margin": 0.1536940336227417,
+    "tta_enabled": false,
+    "tta_policy": "none",
+    "tta_views": 1,
+    "tta_extra_seconds": 0.0,
+    "aggregation": "",
     "uncertainty_status": "uncertain",
     "reliability_status": "incierto",
     "retrieved_sources": [
@@ -253,10 +258,10 @@
       "La prediccion fue marcada como incierta por confianza baja o margen estrecho."
     ],
     "processing_times": {
-      "vision_seconds": 1.149115,
-      "retrieval_seconds": 17.178622,
-      "report_seconds": 0.001445,
-      "total_seconds": 18.333988
+      "vision_seconds": 0.814739,
+      "retrieval_seconds": 18.707954,
+      "report_seconds": 0.001423,
+      "total_seconds": 19.528812
     },
     "retrieval_query": "dano de cubierta en semillas de soja, posibles causas y medidas de manejo. Recuperar evidencia sobre factores descritos, prevencion, manejo y limitaciones.",
     "rag_status": "faiss",

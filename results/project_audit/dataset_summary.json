@@ -1,0 +1,91 @@
+{
+  "class_counts": [
+    {
+      "count": 1002,
+      "label": "broken"
+    },
+    {
+      "count": 1125,
+      "label": "immature"
+    },
+    {
+      "count": 1201,
+      "label": "intact"
+    },
+    {
+      "count": 1127,
+      "label": "skin_damaged"
+    },
+    {
+      "count": 1058,
+      "label": "spotted"
+    }
+  ],
+  "classes": [
+    "intact",
+    "spotted",
+    "immature",
+    "broken",
+    "skin_damaged"
+  ],
+  "lora_train_images": {
+    "files": 1000,
+    "size_bytes": 21819817
+  },
+  "metadata_files": [
+    "data/metadata/.gitkeep",
+    "data/metadata/dataset_sources.csv",
+    "data/metadata/dataset_split.csv",
+    "data/metadata/documents_template.csv",
+    "data/metadata/document_sources.csv",
+    "data/metadata/exclusions.csv",
+    "data/metadata/images_template.csv",
+    "data/metadata/label_map.json",
+    "data/metadata/lora_captions_template.csv",
+    "data/metadata/near_duplicates_review.csv",
+    "data/metadata/rag_evaluation_queries.csv",
+    "data/metadata/vision_error_review.csv"
+  ],
+  "processed": {
+    "files": 5227,
+    "size_bytes": 85534482
+  },
+  "raw": {
+    "files": 5519,
+    "size_bytes": 90239329
+  },
+  "source_registered": [
+    {
+      "audit_status": "pendiente de nueva ejecución completa con seis reportes",
+      "dataset_id": "soybean_seeds_v6",
+      "dataset_name": "Soybean Seeds",
+      "doi": "10.17632/v6vzvfszj6.6",
+      "download_date": "2026-07-12",
+      "download_status": "descargado",
+      "license": "CC BY 4.0",
+      "purpose": "Clasificación de defectos visibles y entrenamiento LoRA",
+      "sha256": NaN,
+      "structure_status": "cinco carpetas oficiales disponibles y estructura verificada",
+      "version": 6
+    }
+  ],
+  "split_counts": [
+    {
+      "count": 290,
+      "split": "excluded"
+    },
+    {
+      "count": 522,
+      "split": "test"
+    },
+    {
+      "count": 4179,
+      "split": "train"
+    },
+    {
+      "count": 522,
+      "split": "validation"
+    }
+  ],
+  "total_records": 5513
+}

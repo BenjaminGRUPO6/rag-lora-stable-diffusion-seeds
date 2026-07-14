@@ -1,0 +1,21 @@
+{
+  "auto_crop": true,
+  "batch_size_candidates": [
+    8,
+    4,
+    2
+  ],
+  "cache_preprocessing": true,
+  "compute_quality": false,
+  "fallback_to_original": true,
+  "non_blocking": true,
+  "oom_observed": false,
+  "persistent_workers": false,
+  "pin_memory": true,
+  "selected_batch_size": 8,
+  "selected_case": "D_cache_workers0",
+  "selected_data_time_seconds": 1.1604881999955978,
+  "selected_images_per_second": 105.60454020303551,
+  "selected_num_workers": 0,
+  "selection_reason": "Fastest cached preprocessing configuration by images_per_second, with data_time as tiebreaker and Windows stability considered."
+}

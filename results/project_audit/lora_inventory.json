@@ -1,0 +1,37 @@
+{
+  "adapter_path": "models/lora/soybean_sd15/pytorch_lora_weights.safetensors",
+  "adapter_sha256": "63c016b83a181300226e61edb22298af2315661985deed3a0a7c5719d267032e",
+  "adapter_size_bytes": 6414992,
+  "config": {
+    "model": {
+      "base_model": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+      "trigger_word": "soybeanseed"
+    },
+    "paths": {
+      "dataset_dir": "data/lora_dataset",
+      "output_dir": "models/lora",
+      "validation_dir": "results/lora/validation"
+    },
+    "review": {
+      "allowed_split": "train",
+      "require_human_approval": true,
+      "synthetic_destination": "data/synthetic/reviewed"
+    },
+    "training": {
+      "gradient_accumulation_steps": 4,
+      "learning_rate": 0.0001,
+      "max_train_steps_full": 800,
+      "max_train_steps_initial": 100,
+      "mixed_precision": "fp16",
+      "rank": 8,
+      "resolution": 512,
+      "seed": 42,
+      "train_batch_size": 1,
+      "train_text_encoder": false
+    }
+  },
+  "mandatory_explanation": "El LoRA es un adaptador generativo para Stable Diffusion. Su función es generar imágenes sintéticas de semillas. No clasifica la imagen cargada, no ejecuta el RAG y no aumenta directamente la confianza del clasificador.",
+  "metadata_records": 1000,
+  "streamlit_integration": "app/streamlit_app.py render_lora_section muestra evidencia; no carga Stable Diffusion",
+  "used_to_retrain_classifier": "NO: final_metrics validation_checks all_no_synthetic_used=true"
+}

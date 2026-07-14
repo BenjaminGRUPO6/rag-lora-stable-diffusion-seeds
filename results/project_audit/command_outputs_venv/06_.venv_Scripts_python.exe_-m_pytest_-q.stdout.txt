@@ -1,0 +1,8 @@
+........................................................................ [ 55%]
+..........................................................               [100%]
+============================== warnings summary ===============================
+tests/test_train_efficientnet_b0.py::test_train_efficientnet_b0_writes_comparison_outputs
+  D:\Users\Luis\Documents\GitHub\rag-lora-stable-diffusion-seeds\src\vision\train_v2.py:1939: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+    figure.tight_layout()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html

@@ -11,6 +11,7 @@ from streamlit.testing.v1 import AppTest
 
 from scripts import smoke_test_app
 from scripts import run_demo
+from src.synthetic_data.lora_evidence import MANDATORY_EXPLANATION
 
 FORBIDDEN_LOG_MARKERS = (
     "ModuleNotFoundError",
@@ -90,6 +91,52 @@ def test_streamlit_entrypoint_renders_title_without_apptest_exceptions() -> None
 
     assert len(app_test.exception) == 0
     assert any(title.value == "SeedCare-RAG" for title in app_test.title)
+
+
+def test_streamlit_entrypoint_renders_required_tabs_and_graphics() -> None:
+    """The Streamlit UI should expose the five requested tabs and local result PNGs."""
+    app_test = AppTest.from_file(str(run_demo.APP_PATH), default_timeout=30)
+    app_test.run()
+
+    labels = [tab.label for tab in app_test.tabs]
+
+    assert len(app_test.exception) == 0
+    assert labels == [
+        "A. Análisis",
+        "B. Explicabilidad",
+        "C. Evidencia RAG",
+        "D. Resultados 1 vs Resultados 2",
+        "Modelo generativo LoRA",
+    ]
+    assert len(app_test.image) >= 1
+
+
+def test_streamlit_lora_tab_is_visual_and_does_not_load_generation_pipeline() -> None:
+    """The LoRA tab must stay separate from classifier inference and SD loading."""
+    source = run_demo.APP_PATH.read_text(encoding="utf-8")
+
+    assert "Modelo generativo LoRA" in source
+    assert "MANDATORY_EXPLANATION" in source
+    assert MANDATORY_EXPLANATION == (
+        "El LoRA genera imágenes sintéticas de semillas. No clasifica la imagen "
+        "cargada y no modifica la confianza del clasificador ResNet18."
+    )
+    assert "StableDiffusionPipeline" not in source
+    assert "from diffusers" not in source
+    assert "safetensors.torch" not in source
+
+
+def test_streamlit_entrypoint_exposes_gradcam_fallback_copy() -> None:
+    """The explainability tab should render a fallback state before analysis."""
+    app_test = AppTest.from_file(str(run_demo.APP_PATH), default_timeout=30)
+    app_test.run()
+
+    captions = [caption.value for caption in app_test.caption]
+    infos = [info.value for info in app_test.info]
+
+    assert len(app_test.exception) == 0
+    assert any("Ejecuta un analisis para generar Grad-CAM" in value for value in captions)
+    assert any("Grad-CAM es una explicacion aproximada" in value for value in infos)
 
 
 def test_streamlit_subprocess_runs_from_other_directory_without_import_errors(

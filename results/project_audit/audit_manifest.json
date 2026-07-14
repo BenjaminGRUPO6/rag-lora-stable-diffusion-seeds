@@ -1,0 +1,1038 @@
+{
+  "audit_time": "2026-07-14T02:12:47-05:00",
+  "branch": "feature/vision-v2-results-2",
+  "commands_executed": [
+    {
+      "command": ".venv/Scripts/python.exe --version",
+      "duration_seconds": 0.032,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs_venv/01_.venv_Scripts_python.exe_--version.stderr.txt",
+      "stdout": "results/project_audit/command_outputs_venv/01_.venv_Scripts_python.exe_--version.stdout.txt"
+    },
+    {
+      "command": ".venv/Scripts/python.exe -m pip --version",
+      "duration_seconds": 0.91,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs_venv/02_.venv_Scripts_python.exe_-m_pip_--version.stderr.txt",
+      "stdout": "results/project_audit/command_outputs_venv/02_.venv_Scripts_python.exe_-m_pip_--version.stdout.txt"
+    },
+    {
+      "command": ".venv/Scripts/python.exe -m pip freeze",
+      "duration_seconds": 1.825,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs_venv/03_.venv_Scripts_python.exe_-m_pip_freeze.stderr.txt",
+      "stdout": "results/project_audit/command_outputs_venv/03_.venv_Scripts_python.exe_-m_pip_freeze.stdout.txt"
+    },
+    {
+      "command": ".venv/Scripts/python.exe scripts/check_environment.py",
+      "duration_seconds": 0.668,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs_venv/04_.venv_Scripts_python.exe_scripts_check_environment.py.stderr.txt",
+      "stdout": "results/project_audit/command_outputs_venv/04_.venv_Scripts_python.exe_scripts_check_environment.py.stdout.txt"
+    },
+    {
+      "command": ".venv/Scripts/python.exe -m compileall app src scripts",
+      "duration_seconds": 0.181,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs_venv/05_.venv_Scripts_python.exe_-m_compileall_app.stderr.txt",
+      "stdout": "results/project_audit/command_outputs_venv/05_.venv_Scripts_python.exe_-m_compileall_app.stdout.txt"
+    },
+    {
+      "command": ".venv/Scripts/python.exe -m pytest -q",
+      "duration_seconds": 96.617,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs_venv/06_.venv_Scripts_python.exe_-m_pytest_-q.stderr.txt",
+      "stdout": "results/project_audit/command_outputs_venv/06_.venv_Scripts_python.exe_-m_pytest_-q.stdout.txt"
+    },
+    {
+      "command": ".venv/Scripts/python.exe scripts/check_environment.py",
+      "duration_seconds": 0.957,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs_venv/07_.venv_Scripts_python.exe_scripts_check_environment.py.stderr.txt",
+      "stdout": "results/project_audit/command_outputs_venv/07_.venv_Scripts_python.exe_scripts_check_environment.py.stdout.txt"
+    },
+    {
+      "command": ".venv/Scripts/python.exe scripts/smoke_test_app.py --timeout 30 --output-dir results/project_audit/command_outputs_venv/app_smoke_test",
+      "duration_seconds": 29.267,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs_venv/08_.venv_Scripts_python.exe_scripts_smoke_test_app.py_--timeout_30.stderr.txt",
+      "stdout": "results/project_audit/command_outputs_venv/08_.venv_Scripts_python.exe_scripts_smoke_test_app.py_--timeout_30.stdout.txt"
+    },
+    {
+      "command": ".venv/Scripts/python.exe scripts/run_functional_test.py --output-dir results/project_audit/command_outputs_venv/end_to_end",
+      "duration_seconds": 23.444,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs_venv/09_.venv_Scripts_python.exe_scripts_run_functional_test.py_--output-dir_results_project_audit_command_outputs_venv_end_to_end.stderr.txt",
+      "stdout": "results/project_audit/command_outputs_venv/09_.venv_Scripts_python.exe_scripts_run_functional_test.py_--output-dir_results_project_audit_command_outputs_venv_end_to_end.stdout.txt"
+    },
+    {
+      "command": "git branch --show-current",
+      "duration_seconds": 0.072,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs/01_git_branch_--show-current.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/01_git_branch_--show-current.stdout.txt"
+    },
+    {
+      "command": "git status --short",
+      "duration_seconds": 0.08,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs/02_git_status_--short.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/02_git_status_--short.stdout.txt"
+    },
+    {
+      "command": "git remote -v",
+      "duration_seconds": 0.067,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs/03_git_remote_-v.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/03_git_remote_-v.stdout.txt"
+    },
+    {
+      "command": "git log -10 --oneline --decorate",
+      "duration_seconds": 0.085,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs/04_git_log_-10_--oneline.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/04_git_log_-10_--oneline.stdout.txt"
+    },
+    {
+      "command": "git branch --all",
+      "duration_seconds": 0.065,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs/05_git_branch_--all.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/05_git_branch_--all.stdout.txt"
+    },
+    {
+      "command": "git diff --check",
+      "duration_seconds": 0.09,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs/06_git_diff_--check.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/06_git_diff_--check.stdout.txt"
+    },
+    {
+      "command": "git count-objects -vH",
+      "duration_seconds": 0.1,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs/07_git_count-objects_-vH.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/07_git_count-objects_-vH.stdout.txt"
+    },
+    {
+      "command": "python --version",
+      "duration_seconds": 0.042,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs/08_python_--version.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/08_python_--version.stdout.txt"
+    },
+    {
+      "command": "python -m pip --version",
+      "duration_seconds": 1.604,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs/09_python_-m_pip_--version.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/09_python_-m_pip_--version.stdout.txt"
+    },
+    {
+      "command": "python -m pip freeze",
+      "duration_seconds": 1.58,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs/10_python_-m_pip_freeze.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/10_python_-m_pip_freeze.stdout.txt"
+    },
+    {
+      "command": "python scripts/check_environment.py",
+      "duration_seconds": 0.476,
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "results/project_audit/command_outputs/11_python_scripts_check_environment.py.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/11_python_scripts_check_environment.py.stdout.txt"
+    },
+    {
+      "command": "python -m compileall app src scripts",
+      "duration_seconds": 0.238,
+      "returncode": 0,
+      "status": "PASS",
+      "stderr": "results/project_audit/command_outputs/12_python_-m_compileall_app.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/12_python_-m_compileall_app.stdout.txt"
+    },
+    {
+      "command": "python -m pytest -q",
+      "duration_seconds": 0.121,
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "results/project_audit/command_outputs/13_python_-m_pytest_-q.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/13_python_-m_pytest_-q.stdout.txt"
+    },
+    {
+      "command": "python scripts/check_environment.py",
+      "duration_seconds": 0.418,
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "results/project_audit/command_outputs/14_python_scripts_check_environment.py.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/14_python_scripts_check_environment.py.stdout.txt"
+    },
+    {
+      "command": "python scripts/smoke_test_app.py --timeout 30 --output-dir results/project_audit/command_outputs/app_smoke_test",
+      "duration_seconds": 0.259,
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "results/project_audit/command_outputs/15_python_scripts_smoke_test_app.py_--timeout_30.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/15_python_scripts_smoke_test_app.py_--timeout_30.stdout.txt"
+    },
+    {
+      "command": "python scripts/run_functional_test.py --output-dir results/project_audit/command_outputs/end_to_end",
+      "duration_seconds": 0.429,
+      "returncode": 1,
+      "status": "FAIL",
+      "stderr": "results/project_audit/command_outputs/16_python_scripts_run_functional_test.py_--output-dir_results_project_audit_command_outputs_end_to_end.stderr.txt",
+      "stdout": "results/project_audit/command_outputs/16_python_scripts_run_functional_test.py_--output-dir_results_project_audit_command_outputs_end_to_end.stdout.txt"
+    }
+  ],
+  "commit": "2833d21dac2c4819669e5206fe434adf338afd45",
+  "errors": [
+    "Python global lacks dependencies; .venv passed"
+  ],
+  "final_state": "SUCCESS",
+  "generated_file_count": 132,
+  "generated_files": [
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "docs/project_audit/DATASET_AUDIT.md",
+      "sha256": "560c76e378d9fcc8244cf6e788670eafefcaca0612eac228585bab08837e4536",
+      "size_bytes": 411
+    },
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "docs/project_audit/ENVIRONMENT_AUDIT.md",
+      "sha256": "dc298396278fd82d6e2f012a14be0d5add8a553de0629f6467d4a0e778c86982",
+      "size_bytes": 277
+    },
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "docs/project_audit/GIT_AND_GITHUB_AUDIT.md",
+      "sha256": "b080943c9cfbd503401de5f3ab38dd8dbd30e90cca24b72772c585c06f776369",
+      "size_bytes": 2620
+    },
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "docs/project_audit/HOW_TO_RUN_PROJECT.md",
+      "sha256": "68e39c6c6266d30b11a5eae0ee6ec7d4961e58253dbf142f80f930f71d7a7267",
+      "size_bytes": 1011
+    },
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "docs/project_audit/LORA_AUDIT.md",
+      "sha256": "f180c7f0492d3a195aeedf48f9118c2654ff82302446401d7e3de994217f6632",
+      "size_bytes": 767
+    },
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "docs/project_audit/METRICS_AUDIT.md",
+      "sha256": "b6573722831c6f2e2e0365770deb6e8a23907b73e3da3511bfa48d98c47731e7",
+      "size_bytes": 3731
+    },
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "docs/project_audit/PROJECT_AUDIT_FULL.md",
+      "sha256": "e7b4299c03652d805bd98a7cc5444af862449a23ad680a5284e58cab9323db04",
+      "size_bytes": 7382
+    },
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "docs/project_audit/PROJECT_CONTEXT_FOR_CHATGPT.md",
+      "sha256": "e05029ea08ef00200d8f2e15225f25bc1d6cbc4845b047651238741dd169084a",
+      "size_bytes": 2608
+    },
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "docs/project_audit/PROJECT_STRUCTURE_EXPLAINED.md",
+      "sha256": "cceb819f334ff355857ef9448541fdc57637f56c9128a1ebba8595895128cfd7",
+      "size_bytes": 1157
+    },
+    {
+      "modified_time": "2026-07-14T02:15:35",
+      "path": "docs/project_audit/PROJECT_STRUCTURE_TREE.txt",
+      "sha256": "8b045040e0fc6a2d3a1b2c8d9d46a24be16617c0ce78264dc32814f48845d917",
+      "size_bytes": 12486
+    },
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "docs/project_audit/RAG_AUDIT.md",
+      "sha256": "ba6a41c046573820513e77ed6951210c9a3ed81a3eec34f44f2de7ecaf3e470c",
+      "size_bytes": 365
+    },
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "docs/project_audit/RISKS_AND_LIMITATIONS.md",
+      "sha256": "074beae05c79e330f7f8b6291d7fb75d6fac63a7e3cb8c058cf4a885698c985d",
+      "size_bytes": 914
+    },
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "docs/project_audit/STREAMLIT_APPLICATION.md",
+      "sha256": "8a4d06e4f52808b4cb6de91937326106b48fc520e13ca1170027697452a9049c",
+      "size_bytes": 539
+    },
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "docs/project_audit/SYSTEM_ARCHITECTURE.md",
+      "sha256": "389f83bf3f8df398f9ef5070d2cefa39e55d837df619d4f86337e338b5332972",
+      "size_bytes": 1404
+    },
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "docs/project_audit/TEST_AUDIT.md",
+      "sha256": "b6442f27ae7616068a1bf971a9ef94bb38c554f8b35b528256c0656e94dbdbe4",
+      "size_bytes": 387
+    },
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "docs/project_audit/VISION_MODEL_AUDIT.md",
+      "sha256": "124cd74bb5c2903ccd3bcb2a2cf5bc202d00c43cb3df29ec8f7dc8e563f00b27",
+      "size_bytes": 599
+    },
+    {
+      "modified_time": "2026-07-14T02:15:56",
+      "path": "results/project_audit/classifier_rag_lora_comparison.png",
+      "sha256": "6b288cfcc2892aac68f253568107247e717c6906ce8134bef653180f4484d60b",
+      "size_bytes": 46375
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/01_git_branch_--show-current.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/01_git_branch_--show-current.stdout.txt",
+      "sha256": "b89bd1cf439f0bfb98811d810ec60567e309a9a921077778a5646a45b498de0c",
+      "size_bytes": 29
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/02_git_status_--short.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/02_git_status_--short.stdout.txt",
+      "sha256": "09c106ee8290a1c858e64ef0b1579c41857361984658d04211472aa2d706d8d1",
+      "size_bytes": 7861
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/03_git_remote_-v.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/03_git_remote_-v.stdout.txt",
+      "sha256": "fcfc1e095934a470daebff79921e6c73b11e38b6b9dd2803e409a579e8840685",
+      "size_bytes": 171
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/04_git_log_-10_--oneline.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/04_git_log_-10_--oneline.stdout.txt",
+      "sha256": "61311c4254cb19917a504b6192a9888f5376a8f7503f6d6c9d652fb00f29bfb5",
+      "size_bytes": 577
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/05_git_branch_--all.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/05_git_branch_--all.stdout.txt",
+      "sha256": "5bbf02a17c346003ed1d8e9309cc6abc50d36567b97a2c1fba9d7d4cfc7680ef",
+      "size_bytes": 1102
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/06_git_diff_--check.stderr.txt",
+      "sha256": "3632fd89d5ee9294e00c8be110d8a2ff348bc6008333d283df67fdf5bf7af270",
+      "size_bytes": 1516
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/06_git_diff_--check.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/07_git_count-objects_-vH.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/07_git_count-objects_-vH.stdout.txt",
+      "sha256": "66a7d8dc76289b25f9a78081ffc222b8e87bf93fd4de7d461304c696d8d156df",
+      "size_bytes": 125
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/08_python_--version.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:12",
+      "path": "results/project_audit/command_outputs/08_python_--version.stdout.txt",
+      "sha256": "125a353ba9cd603e069d1e1a5ee22e961bac9b7c82e4116f2d42c00ef82c7a58",
+      "size_bytes": 16
+    },
+    {
+      "modified_time": "2026-07-14T01:56:14",
+      "path": "results/project_audit/command_outputs/09_python_-m_pip_--version.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:14",
+      "path": "results/project_audit/command_outputs/09_python_-m_pip_--version.stdout.txt",
+      "sha256": "5789024768a50c51c7749bab6ce7662e4ab3db31909f670bbf6697b0a3be5394",
+      "size_bytes": 109
+    },
+    {
+      "modified_time": "2026-07-14T01:56:16",
+      "path": "results/project_audit/command_outputs/10_python_-m_pip_freeze.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:16",
+      "path": "results/project_audit/command_outputs/10_python_-m_pip_freeze.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:16",
+      "path": "results/project_audit/command_outputs/11_python_scripts_check_environment.py.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:16",
+      "path": "results/project_audit/command_outputs/11_python_scripts_check_environment.py.stdout.txt",
+      "sha256": "dcb8738765f3ce6e1776a937f57e2a2598d87de0f71f5595825514b629d638b5",
+      "size_bytes": 127
+    },
+    {
+      "modified_time": "2026-07-14T01:56:16",
+      "path": "results/project_audit/command_outputs/12_python_-m_compileall_app.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:16",
+      "path": "results/project_audit/command_outputs/12_python_-m_compileall_app.stdout.txt",
+      "sha256": "012fa76af9392b2729a7d7c645834e5d0c5ee0b296b4f996d7bf257f6a30d324",
+      "size_bytes": 307
+    },
+    {
+      "modified_time": "2026-07-14T01:56:17",
+      "path": "results/project_audit/command_outputs/13_python_-m_pytest_-q.stderr.txt",
+      "sha256": "18cda658400ec4ec237d0963d4e894a159f08158b6da00e9748e577ea78f0e45",
+      "size_bytes": 90
+    },
+    {
+      "modified_time": "2026-07-14T01:56:17",
+      "path": "results/project_audit/command_outputs/13_python_-m_pytest_-q.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:17",
+      "path": "results/project_audit/command_outputs/14_python_scripts_check_environment.py.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:17",
+      "path": "results/project_audit/command_outputs/14_python_scripts_check_environment.py.stdout.txt",
+      "sha256": "dcb8738765f3ce6e1776a937f57e2a2598d87de0f71f5595825514b629d638b5",
+      "size_bytes": 127
+    },
+    {
+      "modified_time": "2026-07-14T01:56:17",
+      "path": "results/project_audit/command_outputs/15_python_scripts_smoke_test_app.py_--timeout_30.stderr.txt",
+      "sha256": "271c9159a8bc12e469c0ae4a3c0c9b453b9facf86424b9b980e1f2b4b0ad107f",
+      "size_bytes": 253
+    },
+    {
+      "modified_time": "2026-07-14T01:56:17",
+      "path": "results/project_audit/command_outputs/15_python_scripts_smoke_test_app.py_--timeout_30.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:18",
+      "path": "results/project_audit/command_outputs/16_python_scripts_run_functional_test.py_--output-dir_results_project_audit_command_outputs_end_to_end.stderr.txt",
+      "sha256": "a0857786584874be3e063362db0a67e188301ce4b1b18a5cfa337943c9b528e3",
+      "size_bytes": 233
+    },
+    {
+      "modified_time": "2026-07-14T01:56:18",
+      "path": "results/project_audit/command_outputs/16_python_scripts_run_functional_test.py_--output-dir_results_project_audit_command_outputs_end_to_end.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:56:18",
+      "path": "results/project_audit/command_outputs/command_results.json",
+      "sha256": "9667a59e497c801fde3de7ff774b706c86e831e4e268aebd6a85cd621f326153",
+      "size_bytes": 5411
+    },
+    {
+      "modified_time": "2026-07-14T01:57:09",
+      "path": "results/project_audit/command_outputs_venv/01_.venv_Scripts_python.exe_--version.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:57:09",
+      "path": "results/project_audit/command_outputs_venv/01_.venv_Scripts_python.exe_--version.stdout.txt",
+      "sha256": "125a353ba9cd603e069d1e1a5ee22e961bac9b7c82e4116f2d42c00ef82c7a58",
+      "size_bytes": 16
+    },
+    {
+      "modified_time": "2026-07-14T01:57:10",
+      "path": "results/project_audit/command_outputs_venv/02_.venv_Scripts_python.exe_-m_pip_--version.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:57:10",
+      "path": "results/project_audit/command_outputs_venv/02_.venv_Scripts_python.exe_-m_pip_--version.stdout.txt",
+      "sha256": "019a5033a653f1f07aef6dfd310a632253b8604ad5054e352564448c5f1c512f",
+      "size_bytes": 124
+    },
+    {
+      "modified_time": "2026-07-14T01:57:12",
+      "path": "results/project_audit/command_outputs_venv/03_.venv_Scripts_python.exe_-m_pip_freeze.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:57:12",
+      "path": "results/project_audit/command_outputs_venv/03_.venv_Scripts_python.exe_-m_pip_freeze.stdout.txt",
+      "sha256": "88d4fb18b88e26b312cc68dccb2c5cf4707546a650e9f12286b1b8e3f3335672",
+      "size_bytes": 1652
+    },
+    {
+      "modified_time": "2026-07-14T01:57:12",
+      "path": "results/project_audit/command_outputs_venv/04_.venv_Scripts_python.exe_scripts_check_environment.py.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:57:12",
+      "path": "results/project_audit/command_outputs_venv/04_.venv_Scripts_python.exe_scripts_check_environment.py.stdout.txt",
+      "sha256": "572aa5c8a81e5ecf7c862a69e3e287698ca66060fc20e57fe71d31b763a0199d",
+      "size_bytes": 77
+    },
+    {
+      "modified_time": "2026-07-14T01:57:13",
+      "path": "results/project_audit/command_outputs_venv/05_.venv_Scripts_python.exe_-m_compileall_app.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:57:13",
+      "path": "results/project_audit/command_outputs_venv/05_.venv_Scripts_python.exe_-m_compileall_app.stdout.txt",
+      "sha256": "012fa76af9392b2729a7d7c645834e5d0c5ee0b296b4f996d7bf257f6a30d324",
+      "size_bytes": 307
+    },
+    {
+      "modified_time": "2026-07-14T01:58:49",
+      "path": "results/project_audit/command_outputs_venv/06_.venv_Scripts_python.exe_-m_pytest_-q.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:58:49",
+      "path": "results/project_audit/command_outputs_venv/06_.venv_Scripts_python.exe_-m_pytest_-q.stdout.txt",
+      "sha256": "0399faf4c2b2e6e46046016f69f867946673be053da142a046ae75d4fa8aeab6",
+      "size_bytes": 644
+    },
+    {
+      "modified_time": "2026-07-14T01:58:50",
+      "path": "results/project_audit/command_outputs_venv/07_.venv_Scripts_python.exe_scripts_check_environment.py.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "modified_time": "2026-07-14T01:58:50",
+      "path": "results/project_audit/command_outputs_venv/07_.venv_Scripts_python.exe_scripts_check_environment.py.stdout.txt",
+      "sha256": "572aa5c8a81e5ecf7c862a69e3e287698ca66060fc20e57fe71d31b763a0199d",
+      "size_bytes": 77
+    },
+    {
+      "modified_time": "2026-07-14T01:59:20",
+      "path": "results/project_audit/command_outputs_venv/08_.venv_Scripts_python.exe_scripts_smoke_test_app.py_--timeout_30.stderr.txt",
+      "sha256": "d797f7eaef4d54e94c8c06ba5acf173f376e52dc2f6aea48b0cd447e9191efe5",
+      "size_bytes": 192
+    },
+    {
+      "modified_time": "2026-07-14T01:59:20",
+      "path": "results/project_audit/command_outputs_venv/08_.venv_Scripts_python.exe_scripts_smoke_test_app.py_--timeout_30.stdout.txt",
+      "sha256": "9ac4ca1423851698dd70a6d9d2ab0dbd454af3518d728f4e2ff2f5b496629c9f",
+      "size_bytes": 687
+    },
+    {
+      "modified_time": "2026-07-14T01:59:43",
+      "path": "results/project_audit/command_outputs_venv/09_.venv_Scripts_python.exe_scripts_run_functional_test.py_--output-dir_results_project_audit_command_outputs_venv_end_to_end.stderr.txt",
+      "sha256": "6a955d3ee842d632cc5f70330f9d772b9c0e95792f3d2ad0647ca1f49000ae29",
+      "size_bytes": 130
+    },
+    {
+      "modified_time": "2026-07-14T01:59:43",
+      "path": "results/project_audit/command_outputs_venv/09_.venv_Scripts_python.exe_scripts_run_functional_test.py_--output-dir_results_project_audit_command_outputs_venv_end_to_end.stdout.txt",
+      "sha256": "bca4feb04f45548eaefa17296310593c9998b87fd6dfb10cc43acc5d12149b56",
+      "size_bytes": 757
+    },
+    {
+      "modified_time": "2026-07-14T01:59:18",
+      "path": "results/project_audit/command_outputs_venv/app_smoke_test/stderr.log",
+      "sha256": "1dc5f07c1ca5456a64ec319d79cd1d7e9c3ad02a5d480565329002e36c3a57e0",
+      "size_bytes": 67
+    },
+    {
+      "modified_time": "2026-07-14T01:59:18",
+      "path": "results/project_audit/command_outputs_venv/app_smoke_test/stdout.log",
+      "sha256": "3be4d893b0674ef14aef04cfd3db88852f597312e937b6d3f81e3662ce6544c2",
+      "size_bytes": 93
+    },
+    {
+      "modified_time": "2026-07-14T01:59:18",
+      "path": "results/project_audit/command_outputs_venv/app_smoke_test/summary.json",
+      "sha256": "9ac4ca1423851698dd70a6d9d2ab0dbd454af3518d728f4e2ff2f5b496629c9f",
+      "size_bytes": 687
+    },
+    {
+      "modified_time": "2026-07-14T01:59:43",
+      "path": "results/project_audit/command_outputs_venv/command_results.json",
+      "sha256": "7d893246205d7c40759fe1033216ef612fc7e1b2927c6cddfc8da964d24566bb",
+      "size_bytes": 3870
+    },
+    {
+      "modified_time": "2026-07-14T01:59:42",
+      "path": "results/project_audit/command_outputs_venv/end_to_end/functional_test.json",
+      "sha256": "6a6b8e197a89767ee3329400b1dcafc0684ef73d6518f8f89af72aac252607aa",
+      "size_bytes": 14681
+    },
+    {
+      "modified_time": "2026-07-14T01:59:42",
+      "path": "results/project_audit/command_outputs_venv/end_to_end/functional_test.md",
+      "sha256": "22ed43b8085b3c58f4fc0e0be72176cbc4cd7de6859c657f1c9bf6fabd2466da",
+      "size_bytes": 361
+    },
+    {
+      "modified_time": "2026-07-14T02:15:35",
+      "path": "results/project_audit/dataset_class_counts.csv",
+      "sha256": "5e8050c8cb199d6cd349fb0ec495b60cabc877cc82f9a9110de0ab2d7f2e7f03",
+      "size_bytes": 87
+    },
+    {
+      "modified_time": "2026-07-14T02:15:54",
+      "path": "results/project_audit/dataset_class_distribution.png",
+      "sha256": "8b3626ce12b0acf806fbbd672018463e95ad5a506c71364e0bbdb208d6ecfc1c",
+      "size_bytes": 55891
+    },
+    {
+      "modified_time": "2026-07-14T02:15:35",
+      "path": "results/project_audit/dataset_split_counts.csv",
+      "sha256": "b2f9814cde006d32712471de27c84bb1a91f3d696c147b9eb49c65cbbac247da",
+      "size_bytes": 65
+    },
+    {
+      "modified_time": "2026-07-14T02:15:53",
+      "path": "results/project_audit/dataset_split_distribution.png",
+      "sha256": "ef4390abf4fb1869ce68060f2b7b3f4c9b6c23eb5013e79ca1690f3b42b8e169",
+      "size_bytes": 44411
+    },
+    {
+      "modified_time": "2026-07-14T02:15:54",
+      "path": "results/project_audit/dataset_storage_map.png",
+      "sha256": "b95383ec08d5b5f7168bf15182c1ee41eb31a8ee4f8cdca5deaa98bd855bf6db",
+      "size_bytes": 46048
+    },
+    {
+      "modified_time": "2026-07-14T02:15:36",
+      "path": "results/project_audit/dataset_summary.json",
+      "sha256": "ba309eed062c0d8634998f719d2baeb92285e13ae697784170a4f1488c39dd5b",
+      "size_bytes": 2080
+    },
+    {
+      "modified_time": "2026-07-14T02:15:56",
+      "path": "results/project_audit/dependency_categories.png",
+      "sha256": "e1ccf3e28cc951abf4024628370e1b8a03bd3f7edcca94b12dafc9f90e91cfd6",
+      "size_bytes": 63801
+    },
+    {
+      "modified_time": "2026-07-14T02:15:31",
+      "path": "results/project_audit/duplicate_files.csv",
+      "sha256": "6543b627ae942bf4064364a848d90eea96ba72ee72bafafdca46b12787756511",
+      "size_bytes": 12956
+    },
+    {
+      "modified_time": "2026-07-14T02:15:52",
+      "path": "results/project_audit/environment_packages.csv",
+      "sha256": "c702835a057056eb41a89355f10d5bd9c3a02ae9eddd0ba97554730d1cc724ce",
+      "size_bytes": 2100
+    },
+    {
+      "modified_time": "2026-07-14T02:15:56",
+      "path": "results/project_audit/environment_status.png",
+      "sha256": "1d14bb479f5a1fa77bfa5c43dd416cc58b7d82f1e33904cb203cadae2e467132",
+      "size_bytes": 42239
+    },
+    {
+      "modified_time": "2026-07-14T02:15:52",
+      "path": "results/project_audit/environment_summary.json",
+      "sha256": "4cef4da87abcd09697408a56786a871f8f3da70dc76385aa7c837b05c12545e0",
+      "size_bytes": 485
+    },
+    {
+      "modified_time": "2026-07-14T02:15:53",
+      "path": "results/project_audit/f1_by_class_current.png",
+      "sha256": "a9158912d639f055e069ca14bd122d52d079f99023f8ba772232b39398150e82",
+      "size_bytes": 52824
+    },
+    {
+      "modified_time": "2026-07-14T02:15:23",
+      "path": "results/project_audit/folder_sizes.csv",
+      "sha256": "7105f65f6f8de9aa9fd6ac5fe0b3077b6b097d381bf8750c728ddbf9a8091ce8",
+      "size_bytes": 709
+    },
+    {
+      "modified_time": "2026-07-14T02:15:56",
+      "path": "results/project_audit/functional_status.png",
+      "sha256": "683f0a0879a46e26de18afbaffec13d628536876f5e8cbfbc8d08a482ad986ea",
+      "size_bytes": 51651
+    },
+    {
+      "modified_time": "2026-07-14T02:12:34",
+      "path": "results/project_audit/generate_audit_artifacts.py",
+      "sha256": "553bdea54bf8f3554f90c6b442a7f731f53feda22c192b9d145e0b971a10998a",
+      "size_bytes": 59194
+    },
+    {
+      "modified_time": "2026-07-14T02:15:56",
+      "path": "results/project_audit/git_content_categories.png",
+      "sha256": "d9061b3fb985813bd62157e0cb6648ee0f4d52b526dcabe7066f255e4e72997e",
+      "size_bytes": 79020
+    },
+    {
+      "modified_time": "2026-07-14T02:15:51",
+      "path": "results/project_audit/git_ignored_summary.csv",
+      "sha256": "9b721c97cafb547a93cc19ce73263a6bf332901f91e3e8ac2e7341fcebff0ee0",
+      "size_bytes": 7334547
+    },
+    {
+      "modified_time": "2026-07-14T02:15:52",
+      "path": "results/project_audit/git_risk_summary.json",
+      "sha256": "c2dc00fcbc4066f7405f9e37970f10733e82589532fc34937f733dc92c183631",
+      "size_bytes": 971
+    },
+    {
+      "modified_time": "2026-07-14T02:15:31",
+      "path": "results/project_audit/git_tracked_large_files.csv",
+      "sha256": "8086cf2ca4f858bffe69dc0d241fdfb81e6627749e44a49a02e927c6dcbeeb8a",
+      "size_bytes": 520
+    },
+    {
+      "modified_time": "2026-07-14T02:15:37",
+      "path": "results/project_audit/git_tracked_summary.csv",
+      "sha256": "537da18c2608b5803988c354b940079b4dff8a4482a0fb1671c8325a861e91be",
+      "size_bytes": 36137
+    },
+    {
+      "modified_time": "2026-07-14T02:15:57",
+      "path": "results/project_audit/github_upload_readiness.png",
+      "sha256": "8287d26cbd1b5a9930b55c2a05f0345b2aacbd60337704fb19f7e4dda982d539",
+      "size_bytes": 35249
+    },
+    {
+      "modified_time": "2026-07-14T02:15:54",
+      "path": "results/project_audit/image_analysis_flow.png",
+      "sha256": "0bfc23ebaa4460e228af762e1327f63fe89fd8cce8a2a4c8f1a4fc2045bdd76c",
+      "size_bytes": 110028
+    },
+    {
+      "modified_time": "2026-07-14T02:15:23",
+      "path": "results/project_audit/largest_files.csv",
+      "sha256": "fee5a34fc3fe4ce704c70277b28cda67d2dd263579c477786b5af54b4095da6a",
+      "size_bytes": 4068
+    },
+    {
+      "modified_time": "2026-07-14T02:15:32",
+      "path": "results/project_audit/largest_files.png",
+      "sha256": "f0443691101a1596349b37056b58d440b6b8eeeb6acc473fe24a269c0726ce6e",
+      "size_bytes": 215598
+    },
+    {
+      "modified_time": "2026-07-14T02:15:36",
+      "path": "results/project_audit/lora_evidence.csv",
+      "sha256": "dee6c606f11610cb4ead069d02228d60f6b07c256839faf2b8387afe96779470",
+      "size_bytes": 825
+    },
+    {
+      "modified_time": "2026-07-14T02:15:36",
+      "path": "results/project_audit/lora_inventory.json",
+      "sha256": "e72b438319b5cb2088275897a977c619c38427ac3d3a733d33464b9118c669c2",
+      "size_bytes": 1502
+    },
+    {
+      "modified_time": "2026-07-14T02:15:55",
+      "path": "results/project_audit/lora_role_in_project.png",
+      "sha256": "5a9d285acf96e59f0b67949586479316f3c0ad69841ad922257959ae9d2d71d1",
+      "size_bytes": 75354
+    },
+    {
+      "modified_time": "2026-07-14T02:15:55",
+      "path": "results/project_audit/lora_training_summary.png",
+      "sha256": "78bbde0cc94f714a24d140d081906e14f0b36990d6b45f1bb313bf1f6ad236c5",
+      "size_bytes": 46530
+    },
+    {
+      "modified_time": "2026-07-14T02:15:36",
+      "path": "results/project_audit/metrics_consistency.json",
+      "sha256": "0f9a02343cb0060eea51e467e103320982d426c4122dbce5e16ab83e4226717e",
+      "size_bytes": 559
+    },
+    {
+      "modified_time": "2026-07-14T02:15:53",
+      "path": "results/project_audit/metrics_consistency_status.png",
+      "sha256": "bcf24529dfab77abcdf73b0e18f0e5c216ade4498f2c13b609c33995b1e563aa",
+      "size_bytes": 36914
+    },
+    {
+      "modified_time": "2026-07-14T02:15:53",
+      "path": "results/project_audit/metrics_file_comparison.png",
+      "sha256": "1683250a5cd8ccb7322d1e03cbd7b050bcf081f74f201d7b341e7a9420daa643",
+      "size_bytes": 42561
+    },
+    {
+      "modified_time": "2026-07-14T02:15:36",
+      "path": "results/project_audit/metrics_sources.csv",
+      "sha256": "e977c8e91952d89c4542c6b5dedaffa358622149bb61d1535af7a40bd1dce239",
+      "size_bytes": 5108
+    },
+    {
+      "modified_time": "2026-07-14T02:15:55",
+      "path": "results/project_audit/module_dependency_map.png",
+      "sha256": "61595ad241c2c6df2c0eb8d4f9f2338bd23bf8cea49105231c91dea58f6dee84",
+      "size_bytes": 138742
+    },
+    {
+      "modified_time": "2026-07-14T02:15:54",
+      "path": "results/project_audit/project_architecture.png",
+      "sha256": "c85330e0ff0aebb02c4d1f3194f0f340cd2c1e5775837686dd081763bc7f3970",
+      "size_bytes": 113148
+    },
+    {
+      "modified_time": "2026-07-14T02:15:57",
+      "path": "results/project_audit/project_completion_status.png",
+      "sha256": "97897f149b95671e56b90ad62d46c4d4a5f37bef43c88f2decc027874e6e17d6",
+      "size_bytes": 40399
+    },
+    {
+      "modified_time": "2026-07-14T02:15:03",
+      "path": "results/project_audit/project_inventory.csv",
+      "sha256": "382ed31e81b0acd0725ec203db1cecc4a59f5a7690ac374b18484be2d58ffc97",
+      "size_bytes": 1580929
+    },
+    {
+      "modified_time": "2026-07-14T02:15:04",
+      "path": "results/project_audit/project_inventory.json",
+      "sha256": "719a08df63db779b8f646841f34b065bc97f53d08af944910bf103a944f19d57",
+      "size_bytes": 3582155
+    },
+    {
+      "modified_time": "2026-07-14T02:15:58",
+      "path": "results/project_audit/project_map.png",
+      "sha256": "429fd7c3d851043987005856bdbcbf58aee0c15dec274425365d886c7191e3a5",
+      "size_bytes": 163933
+    },
+    {
+      "modified_time": "2026-07-14T02:15:31",
+      "path": "results/project_audit/project_size_by_folder.png",
+      "sha256": "fd86b00ad8e283fa27a9d9f7b256945c42a25f0916813975a28732ab96e9e029",
+      "size_bytes": 53712
+    },
+    {
+      "modified_time": "2026-07-14T02:15:57",
+      "path": "results/project_audit/project_status_dashboard.png",
+      "sha256": "2db60153bc220d2abd3d300cc4277a23f4c0bfe6ec58173e2f705a760590faaa",
+      "size_bytes": 125508
+    },
+    {
+      "modified_time": "2026-07-14T02:15:36",
+      "path": "results/project_audit/rag_components.json",
+      "sha256": "54ccdfdac4772d060ece5ac9e9548a6a5dcd55e38884b9538d48f8c8bb5d30b9",
+      "size_bytes": 1333
+    },
+    {
+      "modified_time": "2026-07-14T02:15:55",
+      "path": "results/project_audit/rag_pipeline.png",
+      "sha256": "5d4a75d23ce30c9b2a6f302f2a6e2a77c06380888d7339587aca004243622270",
+      "size_bytes": 80935
+    },
+    {
+      "modified_time": "2026-07-14T02:15:36",
+      "path": "results/project_audit/rag_sources.csv",
+      "sha256": "73bb681a89cf5bf2c6454b54374a5a0bc3d69c0f00ad1fd0325f6e48e3464d14",
+      "size_bytes": 2039
+    },
+    {
+      "modified_time": "2026-07-14T02:15:55",
+      "path": "results/project_audit/rag_sources_inventory.png",
+      "sha256": "9f5bd876ac92a1817bd53356cc04458747c737d03b11cc345c7ad782e57cd281",
+      "size_bytes": 39529
+    },
+    {
+      "modified_time": "2026-07-14T02:15:53",
+      "path": "results/project_audit/results_1_inventory.png",
+      "sha256": "0048583f3fcd516160b115eb7d3322f1c353cb6ef538757185dc9c088e130b8a",
+      "size_bytes": 44969
+    },
+    {
+      "modified_time": "2026-07-14T02:15:36",
+      "path": "results/project_audit/results_1_summary.json",
+      "sha256": "bc7c1d75361ca4881bdd24af7fe6f12723fdde553ef15b9344da915b6163e570",
+      "size_bytes": 1158
+    },
+    {
+      "modified_time": "2026-07-14T02:15:53",
+      "path": "results/project_audit/results_1_vs_results_2_status.png",
+      "sha256": "399e8b608ecbef055f9ee3d38f2e7e8f7a7b65c2c5d6c92c799f0b8580dd994b",
+      "size_bytes": 37698
+    },
+    {
+      "modified_time": "2026-07-14T02:15:53",
+      "path": "results/project_audit/results_2_inventory.png",
+      "sha256": "746a4b3d877da39ff936de3b2d3bb76654d28111fc51f15c366ab4acb710f15d",
+      "size_bytes": 40465
+    },
+    {
+      "modified_time": "2026-07-14T02:15:36",
+      "path": "results/project_audit/results_2_summary.json",
+      "sha256": "7b16efcca39d7711d2887cdd3e38fdda331c475e32a691a54aa4a681c841dda8",
+      "size_bytes": 2041
+    },
+    {
+      "modified_time": "2026-07-14T02:15:36",
+      "path": "results/project_audit/results_inventory.csv",
+      "sha256": "f6f8bb9294ded0332ec44509425b6ac1fa46750c82a07dd1c76f5ef8205682ac",
+      "size_bytes": 417
+    },
+    {
+      "modified_time": "2026-07-14T02:15:52",
+      "path": "results/project_audit/risk_register.csv",
+      "sha256": "09c6be6b062aae7492e368b130cd3ff6f2833fbced8e51a8ca67eb635b7e246f",
+      "size_bytes": 768
+    },
+    {
+      "modified_time": "2026-07-14T02:15:57",
+      "path": "results/project_audit/risk_severity_dashboard.png",
+      "sha256": "733b79bb4e2e786cf0455d6335d2596934e6534edce46fd94ce031a395c30d75",
+      "size_bytes": 36655
+    },
+    {
+      "modified_time": "2026-07-14T02:15:33",
+      "path": "results/project_audit/storage_composition.png",
+      "sha256": "27be91271b8492b4189a35dd73fe3279a1cdc29b7cabae973ef086c9b0bd9d95",
+      "size_bytes": 88801
+    },
+    {
+      "modified_time": "2026-07-14T02:15:37",
+      "path": "results/project_audit/system_components.csv",
+      "sha256": "e5df6d4a6991d6098ad14ea8b7dcfc20c85aa68426c22527878e6b2658422e5d",
+      "size_bytes": 905
+    },
+    {
+      "modified_time": "2026-07-14T02:15:52",
+      "path": "results/project_audit/test_commands.csv",
+      "sha256": "0f63fecc783b06ecd3b5bf632db0a92fe6be72db90380e01c6785d050832d508",
+      "size_bytes": 6129
+    },
+    {
+      "modified_time": "2026-07-14T02:15:52",
+      "path": "results/project_audit/test_results.json",
+      "sha256": "d24a602c410bce722e3b1b0e1144979be3f0bc6cc0e161130f9e92ec867769c1",
+      "size_bytes": 1815
+    },
+    {
+      "modified_time": "2026-07-14T02:15:56",
+      "path": "results/project_audit/test_status_dashboard.png",
+      "sha256": "d6dbd4b0bfd1fd4472ff80c3e4ebcefea2f0253139bae04fbe24dc5fae57920d",
+      "size_bytes": 48741
+    },
+    {
+      "modified_time": "2026-07-14T02:15:37",
+      "path": "results/project_audit/vision_model_inventory.json",
+      "sha256": "1bf9fa8fcb11f2876e268690776808f8b552478204d4107ffdaaf7692c5bcec7",
+      "size_bytes": 4670
+    }
+  ],
+  "os": "Windows-10-10.0.19045-SP0",
+  "phase_status": {
+    "fase_01": "complete",
+    "fase_02": "complete",
+    "fase_03": "complete",
+    "fase_04": "complete",
+    "fase_05": "complete",
+    "fase_06": "complete",
+    "fase_07": "complete",
+    "fase_08": "complete",
+    "fase_09": "complete",
+    "fase_10": "complete",
+    "fase_11": "complete",
+    "fase_12": "complete",
+    "fase_13": "complete",
+    "fase_14": "complete_with_global_python_failure_documented",
+    "fase_15": "complete",
+    "fase_16": "complete",
+    "fase_17": "complete",
+    "fase_18": "complete",
+    "fase_19": "complete",
+    "fase_20": "complete",
+    "fase_21": "complete",
+    "fase_22": "complete"
+  },
+  "python": "3.10.11",
+  "warnings": [
+    "Python global no tiene dependencias; usar .venv.",
+    "Cambios locales preexistentes y muchos resultados no versionados.",
+    "R1 incluye reconciliacion por metrica de validacion obsoleta archivada.",
+    "Hardware y comparaciones base-vs-adaptado no verificadas."
+  ]
+}

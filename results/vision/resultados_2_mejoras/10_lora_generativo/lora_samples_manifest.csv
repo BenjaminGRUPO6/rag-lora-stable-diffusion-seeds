@@ -1,0 +1,6 @@
+class_name,image_role,image_path,prompt,seed,evidence_status
+intact,training_metadata_sample,data/lora/train/images/intact_00001.jpg,"photo of a soyseed soybean seed, intact condition, clean surface, centered inspection photography",,FOUND
+spotted,training_metadata_sample,data/lora/train/images/spotted_00001.jpg,"photo of a soyseed soybean seed, spotted visual surface pattern, centered inspection photography",,FOUND
+immature,training_metadata_sample,data/lora/train/images/immature_00001.jpg,"photo of a soyseed soybean seed, immature condition, pale surface, centered inspection photography",,FOUND
+broken,training_metadata_sample,data/lora/train/images/broken_00001.jpg,"photo of a soyseed soybean seed, broken condition, visible fracture, centered inspection photography",,FOUND
+skin_damaged,training_metadata_sample,data/lora/train/images/skin_damaged_00001.jpg,"photo of a soyseed soybean seed, skin_damaged condition, damaged seed coat, centered inspection photography",,FOUND

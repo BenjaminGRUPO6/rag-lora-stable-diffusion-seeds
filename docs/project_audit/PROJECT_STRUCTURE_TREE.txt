@@ -1,0 +1,314 @@
+Proyecto: rag-lora-stable-diffusion-seeds
+Auditoria: 2026-07-14T02:12:47-05:00
+
+├── .agents/
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── bug_report.md
+│   │   └── feature_request.md
+│   ├── workflows/
+│   │   └── ci.yml
+│   └── pull_request_template.md
+├── app/
+│   ├── components/
+│   │   ├── __init__.py
+│   │   └── demo_helpers.py
+│   ├── __init__.py
+│   └── streamlit_app.py
+├── checkpoints/
+│   └── .gitkeep
+├── codex/
+│   ├── tasks/
+│   │   ├── 01_dataset_acquisition.md
+│   │   ├── 02_dataset_audit.md
+│   │   ├── 03_dataset_splits.md
+│   │   ├── 04_vision_training.md
+│   │   ├── 05_lora_preparation.md
+│   │   ├── 06_lora_colab.md
+│   │   ├── 07_rag.md
+│   │   ├── 08_integration.md
+│   │   └── 09_evaluation_docs.md
+│   ├── 00_PROMPT_MAESTRO.md
+│   ├── 01_AUDITORIA_DATASET.md
+│   ├── 02_ETIQUETADO_SPLIT.md
+│   ├── 03_ENTRENAMIENTO_VISUAL.md
+│   ├── 04_PREPARACION_LORA.md
+│   ├── 05_ENTRENAMIENTO_LORA_SD15.md
+│   ├── 06_CONSTRUCCION_RAG.md
+│   ├── 07_INTEGRACION_APP.md
+│   ├── 08_EVALUACION_DOCUMENTACION.md
+│   └── README.md
+├── configs/
+│   ├── dataset.yaml
+│   ├── lora_sd15.yaml
+│   ├── production_vision_model.yaml
+│   ├── project.yaml
+│   ├── rag.yaml
+│   ├── report.yaml
+│   ├── synthetic_generation.yaml
+│   ├── vision.yaml
+│   ├── vision_config.yaml
+│   ├── vision_experiments.yaml
+│   ├── vision_v2_efficientnet_b0.yaml
+│   └── vision_v2_resnet18.yaml
+├── data/ [17007 archivos, 284.91 MB]
+├── docs/
+│   ├── informe_ieee/
+│   │   ├── .gitkeep
+│   │   ├── DRAFT_IEEE_REPORT.md
+│   │   └── README.md
+│   ├── project_audit/
+│   ├── 00_RESUMEN_EJECUTIVO.md
+│   ├── 00_RESUMEN_PARA_EL_EQUIPO.md
+│   ├── 01_ALCANCE_Y_ARQUITECTURA.md
+│   ├── 01_ARQUITECTURA.md
+│   ├── 02_ADQUISICION_Y_AUDITORIA_DATASET.md
+│   ├── 02_PLAN_PASO_A_PASO.md
+│   ├── 03_CUMPLIMIENTO_ENTRENAMIENTO.md
+│   ├── 03_PLAN_DE_ENTRENAMIENTO.md
+│   ├── 04_GITHUB_DESDE_CERO.md
+│   ├── 04_PLAN_RAG_E_INFORMES.md
+│   ├── 05_EVALUACION_Y_EXPERIMENTOS.md
+│   ├── 05_METODOLOGIA_DATASET.md
+│   ├── 06_ETICA_Y_LIMITACIONES.md
+│   ├── 06_METRICAS.md
+│   ├── 07_ETICA_LIMITACIONES.md
+│   ├── 07_GITHUB_Y_TRABAJO_EN_EQUIPO.md
+│   ├── 08_CRONOGRAMA_7_DIAS.md
+│   ├── 09_GUIA_CODEX.md
+│   ├── 10_ESTRUCTURA_INFORME_IEEE.md
+│   ├── 11_REFERENCIAS_BASE.md
+│   ├── CHANGES_IMPLEMENTED.md
+│   ├── CONTINGENCY_PLAN.md
+│   ├── DECISION_LOG.md
+│   ├── DEMO_SCRIPT_15_MINUTES.md
+│   ├── ETHICS_AND_LIMITATIONS.md
+│   ├── FINAL_ARCHITECTURE.md
+│   ├── FINAL_AUDIT.md
+│   ├── FINAL_RESULTS.md
+│   ├── FUNCTIONAL_AUDIT.md
+│   ├── INFORME_ACTUALIZADO_SEEDCARE_RAG_LORA.docx
+│   ├── INFORME_AUDITORIA_FUNCIONAL.md
+│   ├── INFORME_AUDITORIA_FUNCIONAL.pdf
+│   ├── INFORME_PLAN_PROYECTO.docx
+│   ├── INFORME_PLAN_PROYECTO.pdf
+│   ├── KNOWN_LIMITATIONS.md
+│   ├── PANEL_QUESTIONS_AND_ANSWERS.md
+│   ├── PROJECT_CONTEXT_CURRENT.md
+│   ├── PROJECT_FILES_CURRENT.txt
+│   ├── RELEASE_CHECKLIST.md
+│   ├── REPRODUCIBILITY.md
+│   ├── RESULTS_VERSIONING.md
+│   ├── RUNBOOK.md
+│   └── VISION_V2_EXPERIMENT_PLAN.md
+├── models/
+│   ├── lora/
+│   │   └── soybean_sd15/
+│   │       └── pytorch_lora_weights.safetensors
+│   ├── vision/
+│   │   ├── recovery/
+│   │   │   ├── efficientnet_b0_v2_best_epoch_001.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_002.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_003.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_004.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_005.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_006.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_007.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_008.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_009.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_010.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_011.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_012.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_013.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_014.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_015.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_016.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_017.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_018.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_019.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_020.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_021.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_022.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_023.pt
+│   │   │   ├── efficientnet_b0_v2_best_epoch_024.pt
+│   │   │   └── efficientnet_b0_v2_best_epoch_025.pt
+│   │   ├── efficientnet_b0_v2_best.pt
+│   │   ├── resnet18_baseline_best.pt
+│   │   ├── resnet18_v2_best.pt
+│   │   └── resnet18_v2_temperature.json
+│   ├── .gitkeep
+│   └── README.md
+├── notebooks/
+│   ├── 00_configuracion_entorno.ipynb
+│   ├── 01_adquisicion_y_auditoria.ipynb
+│   ├── 01_auditoria_dataset.ipynb
+│   ├── 02_limpieza_y_etiquetado.ipynb
+│   ├── 02_splits_y_aumento.ipynb
+│   ├── 03_division_y_aumento.ipynb
+│   ├── 03_entrenamiento_visual.ipynb
+│   ├── 04_entrenamiento_modelo_visual.ipynb
+│   ├── 04_preparacion_lora.ipynb
+│   ├── 05_entrenamiento_lora_colab.ipynb
+│   ├── 05_preparacion_lora_sd15.ipynb
+│   ├── 06_entrenamiento_lora_sd15_colab.ipynb
+│   ├── 06_revision_sinteticos.ipynb
+│   ├── 07_construccion_rag.ipynb
+│   ├── 08_integracion_informe.ipynb
+│   ├── 08_integracion_y_evaluacion.ipynb
+│   └── 09_evaluacion_sistema.ipynb
+├── results/ [476 archivos, 160.18 MB]
+├── scripts/
+│   ├── __init__.py
+│   ├── analyze_seed.py
+│   ├── analyze_vision_errors.py
+│   ├── audit_dataset.py
+│   ├── benchmark_vision_dataloader.py
+│   ├── build_vector_db.py
+│   ├── calibrate_vision_model.py
+│   ├── check_environment.py
+│   ├── compare_inference_paths.py
+│   ├── consolidate_lora_evidence.py
+│   ├── consolidate_lora_visual_evidence.py
+│   ├── consolidate_r1_r2_final.py
+│   ├── evaluate_preprocessing.py
+│   ├── evaluate_rag.py
+│   ├── evaluate_system.py
+│   ├── evaluate_tta.py
+│   ├── evaluate_vision_model.py
+│   ├── generate_gradcam_evidence.py
+│   ├── prepare_dataset.py
+│   ├── prepare_lora_dataset.py
+│   ├── prepare_rag_corpus.py
+│   ├── query_vector_db.py
+│   ├── reconcile_vision_results.py
+│   ├── run_demo.py
+│   ├── run_functional_test.py
+│   ├── smoke_test_app.py
+│   ├── train_efficientnet_b0.py
+│   ├── train_resnet18_v2.py
+│   ├── train_vision_model.py
+│   ├── validate_dataset_split.py
+│   └── verify_dataset_structure.py
+├── src/
+│   ├── data/
+│   │   ├── __init__.py
+│   │   ├── audit.py
+│   │   ├── augmentation.py
+│   │   ├── cleaning.py
+│   │   ├── metadata.py
+│   │   ├── split_dataset.py
+│   │   └── verify.py
+│   ├── experiments/
+│   │   ├── __init__.py
+│   │   └── result_registry.py
+│   ├── pipelines/
+│   │   ├── __init__.py
+│   │   ├── analyze_seed.py
+│   │   ├── build_rag.py
+│   │   └── README.md
+│   ├── rag/
+│   │   ├── __init__.py
+│   │   ├── chunking.py
+│   │   ├── document_loader.py
+│   │   ├── embeddings.py
+│   │   ├── prompt_builder.py
+│   │   ├── README.md
+│   │   ├── retrieval.py
+│   │   └── vector_store.py
+│   ├── reports/
+│   │   ├── __init__.py
+│   │   ├── report_generator.py
+│   │   ├── source_formatter.py
+│   │   └── template.py
+│   ├── synthetic_data/
+│   │   ├── __init__.py
+│   │   ├── filter_synthetic_images.py
+│   │   ├── generate_images.py
+│   │   ├── lora_evidence.py
+│   │   ├── prepare_lora_dataset.py
+│   │   ├── README.md
+│   │   └── train_sd15_lora.py
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   ├── config.py
+│   │   ├── logger.py
+│   │   └── paths.py
+│   ├── vision/
+│   │   ├── __init__.py
+│   │   ├── calibration.py
+│   │   ├── dataset.py
+│   │   ├── evaluation.py
+│   │   ├── gradcam.py
+│   │   ├── image_quality.py
+│   │   ├── inference.py
+│   │   ├── inference_engine.py
+│   │   ├── model.py
+│   │   ├── preprocessing.py
+│   │   ├── README.md
+│   │   ├── train.py
+│   │   ├── train_v2.py
+│   │   ├── tta.py
+│   │   └── visualization.py
+│   └── __init__.py
+├── tests/
+│   ├── test_analyze_seed.py
+│   ├── test_app_startup.py
+│   ├── test_audit.py
+│   ├── test_build_vector_db.py
+│   ├── test_chunking.py
+│   ├── test_compare_inference_paths.py
+│   ├── test_config_consolidation.py
+│   ├── test_consolidate_r1_r2_final.py
+│   ├── test_dataset_cleaning.py
+│   ├── test_dataset_split.py
+│   ├── test_dataset_verify.py
+│   ├── test_demo_helpers.py
+│   ├── test_functional_test_script.py
+│   ├── test_gradcam.py
+│   ├── test_label_map.py
+│   ├── test_lora_command.py
+│   ├── test_lora_evidence_consolidation.py
+│   ├── test_lora_visual_evidence.py
+│   ├── test_prepare_rag_corpus.py
+│   ├── test_prompt_builder.py
+│   ├── test_rag_embeddings.py
+│   ├── test_rag_evaluation_metrics.py
+│   ├── test_report_template.py
+│   ├── test_result_registry.py
+│   ├── test_smoke_test_app.py
+│   ├── test_system_evaluation.py
+│   ├── test_train_efficientnet_b0.py
+│   ├── test_train_resnet18_v2.py
+│   ├── test_vision_calibration.py
+│   ├── test_vision_dataset.py
+│   ├── test_vision_error_analysis.py
+│   ├── test_vision_inference.py
+│   ├── test_vision_model.py
+│   ├── test_vision_preprocessing.py
+│   ├── test_vision_reconciliation.py
+│   ├── test_vision_training.py
+│   └── test_vision_tta.py
+├── vector_db/
+│   ├── .gitkeep
+│   ├── build_manifest.json
+│   ├── config.json
+│   ├── index.faiss
+│   ├── metadata.json
+│   └── README.md
+├── .env.example
+├── .gitignore
+├── AGENTS.md
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── MIGRATION.md
+├── PROJECT_STATUS.md
+├── pyproject.toml
+├── README.md
+├── requirements-app.txt
+├── requirements-colab.txt
+├── requirements-core.txt
+├── requirements-lora-colab.txt
+├── requirements-rag.txt
+├── requirements-vision.txt
+└── requirements.txt
