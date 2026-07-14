@@ -9,6 +9,7 @@ from PIL import Image
 from torch import nn
 from torchvision import transforms
 
+from src.vision.calibration import load_temperature, softmax_with_temperature
 from src.vision.evaluation import load_checkpoint
 from src.vision.model import create_model
 
@@ -27,6 +28,13 @@ class InferenceResult:
     probabilities: dict[str, float]
     logits: dict[str, float]
     top_3: list[dict[str, float | str]]
+    uncalibrated_confidence: float
+    uncalibrated_probabilities: dict[str, float]
+    calibration_temperature: float | None
+    calibration_applied: bool
+    second_class: str | None
+    second_confidence: float | None
+    top1_top2_margin: float
 
     def to_prediction_dict(self) -> dict[str, Any]:
         """Return the dictionary shape consumed by the RAG pipeline and CLI."""
@@ -36,6 +44,13 @@ class InferenceResult:
             "probabilities": self.probabilities,
             "logits": self.logits,
             "top_3": self.top_3,
+            "uncalibrated_confidence": self.uncalibrated_confidence,
+            "uncalibrated_probabilities": self.uncalibrated_probabilities,
+            "calibration_temperature": self.calibration_temperature,
+            "calibration_applied": self.calibration_applied,
+            "second_class": self.second_class,
+            "second_confidence": self.second_confidence,
+            "top1_top2_margin": self.top1_top2_margin,
         }
 
 
@@ -49,12 +64,16 @@ class VisionInferenceEngine:
         labels: list[str],
         transform: Callable[[Image.Image], torch.Tensor],
         device: torch.device,
+        temperature: float | None = None,
     ) -> None:
         self.model = model.to(device)
         self.model.eval()
         self.labels = list(labels)
         self.transform = transform
         self.device = device
+        if temperature is not None and temperature <= 0.0:
+            raise ValueError("temperature must be greater than zero.")
+        self.temperature = temperature
 
     @classmethod
     def from_checkpoint(
@@ -63,19 +82,28 @@ class VisionInferenceEngine:
         checkpoint_path: str | Path,
         device: torch.device,
         config: dict[str, Any] | None = None,
+        temperature_path: str | Path | None = None,
     ) -> "VisionInferenceEngine":
         """Create an inference engine from a trained ResNet18 checkpoint."""
+        checkpoint = Path(checkpoint_path)
         model, labels, _ = load_resnet18_checkpoint(
-            checkpoint_path=checkpoint_path,
+            checkpoint_path=checkpoint,
             device=device,
             config=config,
         )
         image_size = int(get_nested(config or {}, ("data", "image_size"), 224))
+        resolved_temperature_path = (
+            Path(temperature_path)
+            if temperature_path is not None
+            else default_temperature_path(checkpoint)
+        )
+        temperature = load_temperature(resolved_temperature_path)
         return cls(
             model=model,
             labels=labels,
             transform=build_inference_transform(image_size=image_size),
             device=device,
+            temperature=temperature,
         )
 
     def predict(self, image: ImageInput) -> InferenceResult:
@@ -84,18 +112,28 @@ class VisionInferenceEngine:
         tensor = self.transform(pil_image).unsqueeze(0).to(self.device)
         with torch.no_grad():
             logits_tensor = self.model(tensor)[0].detach().cpu()
-            probabilities_tensor = torch.softmax(logits_tensor, dim=0)
+            uncalibrated_probabilities_tensor = torch.softmax(logits_tensor, dim=0)
+            probabilities_tensor = (
+                softmax_with_temperature(logits_tensor, self.temperature)
+                if self.temperature is not None
+                else uncalibrated_probabilities_tensor
+            )
 
-        index = int(probabilities_tensor.argmax().item())
+        index = int(logits_tensor.argmax().item())
         probabilities = {
             label: float(probabilities_tensor[label_index].item())
+            for label_index, label in enumerate(self.labels)
+        }
+        uncalibrated_probabilities = {
+            label: float(uncalibrated_probabilities_tensor[label_index].item())
             for label_index, label in enumerate(self.labels)
         }
         logits = {
             label: float(logits_tensor[label_index].item())
             for label_index, label in enumerate(self.labels)
         }
-        top_indices = torch.topk(probabilities_tensor, k=min(3, len(self.labels))).indices.tolist()
+        sorted_indices = torch.argsort(probabilities_tensor, descending=True).tolist()
+        top_indices = sorted_indices[: min(3, len(self.labels))]
         top_3 = [
             {
                 "label": self.labels[int(label_index)],
@@ -103,12 +141,28 @@ class VisionInferenceEngine:
             }
             for label_index in top_indices
         ]
+        second_index = int(sorted_indices[1]) if len(sorted_indices) >= 2 else None
+        second_confidence = (
+            float(probabilities_tensor[second_index].item()) if second_index is not None else None
+        )
+        top1_top2_margin = (
+            float(probabilities_tensor[index].item()) - second_confidence
+            if second_confidence is not None
+            else float(probabilities_tensor[index].item())
+        )
         return InferenceResult(
             label=self.labels[index],
             confidence=float(probabilities_tensor[index].item()),
             probabilities=probabilities,
             logits=logits,
             top_3=top_3,
+            uncalibrated_confidence=float(uncalibrated_probabilities_tensor[index].item()),
+            uncalibrated_probabilities=uncalibrated_probabilities,
+            calibration_temperature=self.temperature,
+            calibration_applied=self.temperature is not None,
+            second_class=self.labels[second_index] if second_index is not None else None,
+            second_confidence=second_confidence,
+            top1_top2_margin=top1_top2_margin,
         )
 
     def predict_dict(self, image: ImageInput) -> dict[str, Any]:
@@ -133,6 +187,15 @@ def build_inference_transform(image_size: int = 224) -> transforms.Compose:
             transforms.Normalize(mean=IMAGENET_MEAN, std=IMAGENET_STD),
         ]
     )
+
+
+def default_temperature_path(checkpoint_path: str | Path) -> Path:
+    """Return the default temperature JSON path for a checkpoint."""
+    checkpoint = Path(checkpoint_path)
+    stem = checkpoint.stem
+    if stem.endswith("_best"):
+        stem = stem[: -len("_best")]
+    return checkpoint.with_name(f"{stem}_temperature.json")
 
 
 def load_resnet18_checkpoint(

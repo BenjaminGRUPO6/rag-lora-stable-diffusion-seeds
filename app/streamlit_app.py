@@ -178,18 +178,38 @@ def render_prediction(result: dict[str, Any]) -> None:
     st.subheader("Resultado visual")
     col_label, col_confidence, col_status = st.columns(3)
     col_label.metric("Clase estimada", str(result.get("prediction") or ""))
-    col_confidence.metric("Confianza", f"{float(result.get('confidence') or 0.0):.4f}")
+    col_confidence.metric("Confianza calibrada", f"{float(result.get('confidence') or 0.0):.4f}")
     uncertainty_status = str(result.get("uncertainty_status") or "")
-    col_status.metric("Incertidumbre", uncertainty_status)
+    reliability_status = str(result.get("reliability_status") or "")
+    col_status.metric("Estado", reliability_status or uncertainty_status)
     if uncertainty_status == "uncertain":
         st.warning(
             "Prediccion incierta: la confianza es baja o el margen entre clases es estrecho."
         )
 
+    detail_cols = st.columns(2)
+    detail_cols[0].metric("Segunda clase", str(result.get("second_class") or "No disponible"))
+    detail_cols[1].metric("Margen top1-top2", f"{float(result.get('top1_top2_margin') or 0.0):.4f}")
+
     top_three = top_probabilities(result.get("probabilities") or {})
     if top_three:
-        st.caption("Top 3 probabilidades")
+        st.caption("Top 3 probabilidades calibradas")
         st.dataframe(pd.DataFrame(top_three), hide_index=True, width="stretch")
+
+    with st.expander("Seccion tecnica", expanded=False):
+        st.metric(
+            "Confianza sin calibrar",
+            f"{float(result.get('uncalibrated_confidence') or 0.0):.4f}",
+        )
+        temperature = result.get("calibration_temperature")
+        st.metric(
+            "Temperatura",
+            "No disponible" if temperature is None else f"{float(temperature):.4f}",
+        )
+        uncalibrated = top_probabilities(result.get("uncalibrated_probabilities") or {})
+        if uncalibrated:
+            st.caption("Top 3 probabilidades sin calibrar")
+            st.dataframe(pd.DataFrame(uncalibrated), hide_index=True, width="stretch")
 
 
 def render_retrieval(result: dict[str, Any]) -> None:

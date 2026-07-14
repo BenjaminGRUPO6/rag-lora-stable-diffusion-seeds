@@ -146,7 +146,15 @@ def analyze_seed(
         "probabilities": normalized_prediction["probabilities"],
         "logits": normalized_prediction["logits"],
         "top_3": normalized_prediction["top_3"],
+        "uncalibrated_confidence": normalized_prediction["uncalibrated_confidence"],
+        "uncalibrated_probabilities": normalized_prediction["uncalibrated_probabilities"],
+        "calibration_temperature": normalized_prediction["calibration_temperature"],
+        "calibration_applied": normalized_prediction["calibration_applied"],
+        "second_class": normalized_prediction["second_class"],
+        "second_confidence": normalized_prediction["second_confidence"],
+        "top1_top2_margin": normalized_prediction["top1_top2_margin"],
         "uncertainty_status": uncertainty_status,
+        "reliability_status": "incierto" if uncertainty_status == "uncertain" else "confiable",
         "retrieved_sources": retrieved_sources,
         "preliminary_report": preliminary_report,
         "limitations": limitations,
@@ -242,12 +250,51 @@ def normalize_prediction(prediction: dict) -> dict:
     if raw_top_3 and not isinstance(raw_top_3, list):
         raise ValueError("prediction['top_3'] debe ser una lista.")
     top_3 = [dict(item) for item in raw_top_3 if isinstance(item, dict)]
+    sorted_probabilities = sorted(probabilities.items(), key=lambda item: item[1], reverse=True)
+    second_class = prediction.get("second_class")
+    second_confidence = prediction.get("second_confidence")
+    if sorted_probabilities:
+        if not top_3:
+            top_3 = [
+                {"label": item_label, "probability": item_probability}
+                for item_label, item_probability in sorted_probabilities[:3]
+            ]
+        if second_class is None and len(sorted_probabilities) >= 2:
+            second_class = sorted_probabilities[1][0]
+        if second_confidence is None and len(sorted_probabilities) >= 2:
+            second_confidence = sorted_probabilities[1][1]
+    top1_top2_margin = prediction.get("top1_top2_margin")
+    if top1_top2_margin is None:
+        top1_top2_margin = (
+            float(sorted_probabilities[0][1]) - float(sorted_probabilities[1][1])
+            if len(sorted_probabilities) >= 2
+            else confidence
+        )
+    raw_uncalibrated_probabilities = prediction.get("uncalibrated_probabilities") or probabilities
+    if not isinstance(raw_uncalibrated_probabilities, dict):
+        raise ValueError("prediction['uncalibrated_probabilities'] debe ser un diccionario.")
+    uncalibrated_probabilities = {
+        str(key): float(value) for key, value in raw_uncalibrated_probabilities.items()
+    }
+    uncalibrated_confidence = float(
+        prediction.get("uncalibrated_confidence", uncalibrated_probabilities.get(label, confidence))
+    )
+    calibration_temperature = prediction.get("calibration_temperature")
     return {
         "label": label,
         "confidence": confidence,
         "probabilities": probabilities,
         "logits": logits,
         "top_3": top_3,
+        "uncalibrated_confidence": uncalibrated_confidence,
+        "uncalibrated_probabilities": uncalibrated_probabilities,
+        "calibration_temperature": (
+            float(calibration_temperature) if calibration_temperature is not None else None
+        ),
+        "calibration_applied": bool(prediction.get("calibration_applied", False)),
+        "second_class": str(second_class) if second_class is not None else None,
+        "second_confidence": float(second_confidence) if second_confidence is not None else None,
+        "top1_top2_margin": float(top1_top2_margin),
     }
 
 

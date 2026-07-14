@@ -1,0 +1,21 @@
+{
+  "accuracy": 0.9042145593869731,
+  "argmax_policy": "raw_logits",
+  "calibration_applied": false,
+  "checkpoint": "models/vision/resnet18_v2_best.pt",
+  "class_names": [
+    "intact",
+    "spotted",
+    "immature",
+    "broken",
+    "skin_damaged"
+  ],
+  "confidence_accuracy_gap": 0.025894166637654537,
+  "ece": 0.025894109545082884,
+  "macro_f1": 0.9033285077282003,
+  "mean_confidence": 0.9301087260246277,
+  "multiclass_brier": 0.12958106398582458,
+  "nll": 0.2210235595703125,
+  "split": "test",
+  "temperature": 1.0
+}
