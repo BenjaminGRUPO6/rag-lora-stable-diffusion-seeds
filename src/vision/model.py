@@ -59,10 +59,11 @@ def get_parameter_groups(
 ) -> list[dict[str, Any]]:
     """Return optimizer parameter groups with separate head and backbone rates."""
     groups: list[dict[str, Any]] = []
+    layer3 = getattr(model, "layer3", None)
     layer3_parameters = [
-        parameter for parameter in model.layer3.parameters() if parameter.requires_grad
-    ]
-    backbone_parameters = [
+        parameter for parameter in layer3.parameters() if parameter.requires_grad
+    ] if layer3 is not None else []
+    layer4_parameters = [
         parameter for parameter in model.layer4.parameters() if parameter.requires_grad
     ]
     head_parameters = [parameter for parameter in model.fc.parameters() if parameter.requires_grad]
@@ -74,10 +75,10 @@ def get_parameter_groups(
                 "name": "layer3",
             }
         )
-    if backbone_parameters:
+    if layer4_parameters:
         groups.append(
             {
-                "params": backbone_parameters,
+                "params": layer4_parameters,
                 "lr": learning_rate_backbone,
                 "name": "layer4",
             }

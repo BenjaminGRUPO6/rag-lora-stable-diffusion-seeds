@@ -1,0 +1,46 @@
+{
+  "best_epoch": 10,
+  "best_validation_macro_f1": 0.9207006744711761,
+  "checkpoint": "models\\vision\\resnet18_v2_best.pt",
+  "class_distribution": {
+    "test": {
+      "broken": 100,
+      "immature": 112,
+      "intact": 91,
+      "skin_damaged": 113,
+      "spotted": 106
+    },
+    "train": {
+      "broken": 802,
+      "immature": 898,
+      "intact": 732,
+      "skin_damaged": 901,
+      "spotted": 846
+    },
+    "validation": {
+      "broken": 100,
+      "immature": 112,
+      "intact": 91,
+      "skin_damaged": 113,
+      "spotted": 106
+    }
+  },
+  "class_weights_used": false,
+  "device": "cuda",
+  "elapsed_seconds": 20665.452922700002,
+  "epochs_ran": 15,
+  "metrics_source": "results\\vision\\resultados_2_mejoras\\05_resnet18_v2\\metrics_test.json",
+  "results_dir": "results\\vision\\resultados_2_mejoras\\05_resnet18_v2",
+  "smoke_test": false,
+  "test_accuracy": 0.9042145593869731,
+  "test_macro_f1": 0.9033285077282003,
+  "train_imbalance": {
+    "ratio": 1.2308743169398908,
+    "relevant": false
+  },
+  "validation_imbalance": {
+    "ratio": 1.2417582417582418,
+    "relevant": false
+  },
+  "validation_macro_f1": 0.9207006744711761
+}
