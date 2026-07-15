@@ -1,0 +1,9 @@
+,precision,recall,f1-score,support
+intact,0.2,1.0,0.3333333333333333,1.0
+spotted,0.0,0.0,0.0,1.0
+immature,0.0,0.0,0.0,1.0
+broken,0.0,0.0,0.0,1.0
+skin_damaged,0.0,0.0,0.0,1.0
+accuracy,0.2,0.2,0.2,0.2
+macro avg,0.04,0.2,0.06666666666666667,5.0
+weighted avg,0.04,0.2,0.06666666666666667,5.0

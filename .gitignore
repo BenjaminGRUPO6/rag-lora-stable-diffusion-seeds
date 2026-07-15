@@ -21,6 +21,7 @@ data/lora/train/images/**
 data/augmented/**
 data/synthetic/**
 data/documents/**
+data/cache/**
 !data/raw/README.md
 !data/processed/README.md
 !data/augmented/README.md

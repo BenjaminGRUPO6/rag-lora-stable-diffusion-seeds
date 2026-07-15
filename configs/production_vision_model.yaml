@@ -1,0 +1,26 @@
+model_name: resnet18_v2_tta_light
+architecture: resnet18
+checkpoint_path: models/vision/resnet18_v2_best.pt
+image_size: 224
+class_names:
+- intact
+- spotted
+- immature
+- broken
+- skin_damaged
+calibration_path: models/vision/resnet18_v2_temperature.json
+tta_policy: results/vision/resultados_2_mejoras/07_tta/selected_tta_policy.json
+tta_enabled: true
+tta_selected_policy: light
+tta_views: 2
+temperature: 1.1193019151687622
+auto_crop: true
+selection_reason: Selected by validation macro-F1; test reported only after selection.
+validation_macro_f1: 0.9265034540520689
+test_macro_f1: 0.9168669642726247
+test_accuracy: 0.9176245210727969
+result_version: Resultados 2 final
+selection_source: results/vision/resultados_2_mejoras/final/final_metrics.json
+selection_criteria_order:
+- validation_macro_f1
+selected_at: '2026-07-14T06:08:55.358452+00:00'

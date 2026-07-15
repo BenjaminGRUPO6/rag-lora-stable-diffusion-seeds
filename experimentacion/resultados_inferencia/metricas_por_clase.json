@@ -1,0 +1,101 @@
+{
+  "total_imagenes": 25,
+  "correctas": 14,
+  "accuracy_global": 0.56,
+  "por_clase": {
+    "intact": {
+      "total_imagenes": 5,
+      "correctas": 0,
+      "accuracy": 0.0,
+      "confianza_media": 0.6781,
+      "errores": [
+        {
+          "archivo": "synth_000.jpg",
+          "prediccion": "immature",
+          "confianza": 0.5448
+        },
+        {
+          "archivo": "synth_001.jpg",
+          "prediccion": "immature",
+          "confianza": 0.9927
+        },
+        {
+          "archivo": "synth_002.jpg",
+          "prediccion": "skin_damaged",
+          "confianza": 0.4843
+        },
+        {
+          "archivo": "synth_003.jpg",
+          "prediccion": "immature",
+          "confianza": 0.4653
+        },
+        {
+          "archivo": "synth_004.jpg",
+          "prediccion": "immature",
+          "confianza": 0.9033
+        }
+      ]
+    },
+    "spotted": {
+      "total_imagenes": 5,
+      "correctas": 2,
+      "accuracy": 0.4,
+      "confianza_media": 0.9033,
+      "errores": [
+        {
+          "archivo": "synth_000.jpg",
+          "prediccion": "broken",
+          "confianza": 0.9993
+        },
+        {
+          "archivo": "synth_001.jpg",
+          "prediccion": "broken",
+          "confianza": 0.9972
+        },
+        {
+          "archivo": "synth_004.jpg",
+          "prediccion": "broken",
+          "confianza": 0.9933
+        }
+      ]
+    },
+    "immature": {
+      "total_imagenes": 5,
+      "correctas": 5,
+      "accuracy": 1.0,
+      "confianza_media": 0.997,
+      "errores": []
+    },
+    "broken": {
+      "total_imagenes": 5,
+      "correctas": 4,
+      "accuracy": 0.8,
+      "confianza_media": 0.7204,
+      "errores": [
+        {
+          "archivo": "synth_003.jpg",
+          "prediccion": "skin_damaged",
+          "confianza": 0.5715
+        }
+      ]
+    },
+    "skin_damaged": {
+      "total_imagenes": 5,
+      "correctas": 3,
+      "accuracy": 0.6,
+      "confianza_media": 0.8946,
+      "errores": [
+        {
+          "archivo": "synth_000.jpg",
+          "prediccion": "broken",
+          "confianza": 0.6693
+        },
+        {
+          "archivo": "synth_003.jpg",
+          "prediccion": "broken",
+          "confianza": 0.8642
+        }
+      ]
+    }
+  }
+}

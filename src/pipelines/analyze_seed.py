@@ -19,6 +19,7 @@ from src.vision.inference import (
     VisionInferenceEngine,
     build_inference_transform,
 )
+from src.vision.tta import predict_with_tta
 
 
 DEFAULT_VISION_CONFIG = Path("configs/vision_config.yaml")
@@ -46,6 +47,9 @@ def analyze_seed(
     retriever: Callable[..., list[dict]] | None = None,
     prediction: dict | None = None,
     report_provider: ReportProvider | None = None,
+    use_tta: bool = False,
+    tta_policy_name: str = "none",
+    tta_temperature: float | None = None,
 ) -> dict:
     """Analyze a soybean seed image with vision inference, RAG and a preliminary report.
 
@@ -82,7 +86,17 @@ def analyze_seed(
                     ),
                     device=device,
                 )
-        prediction = active_engine.predict_dict(image)
+        if use_tta and tta_policy_name != "none":
+            if tta_temperature is None:
+                raise ValueError("Debe proporcionar tta_temperature para activar TTA.")
+            prediction = predict_with_tta(
+                engine=active_engine,
+                image=image,
+                policy_name=tta_policy_name,
+                temperature=float(tta_temperature),
+            )
+        else:
+            prediction = active_engine.predict_dict(image)
     processing_times["vision_seconds"] = elapsed(vision_started)
 
     normalized_prediction = normalize_prediction(prediction)
@@ -153,6 +167,11 @@ def analyze_seed(
         "second_class": normalized_prediction["second_class"],
         "second_confidence": normalized_prediction["second_confidence"],
         "top1_top2_margin": normalized_prediction["top1_top2_margin"],
+        "tta_enabled": normalized_prediction["tta_enabled"],
+        "tta_policy": normalized_prediction["tta_policy"],
+        "tta_views": normalized_prediction["tta_views"],
+        "tta_extra_seconds": normalized_prediction["tta_extra_seconds"],
+        "aggregation": normalized_prediction["aggregation"],
         "uncertainty_status": uncertainty_status,
         "reliability_status": "incierto" if uncertainty_status == "uncertain" else "confiable",
         "retrieved_sources": retrieved_sources,
@@ -280,6 +299,7 @@ def normalize_prediction(prediction: dict) -> dict:
         prediction.get("uncalibrated_confidence", uncalibrated_probabilities.get(label, confidence))
     )
     calibration_temperature = prediction.get("calibration_temperature")
+    tta_extra_seconds = prediction.get("tta_extra_seconds")
     return {
         "label": label,
         "confidence": confidence,
@@ -295,6 +315,11 @@ def normalize_prediction(prediction: dict) -> dict:
         "second_class": str(second_class) if second_class is not None else None,
         "second_confidence": float(second_confidence) if second_confidence is not None else None,
         "top1_top2_margin": float(top1_top2_margin),
+        "tta_enabled": bool(prediction.get("tta_enabled", False)),
+        "tta_policy": str(prediction.get("tta_policy") or "none"),
+        "tta_views": int(prediction.get("tta_views", 1)),
+        "tta_extra_seconds": float(tta_extra_seconds) if tta_extra_seconds is not None else 0.0,
+        "aggregation": str(prediction.get("aggregation") or ""),
     }
 
 

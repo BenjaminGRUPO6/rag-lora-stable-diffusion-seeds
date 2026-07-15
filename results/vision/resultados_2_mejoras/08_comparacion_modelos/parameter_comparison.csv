@@ -1,0 +1,3 @@
+model,architecture,checkpoint_path,parameters,trainable_parameters_initial,parameter_memory_mb
+resnet18_v2,resnet18,models\vision\resnet18_v2_best.pt,11179077,11179077,42.64479446411133
+efficientnet_b0_v2,efficientnet_b0,models\vision\efficientnet_b0_v2_best.pt,4013953,4013953,15.312015533447266

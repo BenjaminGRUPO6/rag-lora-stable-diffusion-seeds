@@ -1,0 +1,6 @@
+class_name,prompt,seed,base_image,adapted_image,comparison_image,evidence_status
+intact,,,,,,EVIDENCE_MISSING
+broken,,,,,,EVIDENCE_MISSING
+spotted,,,,,,EVIDENCE_MISSING
+immature,,,,,,EVIDENCE_MISSING
+skin_damaged,,,,,,EVIDENCE_MISSING

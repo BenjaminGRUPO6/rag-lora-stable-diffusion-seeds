@@ -1,0 +1,33 @@
+{
+  "accuracy_global": 0.56,
+  "total_imagenes": 25,
+  "correctas": 14,
+  "checkpoint": "C:\\Users\\User\\OneDrive\\Escritorio\\rag-lora-stable-diffusion-seeds\\models\\vision\\resnet18_v2_best.pt",
+  "por_clase": {
+    "intact": {
+      "accuracy": 0.0,
+      "confianza_media": 0.6781,
+      "total": 5
+    },
+    "spotted": {
+      "accuracy": 0.4,
+      "confianza_media": 0.9033,
+      "total": 5
+    },
+    "immature": {
+      "accuracy": 1.0,
+      "confianza_media": 0.997,
+      "total": 5
+    },
+    "broken": {
+      "accuracy": 0.8,
+      "confianza_media": 0.7204,
+      "total": 5
+    },
+    "skin_damaged": {
+      "accuracy": 0.6,
+      "confianza_media": 0.8946,
+      "total": 5
+    }
+  }
+}
