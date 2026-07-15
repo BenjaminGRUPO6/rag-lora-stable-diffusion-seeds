@@ -1,0 +1,113 @@
+ M .gitignore
+ M PROJECT_STATUS.md
+ M README.md
+ M app/streamlit_app.py
+ M docs/FINAL_RESULTS.md
+ M docs/VISION_V2_EXPERIMENT_PLAN.md
+ M results/app_smoke_test/stderr.log
+ M results/app_smoke_test/stdout.log
+ M results/app_smoke_test/summary.json
+ M results/end_to_end/functional_test.json
+ M results/vision/RESULTS_INDEX.md
+ M src/pipelines/analyze_seed.py
+ M src/vision/model.py
+ M src/vision/preprocessing.py
+ M src/vision/train_v2.py
+ M tests/test_app_startup.py
+ M tests/test_train_resnet18_v2.py
+?? configs/production_vision_model.yaml
+?? configs/vision_v2_efficientnet_b0.yaml
+?? results/project_audit/
+?? results/vision/resultados_2_mejoras/07_tta/r2_estabilidad_orientacion.png
+?? results/vision/resultados_2_mejoras/07_tta/r2_latencia_tta.png
+?? results/vision/resultados_2_mejoras/07_tta/r2_sin_tta_vs_tta.png
+?? results/vision/resultados_2_mejoras/07_tta/r2_tta_politicas_validation.png
+?? results/vision/resultados_2_mejoras/07_tta/selected_tta_policy.json
+?? results/vision/resultados_2_mejoras/07_tta/tta_latency.csv
+?? results/vision/resultados_2_mejoras/07_tta/tta_predictions.csv
+?? results/vision/resultados_2_mejoras/07_tta/tta_test_results.json
+?? results/vision/resultados_2_mejoras/07_tta/tta_validation_results.csv
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/crop_cache_summary.json
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/dataloader_benchmark.csv
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/diagnostico_cuello_botella.md
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/efficientnet_classification_report.csv
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/efficientnet_metrics_test.json
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/efficientnet_metrics_validation.json
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/efficientnet_predictions_test.csv
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/efficientnet_run_config.yaml
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/efficientnet_run_summary.json
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/efficientnet_runtime_config.json
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/efficientnet_train_stderr.log
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/efficientnet_train_stdout.log
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/efficientnet_training_history.csv
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/latency_comparison.csv
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/model_comparison.csv
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/model_selection.json
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/parameter_comparison.csv
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r1_vs_r2_f1_efficientnet_b0.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r1_vs_r2_modelos_dashboard.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r1_vs_r2_recall_intact_broken_efficientnet_b0.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_curvas_entrenamiento_efficientnet_b0.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_data_time_vs_compute_time.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_dataloader_speed_comparison.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_efficientnet_confidence_distribution.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_efficientnet_confusion_matrix.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_efficientnet_confusion_matrix_normalized.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_efficientnet_f1_por_clase.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_efficientnet_precision_recall.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_efficientnet_training_curves.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_f1_por_clase_efficientnet_b0.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_images_per_second.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_macro_f1_vs_latencia.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_matrices_modelos.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_matriz_confusion_efficientnet_b0.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_matriz_confusion_normalizada_efficientnet_b0.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_parametros_vs_desempeno.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_precision_recall_efficientnet_b0.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_resnet18_vs_efficientnet_clases.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_resnet18_vs_efficientnet_f1.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/r2_workers_comparison.png
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/run_config.yaml
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/run_summary.json
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/smoke_test/
+?? results/vision/resultados_2_mejoras/08_comparacion_modelos/training_history.csv
+?? results/vision/resultados_2_mejoras/09_gradcam_interfaz/manifest.json
+?? results/vision/resultados_2_mejoras/09_gradcam_interfaz/r1_vs_r2_dashboard.png
+?? results/vision/resultados_2_mejoras/09_gradcam_interfaz/r2_gradcam_correctos.png
+?? results/vision/resultados_2_mejoras/09_gradcam_interfaz/r2_gradcam_errores.png
+?? results/vision/resultados_2_mejoras/09_gradcam_interfaz/r2_gradcam_intact_broken.png
+?? results/vision/resultados_2_mejoras/09_gradcam_interfaz/r2_panel_visual_demo.png
+?? results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/
+?? results/vision/resultados_2_mejoras/10_lora_generativo/lora_base_vs_adaptado_manifest.csv
+?? results/vision/resultados_2_mejoras/10_lora_generativo/lora_evidence.json
+?? results/vision/resultados_2_mejoras/10_lora_generativo/lora_model_card.md
+?? results/vision/resultados_2_mejoras/10_lora_generativo/lora_samples_manifest.csv
+?? results/vision/resultados_2_mejoras/10_lora_generativo/r2_lora_base_vs_adaptado.png
+?? results/vision/resultados_2_mejoras/10_lora_generativo/r2_lora_clases.png
+?? results/vision/resultados_2_mejoras/10_lora_generativo/r2_lora_flujo.png
+?? results/vision/resultados_2_mejoras/10_lora_generativo/r2_lora_model_card.png
+?? results/vision/resultados_2_mejoras/final/final_comparison.csv
+?? results/vision/resultados_2_mejoras/final/final_metrics.json
+?? results/vision/resultados_2_mejoras/final/final_report.md
+?? results/vision/resultados_2_mejoras/final/r1_vs_r2_confianza.png
+?? results/vision/resultados_2_mejoras/final/r1_vs_r2_dashboard.png
+?? results/vision/resultados_2_mejoras/final/r1_vs_r2_f1_por_clase.png
+?? results/vision/resultados_2_mejoras/final/r1_vs_r2_latencia.png
+?? results/vision/resultados_2_mejoras/final/r1_vs_r2_metricas_globales.png
+?? results/vision/resultados_2_mejoras/final/r2_sistema_final.png
+?? results/vision/smoke_test_efficientnet_b0/
+?? scripts/benchmark_vision_dataloader.py
+?? scripts/consolidate_lora_visual_evidence.py
+?? scripts/consolidate_r1_r2_final.py
+?? scripts/evaluate_tta.py
+?? scripts/generate_gradcam_evidence.py
+?? scripts/train_efficientnet_b0.py
+?? src/synthetic_data/lora_evidence.py
+?? src/vision/gradcam.py
+?? src/vision/tta.py
+?? src/vision/visualization.py
+?? tests/test_consolidate_r1_r2_final.py
+?? tests/test_gradcam.py
+?? tests/test_lora_visual_evidence.py
+?? tests/test_train_efficientnet_b0.py
+?? tests/test_vision_tta.py

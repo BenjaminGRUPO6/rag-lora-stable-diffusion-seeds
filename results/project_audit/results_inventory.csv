@@ -1,0 +1,7 @@
+path,exists,file_count,png,csv,json,md,size_mb,group
+results/vision/resnet18_baseline,True,22,6,6,7,1,0.613,Resultados 1
+results/vision/resultados_1_baseline,True,46,18,10,14,2,1.546,Resultados 1
+results/vision/resultados_2_mejoras,True,243,149,30,41,3,49.703,Resultados 2
+results/end_to_end,True,2,0,0,1,1,0.014,otros
+results/app_smoke_test,True,3,0,0,1,0,0.001,otros
+results/audit,True,5,0,0,3,1,0.018,otros

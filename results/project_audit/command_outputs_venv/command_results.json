@@ -1,0 +1,74 @@
+[
+  {
+    "command": ".venv/Scripts/python.exe --version",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 0.032,
+    "stdout": "results/project_audit/command_outputs_venv/01_.venv_Scripts_python.exe_--version.stdout.txt",
+    "stderr": "results/project_audit/command_outputs_venv/01_.venv_Scripts_python.exe_--version.stderr.txt"
+  },
+  {
+    "command": ".venv/Scripts/python.exe -m pip --version",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 0.91,
+    "stdout": "results/project_audit/command_outputs_venv/02_.venv_Scripts_python.exe_-m_pip_--version.stdout.txt",
+    "stderr": "results/project_audit/command_outputs_venv/02_.venv_Scripts_python.exe_-m_pip_--version.stderr.txt"
+  },
+  {
+    "command": ".venv/Scripts/python.exe -m pip freeze",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 1.825,
+    "stdout": "results/project_audit/command_outputs_venv/03_.venv_Scripts_python.exe_-m_pip_freeze.stdout.txt",
+    "stderr": "results/project_audit/command_outputs_venv/03_.venv_Scripts_python.exe_-m_pip_freeze.stderr.txt"
+  },
+  {
+    "command": ".venv/Scripts/python.exe scripts/check_environment.py",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 0.668,
+    "stdout": "results/project_audit/command_outputs_venv/04_.venv_Scripts_python.exe_scripts_check_environment.py.stdout.txt",
+    "stderr": "results/project_audit/command_outputs_venv/04_.venv_Scripts_python.exe_scripts_check_environment.py.stderr.txt"
+  },
+  {
+    "command": ".venv/Scripts/python.exe -m compileall app src scripts",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 0.181,
+    "stdout": "results/project_audit/command_outputs_venv/05_.venv_Scripts_python.exe_-m_compileall_app.stdout.txt",
+    "stderr": "results/project_audit/command_outputs_venv/05_.venv_Scripts_python.exe_-m_compileall_app.stderr.txt"
+  },
+  {
+    "command": ".venv/Scripts/python.exe -m pytest -q",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 96.617,
+    "stdout": "results/project_audit/command_outputs_venv/06_.venv_Scripts_python.exe_-m_pytest_-q.stdout.txt",
+    "stderr": "results/project_audit/command_outputs_venv/06_.venv_Scripts_python.exe_-m_pytest_-q.stderr.txt"
+  },
+  {
+    "command": ".venv/Scripts/python.exe scripts/check_environment.py",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 0.957,
+    "stdout": "results/project_audit/command_outputs_venv/07_.venv_Scripts_python.exe_scripts_check_environment.py.stdout.txt",
+    "stderr": "results/project_audit/command_outputs_venv/07_.venv_Scripts_python.exe_scripts_check_environment.py.stderr.txt"
+  },
+  {
+    "command": ".venv/Scripts/python.exe scripts/smoke_test_app.py --timeout 30 --output-dir results/project_audit/command_outputs_venv/app_smoke_test",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 29.267,
+    "stdout": "results/project_audit/command_outputs_venv/08_.venv_Scripts_python.exe_scripts_smoke_test_app.py_--timeout_30.stdout.txt",
+    "stderr": "results/project_audit/command_outputs_venv/08_.venv_Scripts_python.exe_scripts_smoke_test_app.py_--timeout_30.stderr.txt"
+  },
+  {
+    "command": ".venv/Scripts/python.exe scripts/run_functional_test.py --output-dir results/project_audit/command_outputs_venv/end_to_end",
+    "returncode": 0,
+    "status": "PASS",
+    "duration_seconds": 23.444,
+    "stdout": "results/project_audit/command_outputs_venv/09_.venv_Scripts_python.exe_scripts_run_functional_test.py_--output-dir_results_project_audit_command_outputs_venv_end_to_end.stdout.txt",
+    "stderr": "results/project_audit/command_outputs_venv/09_.venv_Scripts_python.exe_scripts_run_functional_test.py_--output-dir_results_project_audit_command_outputs_venv_end_to_end.stderr.txt"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "class_count": 5,
+  "discrepancies": [
+    {
+      "file_a": "results/vision/resultados_1_baseline/run_summary.json",
+      "file_b": "archive_original metrics",
+      "possible_cause": "R1 usa la validacion reconciliada del checkpoint porque los valores altos archivados fueron marcados como obsoletos.",
+      "status": "resuelto",
+      "value_a": "validation reconciliada",
+      "value_b": "valor obsoleto"
+    }
+  ],
+  "expected_test_rows": 522,
+  "r1_support_total": 522,
+  "r2_support_total": 522,
+  "status": "PASS_WITH_NOTES"
+}

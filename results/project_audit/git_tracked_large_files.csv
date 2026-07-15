@@ -1,0 +1,5 @@
+path,size_bytes,size_mb,category,risk
+results/vision/resultados_2_mejoras/03_recorte_y_calidad/r2_original_vs_recorte.png,2580780,2.4612,resultado,large_tracked
+results/vision/resultados_2_mejoras/04_analisis_errores/r2_errores_broken.png,1816454,1.7323,resultado,large_tracked
+results/vision/resultados_2_mejoras/03_recorte_y_calidad/r2_galeria_recortes.png,1723125,1.6433,resultado,large_tracked
+results/vision/resultados_2_mejoras/04_analisis_errores/r2_errores_intact.png,1707891,1.6288,resultado,large_tracked
