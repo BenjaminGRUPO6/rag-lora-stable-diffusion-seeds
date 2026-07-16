@@ -6,6 +6,7 @@ from src.vision.model import (
     create_model,
     freeze_backbone,
     get_parameter_groups,
+    unfreeze_layer3_layer4_and_head,
     unfreeze_layer4_and_head,
 )
 
@@ -55,3 +56,14 @@ def test_freeze_and_parameter_groups_train_head_then_layer4() -> None:
     )
     assert [group["name"] for group in groups] == ["layer4", "head"]
     assert [group["lr"] for group in groups] == [0.0001, 0.001]
+
+    unfreeze_layer3_layer4_and_head(model)
+    assert all(parameter.requires_grad for parameter in model.layer3.parameters())
+    assert all(parameter.requires_grad for parameter in model.layer4.parameters())
+    assert all(parameter.requires_grad for parameter in model.fc.parameters())
+    wider_groups = get_parameter_groups(
+        model,
+        learning_rate_head=0.001,
+        learning_rate_backbone=0.0001,
+    )
+    assert [group["name"] for group in wider_groups] == ["layer3", "layer4", "head"]

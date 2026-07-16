@@ -1,0 +1,7 @@
+id,severity,area,finding,evidence,status
+RISK-001,alto,entorno,Python global no tiene dependencias; usar .venv.,command_outputs/11_*,abierto
+RISK-002,medio,git,Cambios locales preexistentes y muchos resultados no versionados.,git status inicial/final,abierto
+RISK-003,medio,metricas,R1 incluye reconciliacion por metrica de validacion obsoleta archivada.,final_metrics.json limitations,documentado
+RISK-004,medio,lora,Hardware y comparaciones base-vs-adaptado no verificadas.,lora_evidence.json,abierto
+RISK-005,bajo,demo,Prueba funcional predijo skin_damaged para imagen broken; pipeline pasa pero existe error puntual.,functional_test.json,abierto
+RISK-006,informativo,almacenamiento,Checkpoints y recuperaciones ocupan espacio.,largest_files.csv,documentado

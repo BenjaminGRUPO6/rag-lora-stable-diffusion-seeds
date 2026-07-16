@@ -1,47 +1,57 @@
-# SeedCare-RAG LoRA
+﻿# SeedCare-RAG LoRA
 
 Sistema multimodal para clasificar defectos visibles en semillas de soja, recuperar evidencia tecnica mediante RAG y documentar un experimento generativo con Stable Diffusion 1.5 ajustado con LoRA.
 
 La herramienta es de apoyo visual y documental. No es diagnostica, no identifica patogenos y no reemplaza una evaluacion especializada o de laboratorio. La categoria `spotted` se usa solo como categoria visual.
 
+## Resultados 2 - comparacion EfficientNet-B0 vs ResNet18 V2
+
+Se corrigio un cuello de botella del entrenamiento EfficientNet-B0: el recorte automatico y la calidad visual se ejecutaban dentro del `__getitem__`, repitiendo segmentacion, morfologia, componentes conectados y blur por imagen y por epoca. La correccion precalcula crops regenerables en `data/cache/vision_crops/`, desactiva calidad durante entrenamiento y mantiene fallback al crop cuadrado de la imagen original si falta un crop.
+
+Benchmark DataLoader en NVIDIA GeForce GTX 1050, 128 imagenes, batch 8:
+
+- recorte en tiempo real, `num_workers=0`: 3.85 imagenes/s;
+- cache, `num_workers=0`: 105.60 imagenes/s;
+- cache, `num_workers=2`: 5.35 imagenes/s en Windows.
+
+La configuracion elegida fue batch 8, `num_workers=0`, `pin_memory=true`, transferencias `non_blocking` en CUDA y cache activa. EfficientNet-B0 entreno 25 epocas con seed 42 y obtuvo validation macro-F1 0.899532 y test macro-F1 0.868306. La comparacion controlada mantuvo ResNet18 V2 frente a EfficientNet-B0 por validation macro-F1. La configuracion final de produccion agrega TTA ligera seleccionada por validation, con validation macro-F1 0.926503 y test macro-F1 final 0.916867. Artefactos: `results/vision/resultados_2_mejoras/final/`.
+
 ## Problema empresarial
 
 El control de calidad de semillas requiere revisar atributos visibles como roturas, inmadurez, manchas, dano de cubierta y semillas aparentemente intactas. En escenarios operativos, esa revision puede ser lenta, variable entre evaluadores y dificil de documentar con evidencia tecnica. El proyecto propone un flujo reproducible que:
 
-<<<<<<< HEAD
 - estima una categoria visual desde una fotografia individual de semilla de soja;
 - recupera fragmentos documentales relacionados con calidad, almacenamiento, manejo y posibles factores descritos en fuentes tecnicas;
 - genera un informe preliminar con confianza, fuentes y limitaciones;
 - conserva evidencia de entrenamiento de un adaptador LoRA para exploracion de datos sinteticos.
-=======
-Como evidencia de entrenamiento generativo, Stable Diffusion 1.5 se ajustará mediante LoRA con un subconjunto documentado del dataset. Las imágenes sintéticas serán revisadas y se usarán únicamente en el conjunto de entrenamiento para comparar el desempeño del clasificador con y sin datos sintéticos.
 
 ## Estado actual
 
 - Repositorio y estructura: preparados.
 - Dataset: **completado**.
-- Baseline ResNet18: **entrenado**; metricas por reconciliar.
-- Stable Diffusion 1.5 + LoRA: **entrenado**; evidencia por consolidar.
+- Baseline ResNet18: **entrenado y reconciliado**.
+- Resultados 2: **consolidado**; produccion seleccionada como `resnet18_v2_tta_light`.
+- Stable Diffusion 1.5 + LoRA: **entrenado**; evidencia parcial consolidada.
 - Experimento B con imagenes sinteticas en ResNet18: **aplazado** como trabajo futuro.
 - Corpus documental e indice del RAG: **disponibles localmente**.
-- Aplicación Streamlit: **integrada y auditada funcionalmente**.
+- Aplicacion Streamlit: **integrada y auditada funcionalmente**.
 
 ## Dataset principal previsto
 
-- Nombre: Soybean Seeds, versión 6.
+- Nombre: Soybean Seeds, version 6.
 - Fuente: Mendeley Data.
 - DOI: `10.17632/v6vzvfszj6.6`.
-- Total publicado: 5513 imágenes individuales.
+- Total publicado: 5513 imagenes individuales.
 - Clases: `intact`, `spotted`, `immature`, `broken`, `skin_damaged`.
 - Licencia: CC BY 4.0.
 
-La etiqueta `spotted` describe una anomalía visible; no confirma por sí sola hongos o una enfermedad específica.
+La etiqueta `spotted` describe una anomalia visible; no confirma por si sola hongos o una enfermedad especifica.
 
 ## Entrenamientos y evaluacion
 
-1. **Fine-tuning visual:** baseline ResNet18 para clasificar las cinco categorias.
-2. **Stable Diffusion 1.5 + LoRA:** ajuste generativo para evaluar el comportamiento del LoRA entrenado.
-3. **Trabajo futuro:** segundo entrenamiento de ResNet18 con datos sinteticos aceptados despues de revision humana.
+1. **Fine-tuning visual:** baseline ResNet18 y Resultados 2 para clasificar las cinco categorias.
+2. **Stable Diffusion 1.5 + LoRA:** ajuste generativo documentado como evidencia parcial.
+3. **Trabajo futuro:** segundo entrenamiento con datos sinteticos aceptados despues de revision humana.
 
 El RAG no sustituye esos entrenamientos: recupera evidencia documental y fundamenta el informe generado.
 
@@ -57,7 +67,7 @@ Artefactos locales usados como evidencia:
 - Metadata de entrenamiento: `data/lora/train/metadata.jsonl`
 - Notebook de entrenamiento: `notebooks/06_entrenamiento_lora_sd15_colab.ipynb`
 - Pesos locales del adaptador: `models/lora/soybean_sd15/pytorch_lora_weights.safetensors`
-- Evidencia consolidada: `results/lora/`
+- Evidencia consolidada: `results/vision/resultados_2_mejoras/10_lora_generativo/`
 
 Los pesos LoRA son artefactos locales y no deben versionarse en Git. Los reportes consolidados
 registran la evidencia disponible, los faltantes y el estado `PARTIAL` cuando no existan salidas
@@ -78,34 +88,8 @@ Clases utilizadas, en orden:
 4. `broken`
 5. `skin_damaged`
 
-Smoke test en CPU:
-
-```powershell
-python scripts/train_vision_model.py --config configs/vision_config.yaml --smoke-test --device cpu
-```
-
-Entrenamiento real:
-
-```powershell
-python scripts/train_vision_model.py --config configs/vision_config.yaml
-```
-
-Evaluacion final del checkpoint:
-
-```powershell
-python scripts/evaluate_vision_model.py `
-  --config configs/vision_config.yaml `
-  --checkpoint models/vision/resnet18_baseline_best.pt
-```
-
-Resultados esperados:
-
-- Checkpoint: `models/vision/resnet18_baseline_best.pt`
-- Metricas, CSV y graficos: `results/vision/resnet18_baseline/`
-
 Los checkpoints no deben subirse a Git. Las metricas, CSV y graficos seleccionados del
 entrenamiento real pueden versionarse si son necesarios para documentar el experimento.
->>>>>>> fix/end-to-end-functional-audit
 
 ## Arquitectura
 
@@ -138,7 +122,6 @@ py -3.10 -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 pip install -r requirements-core.txt
-<<<<<<< HEAD
 pip install -r requirements-vision.txt
 pip install -r requirements-rag.txt
 pip install -r requirements-app.txt
@@ -149,16 +132,6 @@ Verificacion base:
 ```powershell
 python scripts/check_environment.py
 python -m pytest -q
-```
-
-## Configuracion
-=======
-pip install -r requirements-app.txt
-pip install -r requirements-vision.txt
-pip install -r requirements-rag.txt
-python -m pytest -q
-python scripts/check_environment.py
-python scripts/run_demo.py
 ```
 
 La demo oficial queda activa hasta presionar `Ctrl+C`:
@@ -173,14 +146,11 @@ Tambien puede iniciarse directamente con Streamlit, sin configurar `PYTHONPATH`:
 python -m streamlit run app/streamlit_app.py --server.port 8501
 ```
 
-El unico entrypoint Streamlit mantenido es `app/streamlit_app.py`. El antiguo
-`app/app.py` fue retirado porque al ejecutarse como script sombreaba el paquete
-`app/` y podia provocar `ModuleNotFoundError`. El entrypoint actual inserta la
-raiz del repositorio en `sys.path` antes de importar `app.*` o `src.*`, una
-solucion estable en Windows tanto desde la raiz como desde otro directorio.
+El unico entrypoint Streamlit mantenido es `app/streamlit_app.py`. El entrypoint actual inserta la
+raiz del repositorio en `sys.path` antes de importar `app.*` o `src.*`, una solucion estable en
+Windows tanto desde la raiz como desde otro directorio.
 
-## Primera etapa
->>>>>>> fix/end-to-end-functional-audit
+## Configuracion
 
 Archivos principales:
 
@@ -190,7 +160,8 @@ Archivos principales:
 
 Artefactos locales esperados para ejecutar el sistema completo:
 
-- checkpoint visual: `models/vision/resnet18_baseline_best.pt`;
+- checkpoint visual final: `models/vision/resnet18_v2_best.pt`;
+- configuracion de produccion: `configs/production_vision_model.yaml`;
 - indice RAG: `vector_db/index.faiss` y `vector_db/metadata.json`;
 - documentos aceptados: `data/documents/accepted/`;
 - metadatos documentales: `data/metadata/document_sources.csv`.
@@ -245,7 +216,7 @@ python scripts/analyze_seed.py `
 
 ## Resultados reales
 
-Fuente consolidada: `results/system/final_metrics.json`, generado el `2026-07-13T09:42:47Z`.
+Fuente consolidada de vision: `results/vision/resultados_2_mejoras/final/final_metrics.json`.
 
 ### Dataset
 
@@ -256,31 +227,20 @@ Fuente consolidada: `results/system/final_metrics.json`, generado el `2026-07-13
 - Split: train 4179, validation 522, test 522.
 - Imagenes sinteticas en train: 0.
 
-### ResNet18
+### Vision: Resultados 1 vs Resultados 2 final
 
-El baseline ResNet18 fue entrenado y reconciliado contra el checkpoint local `models/vision/resnet18_baseline_best.pt`.
+La seleccion final se hace por validation macro-F1. El split `test` se reporta solo como evaluacion final.
 
-Metricas canonicas en test (`results/vision/resnet18_baseline/metrics_test.json`):
+| configuracion | validation macro-F1 | test macro-F1 | test accuracy | decision |
+| --- | ---: | ---: | ---: | --- |
+| Resultados 1 - ResNet18 baseline | 0.660513 | 0.625955 | 0.670498 | no seleccionado |
+| Resultados 2 - ResNet18 V2 | 0.920701 | 0.903329 | 0.904215 | no seleccionado |
+| Resultados 2 - EfficientNet-B0 | 0.899532 | 0.868306 | 0.869732 | no seleccionado |
+| Resultados 2 final - ResNet18 V2 + TTA light | 0.926503 | 0.916867 | 0.917625 | seleccionado |
 
-| metrica | valor |
-| --- | ---: |
-| muestras test | 522 |
-| accuracy | 0.670498 |
-| macro-F1 | 0.625955 |
-| macro precision | 0.741193 |
-| macro recall | 0.650534 |
+Mejora de Resultados 2 final frente a Resultados 1 en test macro-F1: 0.290912 absoluta, 46.47% relativa. No se afirma mejora de latencia frente a R1 porque R1 no registro latencia comparable.
 
-F1 por clase:
-
-| clase | F1 |
-| --- | ---: |
-| intact | 0.296296 |
-| spotted | 0.724409 |
-| immature | 0.688406 |
-| broken | 0.641975 |
-| skin_damaged | 0.778689 |
-
-El reporte `results/vision/resnet18_baseline/reconciliation_report.md` declara como obsoleto un valor anterior alto de `test_macro_f1`; por eso no se usa como resultado final.
+El reporte `results/vision/resultados_1_baseline/r1_reconciliation_report.md` declara como obsoleto un valor anterior alto de `test_macro_f1`; por eso Resultados 1 usa `macro-F1=0.625955`.
 
 ### RAG
 
@@ -325,7 +285,7 @@ El primer caso incluye costo de carga en frio y eleva el promedio.
 
 - El sistema clasifica categorias visuales, no diagnostica enfermedades ni hongos.
 - `spotted` no significa diagnostico fungico; solo indica una alteracion visible.
-- La precision del clasificador no es homogenea: `intact` tiene F1 bajo en test.
+- La precision del clasificador no es perfecta; persisten errores por clase y casos de alta confianza incorrecta.
 - El RAG depende de seis fuentes documentales locales y su revision humana esta pendiente.
 - Algunas fuentes del corpus tienen metadatos bibliograficos incompletos; no se completan con suposiciones.
 - La evaluacion RAG mide recuperacion, no calidad de respuesta de un LLM.

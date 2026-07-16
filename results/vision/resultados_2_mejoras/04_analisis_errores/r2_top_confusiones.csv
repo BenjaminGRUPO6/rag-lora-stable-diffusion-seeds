@@ -1,0 +1,15 @@
+true_label,predicted_label,count,rate_within_true_label
+intact,immature,47,0.5164835164835165
+broken,spotted,27,0.27
+broken,skin_damaged,17,0.17
+intact,skin_damaged,13,0.14285714285714285
+skin_damaged,immature,11,0.09734513274336283
+intact,spotted,10,0.10989010989010989
+immature,spotted,8,0.07142857142857142
+immature,skin_damaged,6,0.05357142857142857
+broken,immature,5,0.05
+spotted,broken,5,0.04716981132075472
+skin_damaged,spotted,4,0.035398230088495575
+spotted,skin_damaged,4,0.03773584905660377
+skin_damaged,broken,2,0.017699115044247787
+spotted,immature,1,0.009433962264150943

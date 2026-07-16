@@ -1,0 +1,32 @@
+{
+  "cache_dir": "data/cache/vision_crops",
+  "created": 0,
+  "elapsed_seconds": 0.14538650002214126,
+  "existing": 192,
+  "failed": 0,
+  "fallback": 0,
+  "image_size": 224,
+  "splits": {
+    "test": {
+      "created": 0,
+      "existing": 64,
+      "failed": 0,
+      "fallback": 0,
+      "total": 64
+    },
+    "train": {
+      "created": 0,
+      "existing": 64,
+      "failed": 0,
+      "fallback": 0,
+      "total": 64
+    },
+    "validation": {
+      "created": 0,
+      "existing": 64,
+      "failed": 0,
+      "fallback": 0,
+      "total": 64
+    }
+  }
+}

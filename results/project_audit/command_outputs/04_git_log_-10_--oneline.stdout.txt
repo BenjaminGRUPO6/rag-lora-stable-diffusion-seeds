@@ -1,0 +1,10 @@
+2833d21 (HEAD -> feature/vision-v2-results-2) Merge branch 'main' of https://github.com/BenjaminGRUPO6/rag-lora-stable-diffusion-seeds into feature/vision-v2-results-2
+fc086b6 (origin/feature/vision-v2-results-2) version mejorada
+3b0c1c0 correcciones
+6169f9c versiÃ³n nueva
+a6c3647 mejoras....
+385ca79 correcciones ....
+191b2de (origin/main, origin/HEAD, main) Merge pull request #8 from BenjaminGRUPO6/feature/vision-v2-results-2
+269a77d versiÃ³n 2
+e3a2a78 fix: reconcile canonical results 1 metrics
+fb43575  prepare results 1 and results 2 experiment structure

@@ -1,0 +1,19 @@
+{
+  "checkpoint": "models/vision/resnet18_v2_best.pt",
+  "class_names": [
+    "intact",
+    "spotted",
+    "immature",
+    "broken",
+    "skin_damaged"
+  ],
+  "evaluated_on": "test",
+  "generated_at_utc": "2026-07-14T01:57:09+00:00",
+  "method": "temperature_scaling",
+  "optimized_on": "validation",
+  "temperature": 1.1782619953155518,
+  "test_nll_after": 0.21889737248420715,
+  "test_nll_before": 0.2210235595703125,
+  "validation_nll_after": 0.2183874249458313,
+  "validation_nll_before": 0.22253525257110596
+}

@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "D:\Users\Luis\Documents\GitHub\rag-lora-stable-diffusion-seeds\scripts\smoke_test_app.py", line 14, in <module>
+    from streamlit.testing.v1 import AppTest
+ModuleNotFoundError: No module named 'streamlit'

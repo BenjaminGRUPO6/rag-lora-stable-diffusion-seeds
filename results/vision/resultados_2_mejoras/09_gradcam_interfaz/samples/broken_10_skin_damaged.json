@@ -1,0 +1,16 @@
+{
+  "probabilities": {
+    "intact": 2.716166704885836e-07,
+    "spotted": 8.485633770760614e-06,
+    "immature": 3.2520222248422215e-07,
+    "broken": 0.0194398555904626,
+    "skin_damaged": 0.9805511236190796
+  },
+  "gradcam": {
+    "status": "ok",
+    "message": "Grad-CAM generado como explicacion aproximada del modelo.",
+    "target_class_index": 4,
+    "target_layer_name": "layer4.1.conv2",
+    "intensity": 0.26334384083747864
+  }
+}

@@ -1,0 +1,13 @@
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'PROJECT_STATUS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'app/streamlit_app.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/FINAL_RESULTS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/VISION_V2_EXPERIMENT_PLAN.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'results/vision/RESULTS_INDEX.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/pipelines/analyze_seed.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/vision/model.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/vision/preprocessing.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/vision/train_v2.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_app_startup.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/test_train_resnet18_v2.py', LF will be replaced by CRLF the next time Git touches it

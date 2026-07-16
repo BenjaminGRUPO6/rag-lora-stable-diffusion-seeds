@@ -1,0 +1,52 @@
+{
+  "aggregation": "mean_logits",
+  "evaluated_once_after_validation_selection": true,
+  "generated_at_utc": "2026-07-14T02:25:33+00:00",
+  "latency_seconds_per_image": 0.2872927122605207,
+  "latency_seconds_total": 149.96679579999181,
+  "metrics": {
+    "accuracy": 0.9176245210727969,
+    "macro_f1": 0.9168669642726247,
+    "macro_precision": 0.9183318667782963,
+    "macro_recall": 0.9181644966321038,
+    "per_class": {
+      "broken": {
+        "f1": 0.9090909090909091,
+        "precision": 0.9183673469387755,
+        "recall": 0.9,
+        "support": 100
+      },
+      "immature": {
+        "f1": 0.9150943396226415,
+        "precision": 0.97,
+        "recall": 0.8660714285714286,
+        "support": 112
+      },
+      "intact": {
+        "f1": 0.8958333333333334,
+        "precision": 0.8514851485148515,
+        "recall": 0.945054945054945,
+        "support": 91
+      },
+      "skin_damaged": {
+        "f1": 0.9316239316239316,
+        "precision": 0.9008264462809917,
+        "recall": 0.9646017699115044,
+        "support": 113
+      },
+      "spotted": {
+        "f1": 0.9326923076923077,
+        "precision": 0.9509803921568627,
+        "recall": 0.9150943396226415,
+        "support": 106
+      }
+    },
+    "recall_broken": 0.9,
+    "recall_intact": 0.945054945054945
+  },
+  "policy": "light",
+  "split": "test",
+  "temperature": 1.1193019151687622,
+  "tta_enabled": true,
+  "views": 2
+}

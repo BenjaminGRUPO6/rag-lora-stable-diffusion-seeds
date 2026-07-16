@@ -1,0 +1,62 @@
+{
+  "check_environment_global": "FAIL",
+  "check_environment_venv": "PASS",
+  "compileall": "PASS",
+  "functional_test": {
+    "checkpoint_available": true,
+    "class_valid": true,
+    "confidence": 0.4687288701534271,
+    "confidence_valid": true,
+    "errors": [],
+    "image_path": "data/processed/test/broken/10.jpg",
+    "model_loaded": true,
+    "no_forbidden_diagnostic": true,
+    "no_private_paths": true,
+    "output_json": "results/project_audit/command_outputs_venv/end_to_end/functional_test.json",
+    "output_markdown": "results/project_audit/command_outputs_venv/end_to_end/functional_test.md",
+    "passed": true,
+    "prediction": "skin_damaged",
+    "probabilities_sum": 0.9999999664723873,
+    "probabilities_valid": true,
+    "rag_status": "faiss",
+    "report_structured": true,
+    "sources_count": 5,
+    "sources_real_when_available": true,
+    "tensor_created": true
+  },
+  "pytest": {
+    "failed": 0,
+    "passed": 130,
+    "status": "PASS",
+    "warnings": 1
+  },
+  "smoke_test": {
+    "command": [
+      "python",
+      "-m",
+      "streamlit",
+      "run",
+      "app/streamlit_app.py",
+      "--server.headless",
+      "true",
+      "--server.address",
+      "127.0.0.1",
+      "--server.port",
+      "63442",
+      "--browser.gatherUsageStats",
+      "false"
+    ],
+    "forbidden_log_found": false,
+    "http_ok": true,
+    "http_status": 200,
+    "port": 63442,
+    "port_listening": true,
+    "process_alive": true,
+    "rendered_title_found": true,
+    "status": "PASS",
+    "stderr_log": "results/project_audit/command_outputs_venv/app_smoke_test/stderr.log",
+    "stdout_log": "results/project_audit/command_outputs_venv/app_smoke_test/stdout.log",
+    "streamlit_exceptions": 0
+  },
+  "status": "PASS_IN_VENV"
+}

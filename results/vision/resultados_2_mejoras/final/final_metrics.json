@@ -1,0 +1,613 @@
+{
+  "artifacts": [
+    "results/vision/resultados_2_mejoras/final/final_metrics.json",
+    "results/vision/resultados_2_mejoras/final/final_comparison.csv",
+    "results/vision/resultados_2_mejoras/final/final_report.md",
+    "results/vision/resultados_2_mejoras/final/r1_vs_r2_dashboard.png",
+    "results/vision/resultados_2_mejoras/final/r1_vs_r2_metricas_globales.png",
+    "results/vision/resultados_2_mejoras/final/r1_vs_r2_f1_por_clase.png",
+    "results/vision/resultados_2_mejoras/final/r1_vs_r2_confianza.png",
+    "results/vision/resultados_2_mejoras/final/r1_vs_r2_latencia.png",
+    "results/vision/resultados_2_mejoras/final/r2_sistema_final.png"
+  ],
+  "candidates": [
+    {
+      "architecture": "resnet18",
+      "checkpoint": "models/vision/resnet18_baseline_best.pt",
+      "config_source": "results/vision/resultados_1_baseline/run_config.yaml",
+      "latency_cuda_mean_ms": null,
+      "latency_mean_ms": null,
+      "latency_seconds_per_image": null,
+      "mean_confidence": 0.6072726815482209,
+      "model_id": "resnet18_baseline",
+      "notes": "Validation uses reconciled checkpoint metadata; archived validation metrics contained a stale higher value.",
+      "result_group": "Resultados 1",
+      "seed": 42,
+      "temperature": null,
+      "test_metrics": {
+        "accuracy": 0.6704980842911877,
+        "macro_f1": 0.6259550750897566,
+        "macro_precision": 0.7411933804013591,
+        "macro_recall": 0.6505341908884237,
+        "per_class": {
+          "broken": {
+            "f1": 0.6419753086419753,
+            "precision": 0.8387096774193549,
+            "recall": 0.52,
+            "support": 100
+          },
+          "immature": {
+            "f1": 0.6884057971014492,
+            "precision": 0.5792682926829268,
+            "recall": 0.8482142857142857,
+            "support": 112
+          },
+          "intact": {
+            "f1": 0.2962962962962963,
+            "precision": 0.9411764705882353,
+            "recall": 0.17582417582417584,
+            "support": 91
+          },
+          "skin_damaged": {
+            "f1": 0.7786885245901639,
+            "precision": 0.7251908396946565,
+            "recall": 0.8407079646017699,
+            "support": 113
+          },
+          "spotted": {
+            "f1": 0.7244094488188977,
+            "precision": 0.6216216216216216,
+            "recall": 0.8679245283018868,
+            "support": 106
+          }
+        }
+      },
+      "test_source": "results/vision/resultados_1_baseline/metrics_test.json",
+      "tta_policy": null,
+      "tta_views": null,
+      "validation_macro_f1": 0.6605130367624343,
+      "validation_source": "results/vision/resultados_1_baseline/run_summary.json"
+    },
+    {
+      "architecture": "resnet18",
+      "checkpoint": "models\\vision\\resnet18_v2_best.pt",
+      "config_source": "results/vision/resultados_2_mejoras/05_resnet18_v2/run_config.yaml",
+      "latency_cuda_mean_ms": 7.052474995725788,
+      "latency_mean_ms": 7.052474995725788,
+      "latency_seconds_per_image": null,
+      "mean_confidence": 0.9301087074124493,
+      "model_id": "resnet18_v2",
+      "notes": "",
+      "result_group": "Resultados 2",
+      "seed": 42,
+      "temperature": null,
+      "test_metrics": {
+        "accuracy": 0.9042145593869731,
+        "macro_f1": 0.9033285077282003,
+        "macro_precision": 0.9042264905962385,
+        "macro_recall": 0.9046576406562215,
+        "per_class": {
+          "broken": {
+            "f1": 0.898989898989899,
+            "precision": 0.9081632653061225,
+            "recall": 0.89,
+            "support": 100
+          },
+          "immature": {
+            "f1": 0.8962264150943396,
+            "precision": 0.95,
+            "recall": 0.8482142857142857,
+            "support": 112
+          },
+          "intact": {
+            "f1": 0.8795811518324608,
+            "precision": 0.84,
+            "recall": 0.9230769230769231,
+            "support": 91
+          },
+          "skin_damaged": {
+            "f1": 0.9224137931034483,
+            "precision": 0.8991596638655462,
+            "recall": 0.9469026548672567,
+            "support": 113
+          },
+          "spotted": {
+            "f1": 0.919431279620853,
+            "precision": 0.9238095238095239,
+            "recall": 0.9150943396226415,
+            "support": 106
+          }
+        }
+      },
+      "test_source": "results/vision/resultados_2_mejoras/05_resnet18_v2/metrics_test.json",
+      "tta_policy": null,
+      "tta_views": null,
+      "validation_macro_f1": 0.9207006744711761,
+      "validation_source": "results/vision/resultados_2_mejoras/05_resnet18_v2/metrics_validation.json"
+    },
+    {
+      "architecture": "efficientnet_b0",
+      "checkpoint": "models\\vision\\efficientnet_b0_v2_best.pt",
+      "config_source": "results/vision/resultados_2_mejoras/08_comparacion_modelos/efficientnet_run_config.yaml",
+      "latency_cuda_mean_ms": 19.764045006013475,
+      "latency_mean_ms": 19.764045006013475,
+      "latency_seconds_per_image": null,
+      "mean_confidence": 0.8924899280527999,
+      "model_id": "efficientnet_b0_v2",
+      "notes": "Not selected because validation macro-F1 is lower than ResNet18 V2.",
+      "result_group": "Resultados 2",
+      "seed": 42,
+      "temperature": null,
+      "test_metrics": {
+        "accuracy": 0.8697318007662835,
+        "macro_f1": 0.8683055921225626,
+        "macro_precision": 0.8715540157355575,
+        "macro_recall": 0.869925644817697,
+        "per_class": {
+          "broken": {
+            "f1": 0.8342245989304813,
+            "precision": 0.896551724137931,
+            "recall": 0.78,
+            "support": 100
+          },
+          "immature": {
+            "f1": 0.8732394366197183,
+            "precision": 0.9207920792079208,
+            "recall": 0.8303571428571429,
+            "support": 112
+          },
+          "intact": {
+            "f1": 0.8426395939086294,
+            "precision": 0.7830188679245284,
+            "recall": 0.9120879120879121,
+            "support": 91
+          },
+          "skin_damaged": {
+            "f1": 0.8755364806866953,
+            "precision": 0.85,
+            "recall": 0.9026548672566371,
+            "support": 113
+          },
+          "spotted": {
+            "f1": 0.9158878504672897,
+            "precision": 0.9074074074074074,
+            "recall": 0.9245283018867925,
+            "support": 106
+          }
+        }
+      },
+      "test_source": "results/vision/resultados_2_mejoras/08_comparacion_modelos/efficientnet_metrics_test.json",
+      "tta_policy": null,
+      "tta_views": null,
+      "validation_macro_f1": 0.8995323565323565,
+      "validation_source": "results/vision/resultados_2_mejoras/08_comparacion_modelos/efficientnet_metrics_validation.json"
+    },
+    {
+      "architecture": "resnet18",
+      "checkpoint": "models/vision/resnet18_v2_best.pt",
+      "config_source": "configs/vision_v2_resnet18.yaml",
+      "latency_cuda_mean_ms": null,
+      "latency_mean_ms": null,
+      "latency_seconds_per_image": 0.2872927122605207,
+      "mean_confidence": 0.9243032268294886,
+      "model_id": "resnet18_v2_tta_light",
+      "notes": "Final inference configuration selected by validation macro-F1 before test reporting.",
+      "result_group": "Resultados 2",
+      "seed": 42,
+      "temperature": 1.1193019151687622,
+      "test_metrics": {
+        "accuracy": 0.9176245210727969,
+        "macro_f1": 0.9168669642726247,
+        "macro_precision": 0.9183318667782963,
+        "macro_recall": 0.9181644966321038,
+        "per_class": {
+          "broken": {
+            "f1": 0.9090909090909091,
+            "precision": 0.9183673469387755,
+            "recall": 0.9,
+            "support": 100
+          },
+          "immature": {
+            "f1": 0.9150943396226415,
+            "precision": 0.97,
+            "recall": 0.8660714285714286,
+            "support": 112
+          },
+          "intact": {
+            "f1": 0.8958333333333334,
+            "precision": 0.8514851485148515,
+            "recall": 0.945054945054945,
+            "support": 91
+          },
+          "skin_damaged": {
+            "f1": 0.9316239316239316,
+            "precision": 0.9008264462809917,
+            "recall": 0.9646017699115044,
+            "support": 113
+          },
+          "spotted": {
+            "f1": 0.9326923076923077,
+            "precision": 0.9509803921568627,
+            "recall": 0.9150943396226415,
+            "support": 106
+          }
+        },
+        "recall_broken": 0.9,
+        "recall_intact": 0.945054945054945
+      },
+      "test_source": "results/vision/resultados_2_mejoras/07_tta/tta_test_results.json",
+      "tta_policy": "light",
+      "tta_views": 2,
+      "validation_macro_f1": 0.9265034540520689,
+      "validation_source": "results/vision/resultados_2_mejoras/07_tta/selected_tta_policy.json"
+    }
+  ],
+  "final_model": {
+    "architecture": "resnet18",
+    "checkpoint": "models/vision/resnet18_v2_best.pt",
+    "config": "configs/vision_v2_resnet18.yaml",
+    "model_id": "resnet18_v2_tta_light",
+    "seed": 42,
+    "temperature": 1.1193019151687622,
+    "test_accuracy": 0.9176245210727969,
+    "test_macro_f1": 0.9168669642726247,
+    "tta_policy": "light",
+    "tta_views": 2,
+    "validation_macro_f1": 0.9265034540520689
+  },
+  "generated_at_utc": "2026-07-14T06:08:55.358452+00:00",
+  "improvement_vs_resultados_1": {
+    "test_accuracy": {
+      "absolute": 0.24712643678160917,
+      "percent": 36.857142857142854
+    },
+    "test_macro_f1": {
+      "absolute": 0.29091188918286814,
+      "percent": 46.47488306427644
+    },
+    "validation_macro_f1": {
+      "absolute": 0.2659904172896346,
+      "percent": 40.270275147544574
+    }
+  },
+  "limitations": [
+    "R1 usa la validacion reconciliada del checkpoint porque los valores altos archivados fueron marcados como obsoletos.",
+    "R1 no registro latencia comparable, por lo que no se afirma mejora de latencia frente a R1.",
+    "TTA mejora la validation macro-F1, pero aumenta la latencia de inferencia de extremo a extremo.",
+    "Las metricas de test son evaluacion final; no se usaron para seleccionar la configuracion de produccion.",
+    "`spotted` es una categoria visual y no un diagnostico de hongo.",
+    "Las imagenes sinteticas no se incorporaron al train del clasificador; cualquier uso futuro requiere revision humana."
+  ],
+  "r2_without_tta": {
+    "architecture": "resnet18",
+    "checkpoint": "models\\vision\\resnet18_v2_best.pt",
+    "config_source": "results/vision/resultados_2_mejoras/05_resnet18_v2/run_config.yaml",
+    "latency_cuda_mean_ms": 7.052474995725788,
+    "latency_mean_ms": 7.052474995725788,
+    "latency_seconds_per_image": null,
+    "mean_confidence": 0.9301087074124493,
+    "model_id": "resnet18_v2",
+    "notes": "",
+    "result_group": "Resultados 2",
+    "seed": 42,
+    "temperature": null,
+    "test_metrics": {
+      "accuracy": 0.9042145593869731,
+      "macro_f1": 0.9033285077282003,
+      "macro_precision": 0.9042264905962385,
+      "macro_recall": 0.9046576406562215,
+      "per_class": {
+        "broken": {
+          "f1": 0.898989898989899,
+          "precision": 0.9081632653061225,
+          "recall": 0.89,
+          "support": 100
+        },
+        "immature": {
+          "f1": 0.8962264150943396,
+          "precision": 0.95,
+          "recall": 0.8482142857142857,
+          "support": 112
+        },
+        "intact": {
+          "f1": 0.8795811518324608,
+          "precision": 0.84,
+          "recall": 0.9230769230769231,
+          "support": 91
+        },
+        "skin_damaged": {
+          "f1": 0.9224137931034483,
+          "precision": 0.8991596638655462,
+          "recall": 0.9469026548672567,
+          "support": 113
+        },
+        "spotted": {
+          "f1": 0.919431279620853,
+          "precision": 0.9238095238095239,
+          "recall": 0.9150943396226415,
+          "support": 106
+        }
+      }
+    },
+    "test_source": "results/vision/resultados_2_mejoras/05_resnet18_v2/metrics_test.json",
+    "tta_policy": null,
+    "tta_views": null,
+    "validation_macro_f1": 0.9207006744711761,
+    "validation_source": "results/vision/resultados_2_mejoras/05_resnet18_v2/metrics_validation.json"
+  },
+  "resultados_1": {
+    "architecture": "resnet18",
+    "checkpoint": "models/vision/resnet18_baseline_best.pt",
+    "config_source": "results/vision/resultados_1_baseline/run_config.yaml",
+    "latency_cuda_mean_ms": null,
+    "latency_mean_ms": null,
+    "latency_seconds_per_image": null,
+    "mean_confidence": 0.6072726815482209,
+    "model_id": "resnet18_baseline",
+    "notes": "Validation uses reconciled checkpoint metadata; archived validation metrics contained a stale higher value.",
+    "result_group": "Resultados 1",
+    "seed": 42,
+    "temperature": null,
+    "test_metrics": {
+      "accuracy": 0.6704980842911877,
+      "macro_f1": 0.6259550750897566,
+      "macro_precision": 0.7411933804013591,
+      "macro_recall": 0.6505341908884237,
+      "per_class": {
+        "broken": {
+          "f1": 0.6419753086419753,
+          "precision": 0.8387096774193549,
+          "recall": 0.52,
+          "support": 100
+        },
+        "immature": {
+          "f1": 0.6884057971014492,
+          "precision": 0.5792682926829268,
+          "recall": 0.8482142857142857,
+          "support": 112
+        },
+        "intact": {
+          "f1": 0.2962962962962963,
+          "precision": 0.9411764705882353,
+          "recall": 0.17582417582417584,
+          "support": 91
+        },
+        "skin_damaged": {
+          "f1": 0.7786885245901639,
+          "precision": 0.7251908396946565,
+          "recall": 0.8407079646017699,
+          "support": 113
+        },
+        "spotted": {
+          "f1": 0.7244094488188977,
+          "precision": 0.6216216216216216,
+          "recall": 0.8679245283018868,
+          "support": 106
+        }
+      }
+    },
+    "test_source": "results/vision/resultados_1_baseline/metrics_test.json",
+    "tta_policy": null,
+    "tta_views": null,
+    "validation_macro_f1": 0.6605130367624343,
+    "validation_source": "results/vision/resultados_1_baseline/run_summary.json"
+  },
+  "resultados_2": {
+    "architecture": "resnet18",
+    "checkpoint": "models/vision/resnet18_v2_best.pt",
+    "config_source": "configs/vision_v2_resnet18.yaml",
+    "latency_cuda_mean_ms": null,
+    "latency_mean_ms": null,
+    "latency_seconds_per_image": 0.2872927122605207,
+    "mean_confidence": 0.9243032268294886,
+    "model_id": "resnet18_v2_tta_light",
+    "notes": "Final inference configuration selected by validation macro-F1 before test reporting.",
+    "result_group": "Resultados 2",
+    "seed": 42,
+    "temperature": 1.1193019151687622,
+    "test_metrics": {
+      "accuracy": 0.9176245210727969,
+      "macro_f1": 0.9168669642726247,
+      "macro_precision": 0.9183318667782963,
+      "macro_recall": 0.9181644966321038,
+      "per_class": {
+        "broken": {
+          "f1": 0.9090909090909091,
+          "precision": 0.9183673469387755,
+          "recall": 0.9,
+          "support": 100
+        },
+        "immature": {
+          "f1": 0.9150943396226415,
+          "precision": 0.97,
+          "recall": 0.8660714285714286,
+          "support": 112
+        },
+        "intact": {
+          "f1": 0.8958333333333334,
+          "precision": 0.8514851485148515,
+          "recall": 0.945054945054945,
+          "support": 91
+        },
+        "skin_damaged": {
+          "f1": 0.9316239316239316,
+          "precision": 0.9008264462809917,
+          "recall": 0.9646017699115044,
+          "support": 113
+        },
+        "spotted": {
+          "f1": 0.9326923076923077,
+          "precision": 0.9509803921568627,
+          "recall": 0.9150943396226415,
+          "support": 106
+        }
+      },
+      "recall_broken": 0.9,
+      "recall_intact": 0.945054945054945
+    },
+    "test_source": "results/vision/resultados_2_mejoras/07_tta/tta_test_results.json",
+    "tta_policy": "light",
+    "tta_views": 2,
+    "validation_macro_f1": 0.9265034540520689,
+    "validation_source": "results/vision/resultados_2_mejoras/07_tta/selected_tta_policy.json"
+  },
+  "selection_rule": "Select by validation macro-F1 only. Test is reported once as final evaluation.",
+  "tta_delta_vs_r2_without_tta": {
+    "test_macro_f1": {
+      "absolute": 0.013538456544424426,
+      "percent": 1.4987301329028764
+    },
+    "validation_macro_f1": {
+      "absolute": 0.005802779580892814,
+      "percent": 0.6302569056143857
+    }
+  },
+  "validation_checks": {
+    "all_no_synthetic_used": true,
+    "all_same_splits": true,
+    "all_seed_registered_or_not_applicable": true,
+    "all_test_not_modified": true,
+    "auxiliary_experiments": [
+      {
+        "experiment": "02_paridad_inferencia",
+        "no_synthetic_used": true,
+        "notes": "Validation-only parity check; no test decision.",
+        "result_group": "Resultados 2",
+        "same_splits": true,
+        "seed": 42,
+        "seed_registered": true,
+        "test_not_modified": true
+      },
+      {
+        "experiment": "03_recorte_y_calidad",
+        "no_synthetic_used": true,
+        "notes": "Validation-only crop and quality audit.",
+        "result_group": "Resultados 2",
+        "same_splits": true,
+        "seed": 42,
+        "seed_registered": true,
+        "test_not_modified": true
+      },
+      {
+        "experiment": "04_analisis_errores",
+        "no_synthetic_used": true,
+        "notes": "Validation-only error analysis; no labels changed.",
+        "result_group": "Resultados 2",
+        "same_splits": true,
+        "seed": 42,
+        "seed_registered": true,
+        "test_not_modified": true
+      },
+      {
+        "experiment": "06_calibracion",
+        "no_synthetic_used": true,
+        "notes": "Temperature optimized on validation; test metrics reported after calibration.",
+        "result_group": "Resultados 2",
+        "same_splits": true,
+        "seed": 42,
+        "seed_registered": true,
+        "test_not_modified": true
+      },
+      {
+        "experiment": "09_gradcam_interfaz",
+        "no_synthetic_used": true,
+        "notes": "Deterministic post-hoc visualization on existing test images.",
+        "result_group": "Resultados 2",
+        "same_splits": true,
+        "seed": null,
+        "seed_registered": false,
+        "seed_status": "not_applicable",
+        "test_not_modified": true
+      },
+      {
+        "experiment": "10_lora_generativo",
+        "no_synthetic_used": true,
+        "notes": "Generative evidence only; synthetic images were not used by the classifier.",
+        "result_group": "Resultados 2",
+        "same_splits": true,
+        "seed": 42,
+        "seed_registered": true,
+        "test_not_modified": true
+      }
+    ],
+    "dataset_manifest": "data/metadata/dataset_split.csv",
+    "expected_counts": {
+      "test": {
+        "broken": 100,
+        "immature": 112,
+        "intact": 91,
+        "skin_damaged": 113,
+        "spotted": 106
+      },
+      "train": {
+        "broken": 802,
+        "immature": 898,
+        "intact": 732,
+        "skin_damaged": 901,
+        "spotted": 846
+      },
+      "validation": {
+        "broken": 100,
+        "immature": 112,
+        "intact": 91,
+        "skin_damaged": 113,
+        "spotted": 106
+      }
+    },
+    "model_candidates": [
+      {
+        "expected_test_rows": 522,
+        "experiment": "resnet18_baseline",
+        "no_synthetic_used": true,
+        "notes": "Validation uses reconciled checkpoint metadata; archived validation metrics contained a stale higher value.",
+        "result_group": "Resultados 1",
+        "same_splits": true,
+        "seed": 42,
+        "seed_registered": true,
+        "test_not_modified": true,
+        "test_prediction_rows": 522
+      },
+      {
+        "expected_test_rows": 522,
+        "experiment": "resnet18_v2",
+        "no_synthetic_used": true,
+        "notes": "",
+        "result_group": "Resultados 2",
+        "same_splits": true,
+        "seed": 42,
+        "seed_registered": true,
+        "test_not_modified": true,
+        "test_prediction_rows": 522
+      },
+      {
+        "expected_test_rows": 522,
+        "experiment": "efficientnet_b0_v2",
+        "no_synthetic_used": true,
+        "notes": "Not selected because validation macro-F1 is lower than ResNet18 V2.",
+        "result_group": "Resultados 2",
+        "same_splits": true,
+        "seed": 42,
+        "seed_registered": true,
+        "test_not_modified": true,
+        "test_prediction_rows": 522
+      },
+      {
+        "expected_test_rows": 522,
+        "experiment": "resnet18_v2_tta_light",
+        "no_synthetic_used": true,
+        "notes": "Final inference configuration selected by validation macro-F1 before test reporting.",
+        "result_group": "Resultados 2",
+        "same_splits": true,
+        "seed": 42,
+        "seed_registered": true,
+        "test_not_modified": true,
+        "test_prediction_rows": 522
+      }
+    ],
+    "synthetic_counts": {
+      "test": 0,
+      "train": 0,
+      "validation": 0
+    }
+  }
+}

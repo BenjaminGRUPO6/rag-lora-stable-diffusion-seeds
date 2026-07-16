@@ -1,0 +1,2 @@
+pip 26.1.2 from D:\Users\Luis\Documents\GitHub\rag-lora-stable-diffusion-seeds\.venv\lib\site-packages\pip (python 3.10)
+

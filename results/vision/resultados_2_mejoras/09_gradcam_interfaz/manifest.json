@@ -1,0 +1,235 @@
+{
+  "model_name": "resnet18_v2",
+  "architecture": "resnet18",
+  "checkpoint_path": "models/vision/resnet18_v2_best.pt",
+  "gradcam_layer": "layer4.1.conv2",
+  "explanation_scope": "Grad-CAM es aproximado; no es prueba causal ni diagnostico.",
+  "output_dir": "results/vision/resultados_2_mejoras/09_gradcam_interfaz",
+  "png": [
+    "r2_gradcam_correctos.png",
+    "r2_gradcam_errores.png",
+    "r2_gradcam_intact_broken.png",
+    "r2_panel_visual_demo.png",
+    "r1_vs_r2_dashboard.png"
+  ],
+  "samples": {
+    "correctos": [
+      {
+        "image_path": "data/processed/test/intact/49.jpg",
+        "true_label": "intact",
+        "predicted_label": "intact",
+        "confidence": 0.9998607635498048,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.3279573917388916,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/intact_49_intact.png"
+      },
+      {
+        "image_path": "data/processed/test/spotted/829.jpg",
+        "true_label": "spotted",
+        "predicted_label": "spotted",
+        "confidence": 0.9999980926513672,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.32573202252388,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/spotted_829_spotted.png"
+      },
+      {
+        "image_path": "data/processed/test/immature/297.jpg",
+        "true_label": "immature",
+        "predicted_label": "immature",
+        "confidence": 1.0,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.34706220030784607,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/immature_297_immature.png"
+      },
+      {
+        "image_path": "data/processed/test/broken/666.jpg",
+        "true_label": "broken",
+        "predicted_label": "broken",
+        "confidence": 0.9999829530715942,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.22747129201889038,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/broken_666_broken.png"
+      },
+      {
+        "image_path": "data/processed/test/skin_damaged/116.jpg",
+        "true_label": "skin_damaged",
+        "predicted_label": "skin_damaged",
+        "confidence": 0.9999998807907104,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.2514881193637848,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/skin_damaged_116_skin_damaged.png"
+      }
+    ],
+    "errores": [
+      {
+        "image_path": "data/processed/test/skin_damaged/1010.jpg",
+        "true_label": "skin_damaged",
+        "predicted_label": "intact",
+        "confidence": 0.9955306649208068,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.4367735683917999,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/skin_damaged_1010_intact.png"
+      },
+      {
+        "image_path": "data/processed/test/broken/10.jpg",
+        "true_label": "broken",
+        "predicted_label": "skin_damaged",
+        "confidence": 0.9805511236190796,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.26334384083747864,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/broken_10_skin_damaged.png"
+      },
+      {
+        "image_path": "data/processed/test/broken/828.jpg",
+        "true_label": "broken",
+        "predicted_label": "skin_damaged",
+        "confidence": 0.9490084052085876,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.22346463799476624,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/broken_828_skin_damaged.png"
+      },
+      {
+        "image_path": "data/processed/test/spotted/271.jpg",
+        "true_label": "spotted",
+        "predicted_label": "skin_damaged",
+        "confidence": 0.945807933807373,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.2770099639892578,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/spotted_271_skin_damaged.png"
+      },
+      {
+        "image_path": "data/processed/test/broken/502.jpg",
+        "true_label": "broken",
+        "predicted_label": "spotted",
+        "confidence": 0.9380176067352296,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.28506264090538025,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/broken_502_spotted.png"
+      }
+    ],
+    "intact_broken": [
+      {
+        "image_path": "data/processed/test/intact/49.jpg",
+        "true_label": "intact",
+        "predicted_label": "intact",
+        "confidence": 0.9998607635498048,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.3279573917388916,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/intact_49_intact.png"
+      },
+      {
+        "image_path": "data/processed/test/broken/666.jpg",
+        "true_label": "broken",
+        "predicted_label": "broken",
+        "confidence": 0.9999829530715942,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.22747129201889038,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/broken_666_broken.png"
+      },
+      {
+        "image_path": "data/processed/test/broken/147.jpg",
+        "true_label": "broken",
+        "predicted_label": "broken",
+        "confidence": 0.999976634979248,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.2423263043165207,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/broken_147_broken.png"
+      },
+      {
+        "image_path": "data/processed/test/broken/200.jpg",
+        "true_label": "broken",
+        "predicted_label": "broken",
+        "confidence": 0.9999605417251588,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.2198009043931961,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/broken_200_broken.png"
+      },
+      {
+        "image_path": "data/processed/test/broken/539.jpg",
+        "true_label": "broken",
+        "predicted_label": "broken",
+        "confidence": 0.9999600648880004,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.2691972553730011,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/broken_539_broken.png"
+      },
+      {
+        "image_path": "data/processed/test/broken/404.jpg",
+        "true_label": "broken",
+        "predicted_label": "broken",
+        "confidence": 0.9999409914016724,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.2596741020679474,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/broken_404_broken.png"
+      }
+    ],
+    "cinco_clases": [
+      {
+        "image_path": "data/processed/test/intact/49.jpg",
+        "true_label": "intact",
+        "predicted_label": "intact",
+        "confidence": 0.9998607635498048,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.3279573917388916,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/intact_49_intact.png"
+      },
+      {
+        "image_path": "data/processed/test/spotted/829.jpg",
+        "true_label": "spotted",
+        "predicted_label": "spotted",
+        "confidence": 0.9999980926513672,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.32573202252388,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/spotted_829_spotted.png"
+      },
+      {
+        "image_path": "data/processed/test/immature/297.jpg",
+        "true_label": "immature",
+        "predicted_label": "immature",
+        "confidence": 1.0,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.34706220030784607,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/immature_297_immature.png"
+      },
+      {
+        "image_path": "data/processed/test/broken/666.jpg",
+        "true_label": "broken",
+        "predicted_label": "broken",
+        "confidence": 0.9999829530715942,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.22747129201889038,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/broken_666_broken.png"
+      },
+      {
+        "image_path": "data/processed/test/skin_damaged/116.jpg",
+        "true_label": "skin_damaged",
+        "predicted_label": "skin_damaged",
+        "confidence": 0.9999998807907104,
+        "gradcam_status": "ok",
+        "gradcam_layer": "layer4.1.conv2",
+        "gradcam_intensity": 0.2514881193637848,
+        "combined_path": "results/vision/resultados_2_mejoras/09_gradcam_interfaz/samples/skin_damaged_116_skin_damaged.png"
+      }
+    ]
+  }
+}

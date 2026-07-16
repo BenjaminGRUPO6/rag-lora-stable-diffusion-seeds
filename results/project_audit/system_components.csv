@@ -1,0 +1,8 @@
+component,files,functions,role
+Streamlit UI,app/streamlit_app.py; app/components/demo_helpers.py,"run_analysis, render_prediction, render_retrieval, render_lora_section","Carga imagen, muestra resultados y exporta reportes"
+Preprocesamiento,src/vision/preprocessing.py,"preprocess_image, detect_candidate_mask",Crop automatico y fallback
+Clasificador vision,src/vision/inference_engine.py; src/vision/model.py,"VisionInferenceEngine.predict, create_model",Predice clase y probabilidades
+Pipeline,src/pipelines/analyze_seed.py,"analyze_seed, build_available_retriever","Orquesta vision, RAG y reporte"
+RAG,src/rag/*.py; vector_db/*,"FaissRetriever, MetadataKeywordRetriever",Recupera evidencia tecnica
+Reportes,src/reports/report_generator.py,generate_preliminary_report,Informe preliminar con fuentes
+LoRA,configs/lora_sd15.yaml; models/lora/*,load_lora_visual_evidence,Modulo generativo separado

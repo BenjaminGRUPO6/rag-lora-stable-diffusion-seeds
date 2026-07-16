@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "image_path": "data/processed/test/broken/10.jpg",
+  "checkpoint_available": true,
+  "tensor_created": true,
+  "model_loaded": true,
+  "prediction": "skin_damaged",
+  "confidence": 0.4687288701534271,
+  "probabilities_sum": 0.9999999664723873,
+  "class_valid": true,
+  "confidence_valid": true,
+  "probabilities_valid": true,
+  "report_structured": true,
+  "no_private_paths": true,
+  "no_forbidden_diagnostic": true,
+  "rag_status": "faiss",
+  "sources_count": 5,
+  "sources_real_when_available": true,
+  "output_json": "results/project_audit/command_outputs_venv/end_to_end/functional_test.json",
+  "output_markdown": "results/project_audit/command_outputs_venv/end_to_end/functional_test.md",
+  "errors": []
+}

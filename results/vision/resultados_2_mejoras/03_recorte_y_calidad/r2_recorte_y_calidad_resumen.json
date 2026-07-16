@@ -1,0 +1,78 @@
+{
+  "artifacts": [
+    "results/vision/resultados_2_mejoras/03_recorte_y_calidad/r2_recorte_y_calidad.csv",
+    "results/vision/resultados_2_mejoras/03_recorte_y_calidad/r2_revision_humana_template.csv",
+    "results/vision/resultados_2_mejoras/03_recorte_y_calidad/r2_recorte_y_calidad_resumen.json",
+    "results/vision/resultados_2_mejoras/03_recorte_y_calidad/r2_galeria_recortes.png",
+    "results/vision/resultados_2_mejoras/03_recorte_y_calidad/r2_original_vs_recorte.png",
+    "results/vision/resultados_2_mejoras/03_recorte_y_calidad/r2_panel_calidad.png",
+    "results/vision/resultados_2_mejoras/03_recorte_y_calidad/r2_distribucion_calidad.png",
+    "results/vision/resultados_2_mejoras/03_recorte_y_calidad/r2_casos_fallback.png"
+  ],
+  "config": {
+    "adaptive_window_ratio": 0.08,
+    "bbox_expansion_ratio": 0.12,
+    "max_component_count": 30,
+    "min_component_area_ratio": 0.01,
+    "min_object_side_pixels": 8,
+    "morphology_iterations": 1,
+    "output_size": 224
+  },
+  "crops_evaluated": 100,
+  "experiment_id": "03_recorte_y_calidad",
+  "fallback_count": 0,
+  "fallback_rate": 0.0,
+  "generated_at_utc": "2026-07-13T19:22:47+00:00",
+  "images_per_class": 20,
+  "mean_quality": {
+    "blur_score": 102.712069,
+    "brightness_score": 0.347959,
+    "contrast_score": 0.937189,
+    "crop_confidence": 0.969,
+    "foreground_ratio": 0.539415
+  },
+  "note": "Las heuristicas son control de calidad visual y no constituyen diagnostico.",
+  "per_class": {
+    "broken": {
+      "count": 20,
+      "fallback_count": 0,
+      "mean_crop_confidence": 0.9615
+    },
+    "immature": {
+      "count": 20,
+      "fallback_count": 0,
+      "mean_crop_confidence": 0.9805
+    },
+    "intact": {
+      "count": 20,
+      "fallback_count": 0,
+      "mean_crop_confidence": 0.977
+    },
+    "skin_damaged": {
+      "count": 20,
+      "fallback_count": 0,
+      "mean_crop_confidence": 0.9635
+    },
+    "spotted": {
+      "count": 20,
+      "fallback_count": 0,
+      "mean_crop_confidence": 0.9625
+    }
+  },
+  "png_artifacts": [
+    "results/vision/resultados_2_mejoras/03_recorte_y_calidad/r2_galeria_recortes.png",
+    "results/vision/resultados_2_mejoras/03_recorte_y_calidad/r2_original_vs_recorte.png",
+    "results/vision/resultados_2_mejoras/03_recorte_y_calidad/r2_panel_calidad.png",
+    "results/vision/resultados_2_mejoras/03_recorte_y_calidad/r2_distribucion_calidad.png",
+    "results/vision/resultados_2_mejoras/03_recorte_y_calidad/r2_casos_fallback.png"
+  ],
+  "review_template": "crop_acceptable, object_centered, single_seed, notes",
+  "seed": 42,
+  "split": "validation",
+  "validation_dir": "data/processed/validation",
+  "warning_counts": {
+    "low_brightness": 1,
+    "multiple_candidate_components": 28,
+    "possible_blur": 13
+  }
+}

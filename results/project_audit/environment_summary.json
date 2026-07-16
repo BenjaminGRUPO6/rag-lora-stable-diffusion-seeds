@@ -1,0 +1,10 @@
+{
+  "audit_time": "2026-07-14T02:12:47-05:00",
+  "cuda_available": true,
+  "global_check_environment": "FAIL: Python: 3.10.11\nSistema: Windows-10-10.0.19045-SP0\nPaquetes faltantes: PIL, yaml, pandas, numpy, sklearn, imagehash, pytest",
+  "global_python": "Python 3.10.11",
+  "package_count": 91,
+  "torch_version": "2.7.1+cu118",
+  "venv_check_environment": "Python: 3.10.11\nSistema: Windows-10-10.0.19045-SP0\nEntorno core correcto.",
+  "venv_python": "Python 3.10.11"
+}

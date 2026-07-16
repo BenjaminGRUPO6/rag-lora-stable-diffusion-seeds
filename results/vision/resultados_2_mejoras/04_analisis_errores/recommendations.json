@@ -1,0 +1,63 @@
+{
+  "label_change_policy": "No label is declared incorrect; all suspected issues require human review.",
+  "observed_top_confusions": [
+    {
+      "count": 47,
+      "predicted_label": "immature",
+      "rate_within_true_label": 0.5164835164835165,
+      "true_label": "intact"
+    },
+    {
+      "count": 27,
+      "predicted_label": "spotted",
+      "rate_within_true_label": 0.27,
+      "true_label": "broken"
+    },
+    {
+      "count": 17,
+      "predicted_label": "skin_damaged",
+      "rate_within_true_label": 0.17,
+      "true_label": "broken"
+    },
+    {
+      "count": 13,
+      "predicted_label": "skin_damaged",
+      "rate_within_true_label": 0.14285714285714285,
+      "true_label": "intact"
+    },
+    {
+      "count": 11,
+      "predicted_label": "immature",
+      "rate_within_true_label": 0.09734513274336283,
+      "true_label": "skin_damaged"
+    }
+  ],
+  "recommendations": [
+    {
+      "basis": "160 validation errors observed out of 522 images.",
+      "priority": "high",
+      "recommendation": "Prioritize human review of validation errors before changing labels or model settings."
+    },
+    {
+      "basis": "Intact-related review categories total 70 cases.",
+      "priority": "high",
+      "recommendation": "Review intact boundary cases as visual ambiguities, not automatic label errors."
+    },
+    {
+      "basis": "Broken-related review categories total 56 cases.",
+      "priority": "high",
+      "recommendation": "Review broken boundary cases and document visual criteria before any dataset edit."
+    },
+    {
+      "basis": "283 low-confidence cases and 128 low-margin cases on validation.",
+      "priority": "medium",
+      "recommendation": "Use low-confidence and low-margin cases as a review queue for decision-boundary analysis."
+    },
+    {
+      "basis": "Quality status 'warning:multiple_candidate_components' has 34/98 errors.",
+      "priority": "medium",
+      "recommendation": "Inspect whether visual quality warnings explain errors before changing preprocessing."
+    }
+  ],
+  "scope": "validation_only"
+}

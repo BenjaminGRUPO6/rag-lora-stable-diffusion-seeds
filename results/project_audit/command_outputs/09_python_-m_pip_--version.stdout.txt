@@ -1,0 +1,2 @@
+pip 23.0.1 from C:\Users\Luis\AppData\Local\Programs\Python\Python310\lib\site-packages\pip (python 3.10)
+

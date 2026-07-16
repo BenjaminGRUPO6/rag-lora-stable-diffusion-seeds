@@ -1,0 +1,46 @@
+{
+  "best_epoch": 1,
+  "best_validation_macro_f1": 0.08,
+  "checkpoint": "results\\vision\\resultados_2_mejoras\\08_comparacion_modelos\\smoke_test\\efficientnet_b0_v2_smoke.pt",
+  "class_distribution": {
+    "test": {
+      "broken": 1,
+      "immature": 1,
+      "intact": 1,
+      "skin_damaged": 1,
+      "spotted": 1
+    },
+    "train": {
+      "broken": 1,
+      "immature": 1,
+      "intact": 1,
+      "skin_damaged": 1,
+      "spotted": 1
+    },
+    "validation": {
+      "broken": 1,
+      "immature": 1,
+      "intact": 1,
+      "skin_damaged": 1,
+      "spotted": 1
+    }
+  },
+  "class_weights_used": false,
+  "device": "cuda",
+  "elapsed_seconds": 19.25664579999284,
+  "epochs_ran": 1,
+  "metrics_source": "results\\vision\\resultados_2_mejoras\\08_comparacion_modelos\\smoke_test\\efficientnet_metrics_test.json",
+  "results_dir": "results\\vision\\resultados_2_mejoras\\08_comparacion_modelos\\smoke_test",
+  "smoke_test": true,
+  "test_accuracy": 0.2,
+  "test_macro_f1": 0.08,
+  "train_imbalance": {
+    "ratio": 1.0,
+    "relevant": false
+  },
+  "validation_imbalance": {
+    "ratio": 1.0,
+    "relevant": false
+  },
+  "validation_macro_f1": 0.08
+}

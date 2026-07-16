@@ -1,0 +1,48 @@
+{
+  "config": {
+    "paths": {
+      "documents": "data/documents",
+      "metadata": "data/metadata/document_sources.csv",
+      "vector_db": "vector_db"
+    },
+    "rag": {
+      "abstain_when_no_evidence": true,
+      "answer_language": "es",
+      "chunk_overlap": 120,
+      "chunk_size": 700,
+      "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+      "require_source_metadata": true,
+      "top_k": 5,
+      "vector_store": "faiss"
+    }
+  },
+  "fallback": "MetadataKeywordRetriever",
+  "index_exists": true,
+  "integration": "src/pipelines/analyze_seed.py",
+  "manifest": {
+    "built_at_utc": "2026-07-13T08:42:06.489327+00:00",
+    "chunks": 1316,
+    "documents": 6,
+    "embedding_dimension": 384,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "files": {
+      "config": "config.json",
+      "index": "index.faiss",
+      "metadata": "metadata.json"
+    },
+    "index_size_bytes": 2021421,
+    "inputs": {
+      "config": "configs/rag.yaml",
+      "documents": "data/documents/accepted",
+      "sources": "data/metadata/document_sources.csv"
+    },
+    "validation": {
+      "errors": [],
+      "metadata_aligned": true,
+      "ok": true,
+      "reproducible_retrieval": true
+    }
+  },
+  "metadata_exists": true,
+  "source_count": 6
+}

@@ -1,0 +1,237 @@
+{
+  "classification_impact_claim": "NOT_CLAIMED",
+  "comparison": {
+    "rows": [
+      {
+        "adapted_image": "",
+        "base_image": "",
+        "class_name": "intact",
+        "comparison_image": "",
+        "evidence_status": "EVIDENCE_MISSING",
+        "prompt": "",
+        "seed": ""
+      },
+      {
+        "adapted_image": "",
+        "base_image": "",
+        "class_name": "broken",
+        "comparison_image": "",
+        "evidence_status": "EVIDENCE_MISSING",
+        "prompt": "",
+        "seed": ""
+      },
+      {
+        "adapted_image": "",
+        "base_image": "",
+        "class_name": "spotted",
+        "comparison_image": "",
+        "evidence_status": "EVIDENCE_MISSING",
+        "prompt": "",
+        "seed": ""
+      },
+      {
+        "adapted_image": "",
+        "base_image": "",
+        "class_name": "immature",
+        "comparison_image": "",
+        "evidence_status": "EVIDENCE_MISSING",
+        "prompt": "",
+        "seed": ""
+      },
+      {
+        "adapted_image": "",
+        "base_image": "",
+        "class_name": "skin_damaged",
+        "comparison_image": "",
+        "evidence_status": "EVIDENCE_MISSING",
+        "prompt": "",
+        "seed": ""
+      }
+    ],
+    "status": "EVIDENCE_MISSING"
+  },
+  "dataset": {
+    "caption_examples": [
+      "photo of a soyseed soybean seed, intact condition, clean surface, centered inspection photography",
+      "photo of a soyseed soybean seed, intact condition, clean surface, centered inspection photography",
+      "photo of a soyseed soybean seed, intact condition, clean surface, centered inspection photography",
+      "photo of a soyseed soybean seed, intact condition, clean surface, centered inspection photography",
+      "photo of a soyseed soybean seed, intact condition, clean surface, centered inspection photography"
+    ],
+    "class_distribution": {
+      "broken": 200,
+      "immature": 200,
+      "intact": 200,
+      "skin_damaged": 200,
+      "spotted": 200
+    },
+    "metadata_path": "data/lora/train/metadata.jsonl",
+    "metadata_private_paths_detected": false,
+    "metadata_records": 1000,
+    "referenced_images_existing": 1000
+  },
+  "evidence_found": [
+    "Config: configs/lora_sd15.yaml",
+    "Metadata records: 1000 from data/lora/train/metadata.jsonl",
+    "Notebook: notebooks/06_entrenamiento_lora_sd15_colab.ipynb; executed code cells 0; cells with outputs 0",
+    "LoRA adapter file: pytorch_lora_weights.safetensors (6414992 bytes) at models/lora/soybean_sd15/pytorch_lora_weights.safetensors"
+  ],
+  "evidence_missing": [
+    "Base-vs-adapted comparison images are not available.",
+    "Notebook outputs/logs are missing; hardware is not verified.",
+    "Parameter not verified: hardware"
+  ],
+  "generated_at_utc": "2026-07-14T05:50:20.003023+00:00",
+  "generated_pngs": [
+    "results/vision/resultados_2_mejoras/10_lora_generativo/r2_lora_model_card.png",
+    "results/vision/resultados_2_mejoras/10_lora_generativo/r2_lora_base_vs_adaptado.png",
+    "results/vision/resultados_2_mejoras/10_lora_generativo/r2_lora_clases.png",
+    "results/vision/resultados_2_mejoras/10_lora_generativo/r2_lora_flujo.png"
+  ],
+  "limitations": [
+    "This evidence card does not evaluate classifier performance.",
+    "No Stable Diffusion inference was executed by this consolidation.",
+    "Base-vs-adapted visual comparisons remain missing unless existing files are provided.",
+    "`spotted` is a visual category and is not presented as a fungal diagnosis."
+  ],
+  "lora_inference_required": false,
+  "mandatory_explanation": "El LoRA genera imágenes sintéticas de semillas. No clasifica la imagen cargada y no modifica la confianza del clasificador ResNet18.",
+  "model": {
+    "adapter": {
+      "adapter_name": "soybean_sd15",
+      "candidate_count": 1,
+      "exists": true,
+      "file_name": "pytorch_lora_weights.safetensors",
+      "last_modified_utc": "2026-07-13T05:25:33.389334+00:00",
+      "path": "models/lora/soybean_sd15/pytorch_lora_weights.safetensors",
+      "size_bytes": 6414992,
+      "size_mb": 6.12,
+      "status": "FOUND"
+    },
+    "adapter_name": "soybean_sd15",
+    "base_model": {
+      "source": "configs/lora_sd15.yaml",
+      "value": "stable-diffusion-v1-5/stable-diffusion-v1-5"
+    }
+  },
+  "no_mass_generation_performed": true,
+  "no_retraining_performed": true,
+  "samples": [
+    {
+      "class_name": "intact",
+      "evidence_status": "FOUND",
+      "image_path": "data/lora/train/images/intact_00001.jpg",
+      "image_role": "training_metadata_sample",
+      "prompt": "photo of a soyseed soybean seed, intact condition, clean surface, centered inspection photography",
+      "seed": ""
+    },
+    {
+      "class_name": "spotted",
+      "evidence_status": "FOUND",
+      "image_path": "data/lora/train/images/spotted_00001.jpg",
+      "image_role": "training_metadata_sample",
+      "prompt": "photo of a soyseed soybean seed, spotted visual surface pattern, centered inspection photography",
+      "seed": ""
+    },
+    {
+      "class_name": "immature",
+      "evidence_status": "FOUND",
+      "image_path": "data/lora/train/images/immature_00001.jpg",
+      "image_role": "training_metadata_sample",
+      "prompt": "photo of a soyseed soybean seed, immature condition, pale surface, centered inspection photography",
+      "seed": ""
+    },
+    {
+      "class_name": "broken",
+      "evidence_status": "FOUND",
+      "image_path": "data/lora/train/images/broken_00001.jpg",
+      "image_role": "training_metadata_sample",
+      "prompt": "photo of a soyseed soybean seed, broken condition, visible fracture, centered inspection photography",
+      "seed": ""
+    },
+    {
+      "class_name": "skin_damaged",
+      "evidence_status": "FOUND",
+      "image_path": "data/lora/train/images/skin_damaged_00001.jpg",
+      "image_role": "training_metadata_sample",
+      "prompt": "photo of a soyseed soybean seed, skin_damaged condition, damaged seed coat, centered inspection photography",
+      "seed": ""
+    }
+  ],
+  "sources": {
+    "config": "configs/lora_sd15.yaml",
+    "legacy_lora_results": "results/lora",
+    "metadata": "data/lora/train/metadata.jsonl",
+    "notebook": "notebooks/06_entrenamiento_lora_sd15_colab.ipynb"
+  },
+  "spotted_semantics": "visual_category_only",
+  "stable_diffusion_loaded": false,
+  "status": "PARTIAL",
+  "synthetic_train_policy": "Synthetic images may enter train only after human review.",
+  "training": {
+    "hardware": {
+      "source": "EVIDENCE_MISSING",
+      "value": null
+    },
+    "parameters": {
+      "base_model": {
+        "source": "configs/lora_sd15.yaml",
+        "value": "stable-diffusion-v1-5/stable-diffusion-v1-5"
+      },
+      "gradient_accumulation_steps": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 4
+      },
+      "learning_rate": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 0.0001
+      },
+      "max_train_steps_full": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 800
+      },
+      "max_train_steps_initial": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 100
+      },
+      "mixed_precision": {
+        "source": "configs/lora_sd15.yaml",
+        "value": "fp16"
+      },
+      "rank": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 8
+      },
+      "resolution": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 512
+      },
+      "seed": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 42
+      },
+      "train_batch_size": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 1
+      },
+      "train_text_encoder": {
+        "source": "configs/lora_sd15.yaml",
+        "value": false
+      },
+      "trigger_word": {
+        "source": "configs/lora_sd15.yaml",
+        "value": "soybeanseed"
+      }
+    },
+    "steps": {
+      "full": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 800
+      },
+      "initial": {
+        "source": "configs/lora_sd15.yaml",
+        "value": 100
+      }
+    }
+  }
+}

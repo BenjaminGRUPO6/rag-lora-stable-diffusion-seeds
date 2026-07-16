@@ -19,6 +19,7 @@ from src.vision.inference import (
     VisionInferenceEngine,
     build_inference_transform,
 )
+from src.vision.tta import predict_with_tta
 
 
 DEFAULT_VISION_CONFIG = Path("configs/vision_config.yaml")
@@ -46,6 +47,9 @@ def analyze_seed(
     retriever: Callable[..., list[dict]] | None = None,
     prediction: dict | None = None,
     report_provider: ReportProvider | None = None,
+    use_tta: bool = False,
+    tta_policy_name: str = "none",
+    tta_temperature: float | None = None,
 ) -> dict:
     """Analyze a soybean seed image with vision inference, RAG and a preliminary report.
 
@@ -82,7 +86,17 @@ def analyze_seed(
                     ),
                     device=device,
                 )
-        prediction = active_engine.predict_dict(image)
+        if use_tta and tta_policy_name != "none":
+            if tta_temperature is None:
+                raise ValueError("Debe proporcionar tta_temperature para activar TTA.")
+            prediction = predict_with_tta(
+                engine=active_engine,
+                image=image,
+                policy_name=tta_policy_name,
+                temperature=float(tta_temperature),
+            )
+        else:
+            prediction = active_engine.predict_dict(image)
     processing_times["vision_seconds"] = elapsed(vision_started)
 
     normalized_prediction = normalize_prediction(prediction)
@@ -146,7 +160,20 @@ def analyze_seed(
         "probabilities": normalized_prediction["probabilities"],
         "logits": normalized_prediction["logits"],
         "top_3": normalized_prediction["top_3"],
+        "uncalibrated_confidence": normalized_prediction["uncalibrated_confidence"],
+        "uncalibrated_probabilities": normalized_prediction["uncalibrated_probabilities"],
+        "calibration_temperature": normalized_prediction["calibration_temperature"],
+        "calibration_applied": normalized_prediction["calibration_applied"],
+        "second_class": normalized_prediction["second_class"],
+        "second_confidence": normalized_prediction["second_confidence"],
+        "top1_top2_margin": normalized_prediction["top1_top2_margin"],
+        "tta_enabled": normalized_prediction["tta_enabled"],
+        "tta_policy": normalized_prediction["tta_policy"],
+        "tta_views": normalized_prediction["tta_views"],
+        "tta_extra_seconds": normalized_prediction["tta_extra_seconds"],
+        "aggregation": normalized_prediction["aggregation"],
         "uncertainty_status": uncertainty_status,
+        "reliability_status": "incierto" if uncertainty_status == "uncertain" else "confiable",
         "retrieved_sources": retrieved_sources,
         "preliminary_report": preliminary_report,
         "limitations": limitations,
@@ -242,12 +269,57 @@ def normalize_prediction(prediction: dict) -> dict:
     if raw_top_3 and not isinstance(raw_top_3, list):
         raise ValueError("prediction['top_3'] debe ser una lista.")
     top_3 = [dict(item) for item in raw_top_3 if isinstance(item, dict)]
+    sorted_probabilities = sorted(probabilities.items(), key=lambda item: item[1], reverse=True)
+    second_class = prediction.get("second_class")
+    second_confidence = prediction.get("second_confidence")
+    if sorted_probabilities:
+        if not top_3:
+            top_3 = [
+                {"label": item_label, "probability": item_probability}
+                for item_label, item_probability in sorted_probabilities[:3]
+            ]
+        if second_class is None and len(sorted_probabilities) >= 2:
+            second_class = sorted_probabilities[1][0]
+        if second_confidence is None and len(sorted_probabilities) >= 2:
+            second_confidence = sorted_probabilities[1][1]
+    top1_top2_margin = prediction.get("top1_top2_margin")
+    if top1_top2_margin is None:
+        top1_top2_margin = (
+            float(sorted_probabilities[0][1]) - float(sorted_probabilities[1][1])
+            if len(sorted_probabilities) >= 2
+            else confidence
+        )
+    raw_uncalibrated_probabilities = prediction.get("uncalibrated_probabilities") or probabilities
+    if not isinstance(raw_uncalibrated_probabilities, dict):
+        raise ValueError("prediction['uncalibrated_probabilities'] debe ser un diccionario.")
+    uncalibrated_probabilities = {
+        str(key): float(value) for key, value in raw_uncalibrated_probabilities.items()
+    }
+    uncalibrated_confidence = float(
+        prediction.get("uncalibrated_confidence", uncalibrated_probabilities.get(label, confidence))
+    )
+    calibration_temperature = prediction.get("calibration_temperature")
+    tta_extra_seconds = prediction.get("tta_extra_seconds")
     return {
         "label": label,
         "confidence": confidence,
         "probabilities": probabilities,
         "logits": logits,
         "top_3": top_3,
+        "uncalibrated_confidence": uncalibrated_confidence,
+        "uncalibrated_probabilities": uncalibrated_probabilities,
+        "calibration_temperature": (
+            float(calibration_temperature) if calibration_temperature is not None else None
+        ),
+        "calibration_applied": bool(prediction.get("calibration_applied", False)),
+        "second_class": str(second_class) if second_class is not None else None,
+        "second_confidence": float(second_confidence) if second_confidence is not None else None,
+        "top1_top2_margin": float(top1_top2_margin),
+        "tta_enabled": bool(prediction.get("tta_enabled", False)),
+        "tta_policy": str(prediction.get("tta_policy") or "none"),
+        "tta_views": int(prediction.get("tta_views", 1)),
+        "tta_extra_seconds": float(tta_extra_seconds) if tta_extra_seconds is not None else 0.0,
+        "aggregation": str(prediction.get("aggregation") or ""),
     }
 
 

@@ -6,11 +6,41 @@ Preparar una infraestructura de experimentacion para mejorar el clasificador vis
 
 ## Alcance de esta etapa
 
-- Mantener intacto `results/vision/resnet18_baseline`.
+- Mantener intacto `results/vision/resnet18_baseline` y `results/vision/resultados_1_baseline`.
 - Versionar una copia de artefactos pequenos actuales en `results/vision/resultados_1_baseline`.
 - Preparar espacios de trabajo para mejoras en `results/vision/resultados_2_mejoras`.
 - Definir un registro reproducible para futuros experimentos.
-- No modificar `train`, `validation`, `test`, datasets, checkpoints ni pesos.
+- No modificar `train`, `validation`, `test` ni imagenes originales. Los checkpoints nuevos quedan fuera de Git.
+
+## Ejecucion registrada - 08 comparacion modelos
+
+La etapa `08_comparacion_modelos` ya fue ejecutada para comparar EfficientNet-B0 con ResNet18 V2.
+
+Problema detectado: el entrenamiento EfficientNet-B0 quedaba limitado por CPU porque `preprocess_image` se ejecutaba dentro de `__getitem__`. Eso repetia por epoca segmentacion, morfologia, componentes conectados y calidad visual.
+
+Correccion:
+
+- cache regenerable en `data/cache/vision_crops/`;
+- `compute_quality=false` durante entrenamiento;
+- fallback al crop cuadrado de la imagen original si falta un crop;
+- `pin_memory=true` en CUDA;
+- transferencias `non_blocking=true`;
+- `persistent_workers` solo cuando `num_workers > 0`;
+- progreso por batch y checkpoints de recuperacion por epoca.
+
+Benchmark y seleccion:
+
+- 128 imagenes, batch 8, NVIDIA GeForce GTX 1050.
+- Recorte en tiempo real: 3.85 imagenes/s.
+- Cache `num_workers=0`: 105.60 imagenes/s.
+- Cache `num_workers=2`: 5.35 imagenes/s en Windows.
+- Configuracion seleccionada: batch 8, `num_workers=0`, cache activa.
+
+Resultados:
+
+- EfficientNet-B0: validation macro-F1 0.899532; test macro-F1 0.868306.
+- ResNet18 V2: validation macro-F1 0.920701; test macro-F1 0.903329.
+- Modelo seleccionado: ResNet18 V2, por validation macro-F1 superior y mejor latencia CUDA.
 
 ## Experimentos previstos
 
